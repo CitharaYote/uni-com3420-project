@@ -71,6 +71,7 @@ gem 'sanitize_email'
 
 gem 'sentry-ruby'
 gem 'sentry-rails'
+gem "epi_cas", git: "git@git.shefcompsci.org.uk:gems/epi_cas.git"
 
 group :development do
   gem 'letter_opener'
