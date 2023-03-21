@@ -1,82 +1,58 @@
 <div class="w-5/6">
-      <div class="flex flex-row items-start justify-between">
-        <div class="flex flex-row items-center">
-          <p class="text-lg">
-            Viewing <span class="font-bold"><%= filteredData %></span> student<%= filtered_data.length == 1 ? "" : "s" %>
-          </p>
-          <input
-            class="h-10 px-2 py-4 ml-4 text-sm bg-white border-2 border-gray-300 rounded-lg w-36 focus:outline-none"
-            name="search"
-            placeholder="Search..."
-            onChange={(e) => {
-              const search = e.target.value;
-              const filtered = p.data[selectedModule].data.filter((student) => {
-                return (
-                  student["Surname"]
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  student["Forename"]
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  student["Reg No."]
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  student["Reg. Status"]
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  student["Module Code"]
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  student["1st Grade"]
-                    .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                  student["2nd Grade"]
-                    .toLowerCase()
-                    .includes(search.toLowerCase())
-                );
-              });
-              setFilteredData(filtered);
-            }}
-          />
-        </div>
-        <div>
-          <div class="flex flex-row items-center">
-            <p class="mr-2 text-lg">Department:</p>
-            <select class="h-10 pl-5 pr-10 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none">
-              <option value="">Music</option>
-            </select>
-            <p class="ml-4 mr-2 text-lg">Program:</p>
-            <select
-              class="h-10 pl-5 pr-10 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
-              onChange={(e) => setSelectedModule(e.target.value)}
-            >
-              {p.data.map((module, index) => (
+  <div class="flex flex-row items-start justify-between">
+    <div class="flex flex-row items-center">
+      <p class="text-lg">
+        Viewing <span class="font-bold"><%= data.length %></span> student<%=
+        data.length == 1 ? "" : "s" %>
+      </p>
+      <input
+        class="h-10 px-2 py-4 ml-4 text-sm bg-white border-2 border-gray-300 rounded-lg w-36 focus:outline-none"
+        name="search"
+        placeholder="Search..."
+      />
+    </div>
+    <div>
+      <div class="flex flex-row items-center">
+        <p class="mr-2 text-lg">Department:</p>
+        <select
+          class="h-10 pl-5 pr-10 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
+        >
+          <option value="">Music</option>
+        </select>
+        <p class="ml-4 mr-2 text-lg">Program:</p>
+        <select
+          class="h-10 pl-5 pr-10 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
+          onchange=<%= "@set_module_index(this.value)" %>
+        >
+          <!-- {p.data.map((module, index) => (
                 <option value={index} key={index}>
                   {getModuleCode(module)}
                 </option>
-              ))}
-            </select>
-          </div>
-          <p class="mt-2 text-sm italic text-right text-gray-500">
-            Click on a student for more information!
-          </p>
-        </div>
+              ))} -->
+          <% data.each_with_index.map do |_module, index| %>
+          <option value="<%= index %>"><%= index %></option>
+          <% end %>
+        </select>
       </div>
-      <div>
-        <table class="w-full my-4 table-auto">
-          <thead class="bg-gray-300">
-            <tr>
-              <th class="px-4 py-2">Reg No.</th>
-              <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
-              <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
-              <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
-              <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
-              <th class="px-4 py-2">WMG</th>
-              {/* <th class="px-4 py-2"></th> */}
-            </tr>
-          </thead>
-          <tbody class="">
-            {filteredData.map((student, index) => (
+      <p class="mt-2 text-sm italic text-right text-gray-500">
+        Click on a student for more information!
+      </p>
+    </div>
+  </div>
+  <div>
+    <table class="w-full my-4 table-auto">
+      <thead class="bg-gray-300">
+        <tr>
+          <th class="px-4 py-2">Reg No.</th>
+          <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
+          <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
+          <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
+          <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
+          <th class="px-4 py-2">WMG</th>
+        </tr>
+      </thead>
+      <tbody class="">
+        <!-- {filteredData.map((student, index) => (
               <tr
                 key={index}
                 class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200"
@@ -110,11 +86,24 @@
                   {student["2nd Grade"]}
                 </td> */}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {/* <AnimatePresence>
+            ))} -->
+        <% @filtered_data[:data]&.map do |student| %>
+          <% td_class = '' %> 
+          <% td_class = 'bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %>
+          <% td_class = 'bg-yellow-200' if student[:'1stGrade']&.to_f&.nan? && student[:'1st Grade'] != '-' %> 
+        <tr class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200">
+          <td class="px-4 py-2 border"><%= student[:"Surname"] %></td>
+          <td class="px-4 py-2 border"><%= student[:"Forename"] %></td>
+          <td class="px-4 py-2 border"><%= student[:"Reg No."] %></td>
+          <td class="px-4 py-2 border"><%= student[:"Reg. Status"] %></td>
+          <td class="px-4 py-2 border"><%= student[:"Module Code"] %></td>
+          <td class="<%= td_class %> border px-4 py-2"><%= student[:"1st Grade"] %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!-- {/* <AnimatePresence>
         {focusStudent && (
           <StudentModal
             focusStudent={focusStudent}
@@ -125,5 +114,5 @@
       <StudentModal
         focusStudent={focusStudent}
         setFocusStudent={setFocusStudent}
-      />
-    </div>
+      /> -->
+</div>
