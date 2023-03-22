@@ -21,18 +21,29 @@
   %body
     %header.navbar.navbar-expand-lg.bg-light.mb-3
       .container-fluid
-        = link_to '#', class: 'navbar-brand' do
-          = image_pack_tag 'logo.png', height: 40
+        = link_to '/', class: 'navbar-brand' do
+          hutCommerce
         %button.navbar-toggler{ type: :button, data: { bs_toggle: :collapse, bs_target: '#navbar-content' }, aria: { controls: 'navbar-content', expanded: 'false', label: 'Toggle navigation' } }
           %span.navbar-toggler-icon
         #navbar-content.navbar-collapse.collapse
           %nav.navbar-nav
-            = link_to '/', class: 'active nav-link' do
-              %i.bi-house-fill
-              Home
-            = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
-              Logout
-
+            .nav-item
+              = link_to staffs_path, class: 'nav-link' do
+                Staff
+            .nav-item
+              = link_to courses_path, class: 'nav-link' do
+                Course
+            .nav-item
+              = link_to programs_path, class: 'nav-link' do
+                Program
+          %nav.navbar-nav.ms-auto
+            .nav-item.dropdown
+              - if user_signed_in?
+                = link_to current_user.username, '#', class: 'nav-link dropdown-toggle', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' }
+                -# %nav.dropdown-menu.dropdown-menu-md-end
+                -#   = link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete
+                = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
+                  Logout
 
     - if flash.present?
       .container-fluid.flash-messages

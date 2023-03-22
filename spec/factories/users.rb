@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                 :bigint           not null, primary key
+#  admin              :boolean          default(FALSE)
 #  current_sign_in_at :datetime
 #  current_sign_in_ip :string
 #  dn                 :string

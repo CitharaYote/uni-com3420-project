@@ -1,0 +1,16 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id          :bigint           not null, primary key
+#  credit      :integer
+#  module_code :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+FactoryBot.define do
+  factory :course do
+    module_code { "MyString" }
+    credit { 1 }
+  end
+end

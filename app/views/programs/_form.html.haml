@@ -1,0 +1,10 @@
+-# frozen_string_literal: true
+= simple_form_for(@program) do |f|
+  .card-body
+    = f.input :program_name, wrapper_html: { class: 'mb-3' }
+    = f.association :courses, as: :check_boxes
+
+  .card-footer.d-flex
+    %button.btn.btn-primary{ type: 'submit' }
+      Save
+    = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'

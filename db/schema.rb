@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_173829) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: :cascade do |t|
+    t.string "module_code"
+    t.integer "credit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses_programs", id: false, force: :cascade do |t|
+    t.bigint "program_id", null: false
+    t.bigint "course_id", null: false
+    t.index ["course_id", "program_id"], name: "index_courses_programs_on_course_id_and_program_id"
+    t.index ["program_id", "course_id"], name: "index_courses_programs_on_program_id_and_course_id"
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
@@ -29,6 +43,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_173829) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "programs", force: :cascade do |t|
+    t.string "program_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -39,10 +59,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_173829) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "summaries", force: :cascade do |t|
-    t.string "student_id"
-    t.string "integer"
-    t.string "module"
+  create_table "staffs", force: :cascade do |t|
+    t.string "username"
+    t.boolean "is_admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.integer "reg_no"
+    t.integer "module_mark"
+    t.integer "total_credit"
     t.decimal "wmg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,6 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_173829) do
     t.string "dn"
     t.string "sn"
     t.string "givenname"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["username"], name: "index_users_on_username"
   end
