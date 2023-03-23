@@ -53,6 +53,6 @@ class ProgramsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def program_params
-      params.require(:program).permit(:program_name, module_code: [])
+      params.require(:program).permit(:program_name, course_ids: [])
     end
 end
