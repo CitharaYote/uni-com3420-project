@@ -87,6 +87,7 @@
                 </td> */}
               </tr>
             ))} -->
+            <% focus_student = nil %>
         <% @filtered_data[:data]&.map do |student| %>
           <% td_class = '' %> 
           <% td_class = 'bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %>
