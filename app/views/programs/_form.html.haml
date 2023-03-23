@@ -2,7 +2,8 @@
 = simple_form_for(@program) do |f|
   .card-body
     = f.input :program_name, wrapper_html: { class: 'mb-3' }
-    = f.association :courses, as: :check_boxes
+    = f.input :course_ids, label: 'Course', as: :check_boxes, collection: Course.order('module_code').map { |courses| [courses.module_code, courses.id] }, include_blank: false
+    -# = f.input :total
 
   .card-footer.d-flex
     %button.btn.btn-primary{ type: 'submit' }
