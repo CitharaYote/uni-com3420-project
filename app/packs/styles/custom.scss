@@ -1705,14 +1705,14 @@ select {
 // more custom styles
 
 .hide-5s {
-  -webkit-animation: cssAnimation 5s forwards;
-  animation: cssAnimation 5s forwards;
+  -webkit-animation: fadeOutAnim 5s forwards;
+  animation: fadeOutAnim 5s forwards;
 }
 .hide-3s {
-  -webkit-animation: cssAnimation 3s forwards;
-  animation: cssAnimation 3s forwards;
+  -webkit-animation: fadeOutAnim 3s forwards;
+  animation: fadeOutAnim 3s forwards;
 }
-@keyframes cssAnimation {
+@keyframes fadeOutAnim {
   0% {
     opacity: 1;
   }
@@ -1723,7 +1723,7 @@ select {
     opacity: 0;
   }
 }
-@-webkit-keyframes cssAnimation {
+@-webkit-keyframes fadeOutAnim {
   0% {
     opacity: 1;
   }
@@ -1732,5 +1732,19 @@ select {
   }
   100% {
     opacity: 0;
+  }
+}
+
+.width-3s {
+  -webkit-animation: widthAnim 3s forwards;
+  animation: widthAnim 3s forwards;
+}
+
+@keyframes widthAnim {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
   }
 }
