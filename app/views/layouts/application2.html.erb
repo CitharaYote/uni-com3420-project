@@ -1,0 +1,111 @@
+<!-- 
+    !!!
+%html{ lang: 'en-GB' }
+  %head
+    %title Project
+
+    %meta{ :'http-equiv' => "content-type", content: "text/html; charset=utf-8" }
+    %meta{ :'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, shrink-to-fit=no" }
+
+    - if content_for(:description)
+      %meta{ content: content_for(:description), name: 'description' }
+
+    %title= ["Project", content_for(:title)].compact.join(' - ')
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_pack_tag 'styles', media: 'all'
+    = javascript_pack_tag 'application'
+
+  %body
+    .bg-uospurple
+      %header.navbar.navbar-expand-lg.bg-black.bg-opacity-50
+        .container-fluid.text-white
+          = link_to '/', class: 'navbar-brand' do
+            hutCommerce
+          %button.navbar-toggler{ type: :button, data: { bs_toggle: :collapse, bs_target: '#navbar-content' }, aria: { controls: 'navbar-content', expanded: 'false', label: 'Toggle navigation' } }
+            %span.navbar-toggler-icon
+          #navbar-content.navbar-collapse.collapse
+            %nav.navbar-nav
+              .nav-item.text-white
+                = link_to staffs_path, class: 'nav-link' do
+                  %p.text-white
+                    Staff
+              .nav-item.text.white
+                = link_to courses_path, class: 'nav-link' do
+                  %p.text-white
+                    Course
+              .nav-item.text-white
+                = link_to programs_path, class: 'nav-link' do
+                  %p.text-white
+                    Program
+            %nav.navbar-nav.ms-auto
+              .nav-item.dropdown
+                - if user_signed_in?
+                  = link_to current_user.username, '#', class: 'nav-link dropdown-toggle', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' }
+                  -# %nav.dropdown-menu.dropdown-menu-md-end
+                  -#   = link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete
+                  = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
+                    %p.text-white
+                      Logout
+
+    - if flash.present?
+      .container-fluid.flash-messages
+        - flash.each do |message_type, message|
+          - next unless message_type == 'alert' || message_type == 'notice'
+          .alert{ class: "alert-#{ message_type == 'notice' ? 'success' : 'danger' }" }= message
+
+    %main
+      = yield
+
+    %footer
+      = render 'layouts/footer'
+ -->
+
+ <!-- TODO: convert above to erb -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Project</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <% if content_for?(:description) %>
+        <meta content="<%= content_for(:description) %>" name="description">
+    <% end %>
+    <title><%= ["Project", content_for(:title)].compact.join(' - ') %></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'styles', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
+</head>
+<body>
+    <div class="bg-uospurple">
+        <header class="navbar navbar-expand-lg bg-black bg-opacity-50">
+            <div class="container-fluid text-white">
+                <%= link_to '/', class: 'navbar-brand' do %
+                    hutCommerce
+                <% end %>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbar-content"
+                    aria-controls="navbar-content"
+                    aria-expanded="false"
+                    label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div
+                    id="navbar-content"
+                    class="navbar-collapse collapse"
+                    
+    
+</body>
+</html>
