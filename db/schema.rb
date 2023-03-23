@@ -43,6 +43,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "modules", id: false, force: :cascade do |t|
+    t.string "module_code", null: false
+    t.integer "credit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "modules_students", id: false, force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "module_id", null: false
+    t.float "mark"
+  end
+
   create_table "programs", force: :cascade do |t|
     t.string "program_name"
     t.datetime "created_at", null: false
@@ -62,6 +75,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
   create_table "staffs", force: :cascade do |t|
     t.string "username"
     t.boolean "is_admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", id: false, force: :cascade do |t|
+    t.bigint "regID", null: false
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
