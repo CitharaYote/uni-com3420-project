@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")s
-  root "pages#profile"
+  # main controller routes
+  post 'set_module_index', to: 'main#set_module_index'
+  post 'set_search', to: 'main#set_search'
+
+  # Defines the root path route ("/")
+  root "main#home"
 end
