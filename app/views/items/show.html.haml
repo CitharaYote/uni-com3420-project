@@ -1,0 +1,14 @@
+.row.justify-content-center
+  .col-sm-8.col-lg-6
+    .card
+      .card-header
+        Item details
+      .card-body
+        %dl.row.mb-0
+          %dt.col-md-3 Name:
+          %dd.col-md-9= @item.name
+          %dt.col-md-3 Value:
+          %dd.col-md-9= @item.value
+      .card-footer.d-flex
+        = link_to 'Edit', edit_item_path(@item), class: 'btn btn-link'
+        = link_to 'Back', items_path, class: 'btn btn-link ms-auto'

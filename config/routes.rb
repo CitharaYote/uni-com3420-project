@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :items do
+    collection do 
+      post :import
+    end
+  end
   resources :programs
   resources :courses
   resources :staffs

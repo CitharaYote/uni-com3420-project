@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_23_191606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
     t.index ["program_id", "course_id"], name: "index_courses_programs_on_program_id_and_course_id"
   end
 
+  create_table "csvitems", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -41,6 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "modules", id: false, force: :cascade do |t|
@@ -82,6 +94,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
   create_table "students", id: false, force: :cascade do |t|
     t.bigint "regID", null: false
     t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "table_csv_items", force: :cascade do |t|
+    t.string "name"
+    t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
