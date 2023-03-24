@@ -4,8 +4,10 @@
 #
 #  regID      :bigint           not null
 #  status     :string
+#  t_credit   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  program_id :bigint
 #
 require 'rails_helper'
 
