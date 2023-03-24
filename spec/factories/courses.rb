@@ -2,15 +2,14 @@
 #
 # Table name: courses
 #
-#  id          :bigint           not null, primary key
+#  course_code :string           not null
 #  credit      :integer
-#  module_code :string
+#  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 FactoryBot.define do
   factory :course do
-    module_code { "MyString" }
-    credit { 1 }
+    
   end
 end
