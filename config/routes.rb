@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # main controller routes
   post 'set_module_index', to: 'main#set_module_index'
   post 'set_search', to: 'main#set_search'
-
+ 
   # Defines the root path route ("/")
   root "main#home"
 end
