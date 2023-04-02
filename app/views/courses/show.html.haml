@@ -6,9 +6,11 @@
       .card-body
         %dl.row.mb-0
           %dt.col-md-3 Module code:
-          %dd.col-md-9= @course.module_code
+          %dd.col-md-9= @course.course_code
           %dt.col-md-3 Credit:
           %dd.col-md-9= @course.credit
+          %dt.col-md-3 Title:
+          %dd.col-md-9= @course.title
       .card-footer.d-flex
         = link_to 'Edit', edit_course_path(@course), class: 'btn btn-link'
         = link_to 'Back', courses_path, class: 'btn btn-link ms-auto'

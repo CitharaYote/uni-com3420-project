@@ -29,6 +29,10 @@
           #navbar-content.navbar-collapse.collapse
             %nav.navbar-nav
               .nav-item.text-white
+                = link_to students_path, class: 'nav-link' do
+                  %p.text-white
+                    Student
+              .nav-item.text-white
                 = link_to staffs_path, class: 'nav-link' do
                   %p.text-white
                     Staff

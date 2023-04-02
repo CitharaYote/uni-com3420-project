@@ -2,13 +2,14 @@
 #
 # Table name: courses
 #
-#  id          :bigint           not null, primary key
+#  course_code :string           not null
 #  credit      :integer
-#  module_code :string
+#  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 class Course < ApplicationRecord
+    self.primary_key = "course_code"
     has_many :marks
     has_many :students, :through => :marks
 end

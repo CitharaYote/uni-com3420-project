@@ -1,0 +1,12 @@
+-# frozen_string_literal: true
+= simple_form_for(@student) do |f|
+  .card-body
+    = f.input :regID, wrapper_html: { class: 'mb-3' }
+    -# TODO: frontend work here, title line Status missing
+    = f.input :status, label: 'Status', as: :select, collection: [["nc",'Not Completed'], ["na",'Not Assessed'], ["fail",'Failed']], :first, :last, wrapper_html: { class: 'mb-3' }
+    = f.collection_select :program_id, 
+
+  .card-footer.d-flex
+    %button.btn.btn-primary{ type: 'submit' }
+      Save
+    = link_to 'Back', students_path, class: 'btn btn-link ms-auto'

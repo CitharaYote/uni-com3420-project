@@ -10,7 +10,7 @@ class CsvImportService
     def import
         @count = 0 
         CSV.foreach(@file.path, headers:true) do |row|
-            Item.create! row.to_hash
+            Item.create(name: row['name'], value: row['value'])
             @count += 1
         end
     @count

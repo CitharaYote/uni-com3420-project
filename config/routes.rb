@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :students do
+    collection do
+      post :import
+    end
+  end
   resources :items do
     collection do 
       post :import
