@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_191606) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "courses_programs", id: false, force: :cascade do |t|
+    t.bigint "program_id"
+    t.bigint "course_id"
+    t.string "course_code"
+    t.string "program_name"
+    t.index ["course_code", "program_name"], name: "index_courses_programs_on_course_code_and_program_name"
+    t.index ["program_name", "course_code"], name: "index_courses_programs_on_program_name_and_course_code"
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -57,13 +66,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_191606) do
     t.string "program_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "programs_courses", id: false, force: :cascade do |t|
-    t.bigint "program_id"
-    t.bigint "course_id"
-    t.index ["course_id"], name: "index_programs_courses_on_course_id"
-    t.index ["program_id"], name: "index_programs_courses_on_program_id"
   end
 
   create_table "sessions", force: :cascade do |t|

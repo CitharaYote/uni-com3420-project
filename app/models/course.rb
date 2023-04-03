@@ -10,7 +10,7 @@
 #
 class Course < ApplicationRecord
     self.primary_key = "course_code"
-    has_and_belongs_to_many :programs, join_table: :programs_courses
+    has_and_belongs_to_many :programs, foreign_key: "course_code", association_foreign_key: "program_name",join_table: :courses_programs
     has_many :marks
     has_many :students, :through => :marks
 end
