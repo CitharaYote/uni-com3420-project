@@ -8,14 +8,16 @@
     %thead
       %tr
         %th Program name
-        %th Courses
+        %th Course Code
+        %th Course Title
         %th Credits
         %th
     %tbody
       - @programs.each do |program|
         %tr
           %td= program.program_name
-          %td= program.courses.map(&:module_code).join(', ')
+          %td= program.courses.map(&:course_code).join(', ')
+          %td= program.courses.map(&:title).join(', ')
           %td= program.courses.map(&:credit).join(', ')
           %td
             .btn-toolbar.float-end
