@@ -6,6 +6,10 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_programs_on_program_name  (program_name) UNIQUE
+#
 require 'rails_helper'
 
 RSpec.describe Program, type: :model do

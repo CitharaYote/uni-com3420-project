@@ -56,9 +56,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_191606) do
     t.bigint "student_id"
     t.bigint "course_id"
     t.integer "mark"
+    t.string "course_code"
+    t.bigint "regID"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_code", "regID"], name: "index_marks_on_course_code_and_regID"
     t.index ["course_id"], name: "index_marks_on_course_id"
+    t.index ["regID", "course_code"], name: "index_marks_on_regID_and_course_code"
     t.index ["student_id"], name: "index_marks_on_student_id"
   end
 
@@ -66,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_191606) do
     t.string "program_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["program_name"], name: "index_programs_on_program_name", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -87,9 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_191606) do
 
   create_table "students", id: false, force: :cascade do |t|
     t.bigint "regID", null: false
-    t.bigint "program_id"
     t.string "status"
     t.integer "t_credit"
+    t.string "program_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

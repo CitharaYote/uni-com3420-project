@@ -70,5 +70,6 @@ class StudentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def student_params
       params.fetch(:student, {})
+      params.require(:student).permit(:regID,:status,:program_name,:t_credit)
     end
 end

@@ -6,6 +6,10 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_programs_on_program_name  (program_name) UNIQUE
+#
 class Program < ApplicationRecord
     self.primary_key = "program_name"
     has_and_belongs_to_many :courses, foreign_key: "program_name", association_foreign_key: "course_code", join_table: :courses_programs

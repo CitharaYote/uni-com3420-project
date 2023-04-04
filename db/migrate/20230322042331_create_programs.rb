@@ -5,5 +5,6 @@ class CreatePrograms < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :programs, :program_name, unique: true
   end
 end
