@@ -23,7 +23,6 @@ class CoursesController < ApplicationController
   # POST /courses
   def create
     @course = Course.new(course_params)
-    @course.program_ids = params[:course][:program_ids]
 
     if @course.save
       redirect_to @course, notice: "Course was successfully created."
@@ -55,6 +54,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:id, :course_code, :credit, :title, program_ids:[])
+      params.require(:course).permit(:id, :module_code, :credit, :title, program_ids:[])
     end
 end

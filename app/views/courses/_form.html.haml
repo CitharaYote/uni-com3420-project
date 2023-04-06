@@ -1,9 +1,9 @@
 -# frozen_string_literal: true
 = simple_form_for(@course) do |f|
   .card-body
-    = f.input :course_code, wrapper_html: { class: 'mb-3' }
+    = f.input :module_code, wrapper_html: { class: 'mb-3' }
     = f.input :credit, wrapper_html: { class: 'mb-3' }
-    = f.input :title, wrapper_html: { class: 'mb-3' }
+    = f.input :id, wrapper_html: { class: 'mb-3' }
 
   .card-footer.d-flex
     %button.btn.btn-primary.bg-uospurple{ type: 'submit' }

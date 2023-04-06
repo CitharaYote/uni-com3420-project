@@ -3,12 +3,13 @@
     %span Listing Students
 
     = link_to 'New Student', new_student_path, class: 'btn btn-outline-secondary ms-auto'
-    = render "items/import_form"
+    = render "students/import_form"
 
   %table.table
     %thead
       %tr
         %th regID
+         
     %tbody
       - @students.each do |student|
         %tr

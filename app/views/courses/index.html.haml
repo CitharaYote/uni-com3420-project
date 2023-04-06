@@ -9,14 +9,14 @@
       %tr
         %th Course code
         %th Credit
-        %th Title
+        %th ID
         %th
     %tbody
       - @courses.each do |course|
         %tr
-          %td= course.course_code
+          %td= course.module_code
           %td= course.credit
-          %td= course.title
+          %td= course.id
           %td
             .btn-toolbar.float-end
               = link_to 'Show', course, class: 'btn btn-outline-secondary btn-sm'

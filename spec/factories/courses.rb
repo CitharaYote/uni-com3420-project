@@ -3,9 +3,8 @@
 # Table name: courses
 #
 #  id          :bigint           not null, primary key
-#  course_code :string           not null
 #  credit      :integer
-#  title       :string
+#  module_code :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

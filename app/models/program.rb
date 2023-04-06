@@ -2,12 +2,12 @@
 #
 # Table name: programs
 #
-#  id           :bigint           not null
-#  program_code :string
-#  title        :string
+#  id           :bigint           not null, primary key
+#  program_name :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
 class Program < ApplicationRecord
-    has_and_belongs_to_many :courses
+    has_many :courses, :through => :courses_programs
+    has_many :students
 end
