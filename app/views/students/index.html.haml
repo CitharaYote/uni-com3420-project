@@ -8,10 +8,11 @@
   %table.table
     %thead
       %tr
-        %th
+        %th regID
     %tbody
       - @students.each do |student|
         %tr
+          %td= student.regID
           %td
             .btn-toolbar.float-end
               = link_to 'Show', student, class: 'btn btn-outline-secondary btn-sm'

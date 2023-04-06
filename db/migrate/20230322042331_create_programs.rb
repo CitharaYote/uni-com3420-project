@@ -1,10 +1,10 @@
 class CreatePrograms < ActiveRecord::Migration[7.0]
   def change
-    create_table :programs, id: false, primary_key: :program_name do |t|
-      t.string :program_name
+    create_table :programs do |t|
+      t.string :program_code
+      t.string :title
 
       t.timestamps
     end
-    add_index :programs, :program_name, unique: true
   end
 end

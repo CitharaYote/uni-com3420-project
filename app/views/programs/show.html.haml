@@ -5,8 +5,12 @@
         Program details
       .card-body
         %dl.row.mb-0
-          %dt.col-md-3 Program name:
-          %dd.col-md-9= @program.program_name
+          %dt.col-md-3 Program Code:
+          %dd.col-md-9= @program.program_code
+          %dt.col-md-3 Program Title:
+          %dd.col-md-9= @program.title
+          %dt.col-md-3 Course:
+          -#TODO frontend please show associated courses
       .card-footer.d-flex
         = link_to 'Edit', edit_program_path(@program), class: 'btn btn-link'
         = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'

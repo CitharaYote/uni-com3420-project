@@ -2,13 +2,11 @@
 #
 # Table name: programs
 #
-#  program_name :string           primary key
+#  id           :bigint           not null
+#  program_code :string
+#  title        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#
-# Indexes
-#
-#  index_programs_on_program_name  (program_name) UNIQUE
 #
 require 'rails_helper'
 

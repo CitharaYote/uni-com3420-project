@@ -1,10 +1,9 @@
 -# frozen_string_literal: true
 = simple_form_for(@student) do |f|
   .card-body
+    = f.association :program, as: :select, collection: Program.all, label_method: :title, value_method: :id, prompt: "Choose a Program"
     = f.input :regID, wrapper_html: { class: 'mb-3' }
-    -# TODO: frontend work here, title line Status missing
     = f.input :status, label: 'Status', as: :select, collection: [['Not Completed','nc'], ['Not Assessed','na'], ['Failed','fail']]
-    = f.input :program_name, label: 'Program Name', as: :select, collection: Program.order('program_name').map { |programs| [programs.program_name]}, include_blank: false
     = f.input :t_credit, label: 'Total Credits', wrapper_html: { class: 'mb-3'}
 
   .card-footer.d-flex

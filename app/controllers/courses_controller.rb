@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @programs = Program.all
   end
 
   # GET /courses/1/edit
@@ -22,6 +23,7 @@ class CoursesController < ApplicationController
   # POST /courses
   def create
     @course = Course.new(course_params)
+    @course.program_ids = params[:course][:program_ids]
 
     if @course.save
       redirect_to @course, notice: "Course was successfully created."
@@ -53,6 +55,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:course_code, :credit, :title)
+      params.require(:course).permit(:id, :course_code, :credit, :title, program_ids:[])
     end
 end
