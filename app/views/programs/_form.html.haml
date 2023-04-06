@@ -1,9 +1,8 @@
 -# frozen_string_literal: true
 = simple_form_for(@program) do |f|
   .card-body
-    = f.input :program_code, wrapper_html: { class: 'mb-3' }
-    = f.input :title, wrapper_hteml: { class: 'mb-3' }
-    = f.input :course_ids, label: 'Course', as: :check_boxes, collection: Course.order('course_code').map { |courses| [courses.course_code, courses.id] }, include_blank: false
+    = f.input :program_name, wrapper_html: { class: 'mb-3' }
+    = f.input :course_ids, label: 'Course', as: :check_boxes, collection: Course.order('module_code').map { |courses| [courses.module_code, courses.id] }, include_blank: false
 
   .card-footer.d-flex
     %button.btn.btn-primary.bg-uospurple{ type: 'submit' }

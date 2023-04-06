@@ -9,11 +9,14 @@
     %thead
       %tr
         %th regID
+        %th Programme
+        %th status
          
     %tbody
       - @students.each do |student|
         %tr
           %td= student.regID
+          %td= student.status
           %td
             .btn-toolbar.float-end
               = link_to 'Show', student, class: 'btn btn-outline-secondary btn-sm'

@@ -29,6 +29,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    @programs = Program.all
   end
 
   # GET /students/1/edit
@@ -38,6 +39,7 @@ class StudentsController < ApplicationController
   # POST /students
   def create
     @student = Student.new(student_params)
+    @student.program_ids = params[:student][:program_ids]
 
     if @student.save
       redirect_to @student, notice: "Student was successfully created."

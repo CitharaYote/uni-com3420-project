@@ -9,18 +9,12 @@
       %tr
         %th Program Code
         %th Program Title
-        %th Course Code
-        %th Course Title
-        %th Credits
         %th
     %tbody
       - @programs.each do |program|
         %tr
-          %td= program.program_code
-          %td= program.title
-          %td= program.courses.map(&:course_code).join(', ')
-          %td= program.courses.map(&:title).join(', ')
-          %td= program.courses.map(&:credit).join(', ')
+          %td= program.program_name
+          %td= program.id
           %td
             .btn-toolbar.float-end
               = link_to 'Show', program, class: 'btn btn-outline-secondary btn-sm'
