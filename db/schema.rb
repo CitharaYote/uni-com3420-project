@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_06_222719) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_08_195014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,10 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_222719) do
   end
 
   create_table "courses_programs", id: false, force: :cascade do |t|
-    t.bigint "program_id", null: false
     t.bigint "course_id", null: false
-    t.index ["course_id", "program_id"], name: "index_courses_programs_on_course_id_and_program_id"
-    t.index ["program_id", "course_id"], name: "index_courses_programs_on_program_id_and_course_id"
+    t.bigint "program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_courses_programs_on_course_id"
+    t.index ["program_id"], name: "index_courses_programs_on_program_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

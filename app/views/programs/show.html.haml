@@ -10,6 +10,9 @@
           %dt.col-md-3 Program Title:
           %dd.col-md-9= @program.program_name
           %dt.col-md-3 Courses:
+          - @courses.each do |course|
+            %dd= course.module_code
+
           -#TODO frontend please show associated courses
       .card-footer.d-flex
         = link_to 'Edit', edit_program_path(@program), class: 'btn btn-link'

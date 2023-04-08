@@ -8,7 +8,8 @@
 #  updated_at   :datetime         not null
 #
 class Program < ApplicationRecord
+    has_many :courses_programs
     has_many :courses, :through => :courses_programs
-    has_and_belongs_to_many :courses
+    
     has_many :students
 end

@@ -8,6 +8,8 @@ class ProgramsController < ApplicationController
 
   # GET /programs/1
   def show
+    @program = Program.find(params[:id])
+    @courses = @program.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
   end
 
   # GET /programs/new

@@ -9,7 +9,9 @@
 #  updated_at  :datetime         not null
 #
 class Course < ApplicationRecord
+    has_many :courses_programs
     has_many :programs, :through => :courses_programs
+    
     has_many :marks
     has_many :students, :through => :marks
 end
