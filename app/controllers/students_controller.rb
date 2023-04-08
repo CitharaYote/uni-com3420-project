@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
     csvImportService.import
 
     #redirect to the root path
-    redirect_to root_path
+    redirect_to students_path
 
   end
 
@@ -29,7 +29,6 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-    @programs = Program.all
   end
 
   # GET /students/1/edit
@@ -39,7 +38,6 @@ class StudentsController < ApplicationController
   # POST /students
   def create
     @student = Student.new(student_params)
-    @student.program_ids = params[:student][:program_ids]
 
     if @student.save
       redirect_to @student, notice: "Student was successfully created."
@@ -72,6 +70,6 @@ class StudentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def student_params
       params.fetch(:student, {})
-      params.require(:student).permit(:id, :regID, :status, :program_id, :t_credit)
+      params.require(:student).permit(:id, :regID, :status, :forename, :surname)
     end
 end

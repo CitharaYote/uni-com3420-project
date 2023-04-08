@@ -8,6 +8,8 @@
   %table.table
     %thead
       %tr
+        %th Forename 
+        %th Surname
         %th regID
         %th Programme
         %th status
@@ -15,10 +17,9 @@
     %tbody
       - @students.each do |student|
         %tr
+          %td= student.forename
+          %td= student.surname
           %td= student.regID
+          %td= student.program_name
           %td= student.status
-          %td
-            .btn-toolbar.float-end
-              = link_to 'Show', student, class: 'btn btn-outline-secondary btn-sm'
-              = link_to 'Edit', edit_student_path(student), class: 'btn btn-outline-secondary ms-1 btn-sm'
-              = link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'
+            

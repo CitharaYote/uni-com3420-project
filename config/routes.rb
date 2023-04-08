@@ -4,11 +4,6 @@ Rails.application.routes.draw do
       post :import
     end
   end
-  resources :items do
-    collection do 
-      post :import
-    end
-  end
   resources :programs
   resources :courses
   resources :staffs
