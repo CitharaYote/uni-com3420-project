@@ -4,7 +4,6 @@
 #
 #  id           :bigint           not null, primary key
 #  program_name :string
-#  title        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

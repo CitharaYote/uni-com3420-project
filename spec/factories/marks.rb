@@ -6,8 +6,8 @@
 #  scd_grade  :bigint
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  course_id  :bigint
-#  student_id :bigint
+#  course_id  :bigint           not null
+#  student_id :bigint           not null
 #
 # Indexes
 #
