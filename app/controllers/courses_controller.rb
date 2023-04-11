@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    @program = Program.all
   end
 
   # GET /courses/new

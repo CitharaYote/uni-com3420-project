@@ -1,7 +1,11 @@
 .card
   .card-header.d-flex.align-items-center
-    %span Listing Courses
-
+    = form_tag courses_path, method: :get do
+      = label_tag :filter, "Filter Courses By Programme"
+      = select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: true
+      %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+        Filter
+    
     = link_to 'New Course', new_course_path, class: 'btn btn-outline-secondary ms-auto'
 
   %table.table
