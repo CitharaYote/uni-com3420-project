@@ -8,17 +8,15 @@
   %table.table
     %thead
       %tr
-        %th
-        %th regID
+        %th Registration ID
         %th Forename 
         %th Surname
         %th Programme
-        %th status
+        %th Status
          
     %tbody
       - @students.each do |student|
         %tr
-          %td
           %td= student.regID
           %td= student.forename
           %td= student.surname
