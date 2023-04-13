@@ -2,6 +2,7 @@
 #
 # Table name: students
 #
+#  id           :bigint           not null, primary key
 #  forename     :string
 #  program_name :string
 #  regID        :bigint           not null

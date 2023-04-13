@@ -6,9 +6,9 @@
       .card-body
         %dl.row.mb-0
           %dt.col-md-3 Program Code:
-          %dd.col-md-9= @program.id
-          %dt.col-md-3 Program Title:
           %dd.col-md-9= @program.program_name
+          %dt.col-md-3 Program Title:
+          %dd.col-md-9= @program.title
           %dt.col-md-3 Courses:
           - @courses.each do |course|
             %dd= course.module_code
