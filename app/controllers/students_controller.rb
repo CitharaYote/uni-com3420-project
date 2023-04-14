@@ -28,6 +28,7 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
+    @programs = Program.pluck("program_name,id")
     @student = Student.new
   end
 
@@ -37,13 +38,29 @@ class StudentsController < ApplicationController
 
   # POST /students
   def create
+    Rails.logger.info student_params
+    Rails.logger.info "-----"
+    program_id = params[:student][:program_id]
+    program_name = Program.find(program_id).program_name rescue ""
     @student = Student.new(student_params)
-
+    @student.program_name = program_name
+    Rails.logger.info @student.to_json
     if @student.save
-      redirect_to @student, notice: "Student was successfully created."
+      redirect_to "/students", notice: "Student was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def course_detail
+    @data = []
+    student = Student.find(params[:id])
+    marks = student.marks
+    marks.each do |mark|
+    course = mark.course
+    tmp_data = {module_code:course.module_code,credit:course.credit,title:course.title,status:student.status}
+    @data << tmp_data
+end
   end
 
   # PATCH/PUT /students/1
@@ -70,6 +87,6 @@ class StudentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def student_params
       params.fetch(:student, {})
-      params.require(:student).permit(:id, :regID, :status, :forename, :surname)
+      params.require(:student).permit(:id, :regID, :status, :forename, :surname,:program_id)
     end
 end
