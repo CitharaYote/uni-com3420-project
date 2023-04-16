@@ -4,9 +4,13 @@
 #
 #  id           :bigint           not null, primary key
 #  program_name :string
+#  title        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
 class Program < ApplicationRecord
-    has_and_belongs_to_many :courses
+    has_many :courses_programs
+    has_many :courses, :through => :courses_programs
+    
+    has_many :students
 end

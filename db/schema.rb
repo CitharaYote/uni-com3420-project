@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_13_182254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,10 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
   end
 
   create_table "courses_programs", id: false, force: :cascade do |t|
-    t.bigint "program_id", null: false
     t.bigint "course_id", null: false
-    t.index ["course_id", "program_id"], name: "index_courses_programs_on_course_id_and_program_id"
-    t.index ["program_id", "course_id"], name: "index_courses_programs_on_program_id_and_course_id"
+    t.bigint "program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_courses_programs_on_course_id"
+    t.index ["program_id"], name: "index_courses_programs_on_program_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -43,23 +45,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "modules", id: false, force: :cascade do |t|
-    t.string "module_code", null: false
-    t.integer "credit"
+  create_table "marks", id: false, force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "fst_grade"
+    t.bigint "scd_grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "modules_students", id: false, force: :cascade do |t|
-    t.bigint "student_id", null: false
-    t.bigint "module_id", null: false
-    t.float "mark"
+    t.index ["course_id"], name: "index_marks_on_course_id"
+    t.index ["student_id"], name: "index_marks_on_student_id"
   end
 
   create_table "programs", force: :cascade do |t|
     t.string "program_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -79,11 +80,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_22_044216) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "students", id: false, force: :cascade do |t|
+  create_table "students", force: :cascade do |t|
     t.bigint "regID", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "program_name"
+    t.string "forename"
+    t.string "surname"
+    t.bigint "program_id"
   end
 
   create_table "users", force: :cascade do |t|

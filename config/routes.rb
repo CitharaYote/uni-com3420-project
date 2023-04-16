@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :students do
+    collection do
+      post :import
+    end
+  end
   resources :programs
   resources :courses
   resources :staffs
@@ -10,6 +15,8 @@ Rails.application.routes.draw do
   post 'set_module_index', to: 'main#set_module_index'
   post 'set_search', to: 'main#set_search'
 
+  get 'course_detail',to: "students#course_detail"
+ 
   # Defines the root path route ("/")
   root "main#home"
 end

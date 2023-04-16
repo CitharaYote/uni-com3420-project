@@ -1,0 +1,10 @@
+.row.justify-content-center
+  .col-sm-8.col-lg-6
+    .card
+      .card-header
+        Student details
+      .card-body
+        %dl.row.mb-0
+      .card-footer.d-flex
+        = link_to 'Edit', edit_student_path(@student), class: 'btn btn-link'
+        = link_to 'Back', students_path, class: 'btn btn-link ms-auto'

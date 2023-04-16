@@ -1,0 +1,51 @@
+<div class = "card">
+  <div class = "card-header d-flex align-items-center">
+    <span>
+      Listing Staffs
+    </span>
+    <a href="/staffs/new" class="btn btn-outline-secondary ms-auto">New Staff</a>
+  </div>
+  <div class="body">
+    <div style="float:left;width:40%;">
+      <div class="flex flex-col justify-center space-x-4 sm:items-center">
+        <button style="width:250px;margin-left:12px;" class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg">
+        <a href="/staffs/new"><p>Add New Staff Member</p></a>
+        </button>
+        <br>
+        <button style="width:250px;" class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg">
+          <p>Add New Admin</p>
+        </button>
+        <br>
+        <button style="width:250px;" class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg">
+          <a href="/users/sign_out" data-method="delete"><p>Logout</p><a>
+        </button>
+        <br>
+      </div>
+    </div>
+    <div style="float:right;width:60%;">
+      <table class="table">
+        <thead>
+          <th>
+            User
+          </th>
+          <th>
+            Actions
+          </th>
+        </thead>
+        <tbody>
+          <% @staffs.each do |staff|%>
+            <tr>
+              <td><%= staff.username %></td>
+              <td>
+              <a href="/staffs/<%=staff.id%>/edit" style="color: blue">Edit</a>&nbsp;/&nbsp;
+              <a href="/staffs/<%=staff.id%>" data-method="delete" style="color: red">Remove</a>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+</div>

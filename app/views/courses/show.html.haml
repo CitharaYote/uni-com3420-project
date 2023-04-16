@@ -7,8 +7,13 @@
         %dl.row.mb-0
           %dt.col-md-3 Module code:
           %dd.col-md-9= @course.module_code
-          %dt.col-md-3 Credit:
+          %dt.col-md-3 Credits:
           %dd.col-md-9= @course.credit
+          %dt.col-md-3 Relevant Programmes:
+          - @course.programs.each do |program|
+            = program.program_name
+
+
       .card-footer.d-flex
         = link_to 'Edit', edit_course_path(@course), class: 'btn btn-link'
         = link_to 'Back', courses_path, class: 'btn btn-link ms-auto'

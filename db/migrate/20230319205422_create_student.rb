@@ -1,9 +1,9 @@
 class CreateStudent < ActiveRecord::Migration[7.0]
   def change
-    create_table :students, id: false, primary_key: :regID do |t|
-      t.bigint :regID, null: false, first: true 
+    create_table :students do |t|
+      t.belongs_to :program
+      t.bigint :regID
       t.string :status
-      
 
       t.timestamps
     end

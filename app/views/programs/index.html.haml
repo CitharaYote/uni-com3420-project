@@ -2,21 +2,19 @@
   .card-header.d-flex.align-items-center
     %span Listing Programs
 
-    = link_to 'New Program', new_program_path, class: 'btn btn-outline-secondary ms-auto'
+    = link_to 'New Programme', new_program_path, class: 'btn btn-outline-secondary ms-auto'
 
   %table.table
     %thead
       %tr
-        %th Program name
-        %th Courses
-        %th Credits
+        %th Programme Code
+        %th Programme Title
         %th
     %tbody
       - @programs.each do |program|
         %tr
           %td= program.program_name
-          %td= program.courses.map(&:module_code).join(', ')
-          %td= program.courses.map(&:credit).join(', ')
+          %td= program.title
           %td
             .btn-toolbar.float-end
               = link_to 'Show', program, class: 'btn btn-outline-secondary btn-sm'

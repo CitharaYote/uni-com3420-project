@@ -10,7 +10,6 @@
 #
 FactoryBot.define do
   factory :course do
-    module_code { "MyString" }
-    credit { 1 }
+    
   end
 end

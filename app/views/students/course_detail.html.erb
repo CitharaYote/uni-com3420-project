@@ -1,0 +1,53 @@
+<div class = "card">
+  <div class = "card-header d-flex align-items-center">
+    <span>
+      Listing Students
+    </span>
+    <a href="/students/new" class="btn btn-outline-secondary ms-auto">New Student</a>
+  </div>
+  <div class="body">
+      <table class="table">
+        <thead style="background-color: lightblue;">
+          <th>
+          Module Code
+          </th>
+          <th>
+          Credit
+          </th>
+          <th>
+          Title
+          </th>
+          <th>
+          Mark
+          </th>
+          <th>
+          Status
+          </th>
+        </thead>
+        <tbody>
+          <% @data.each do |data|%>
+            <tr>
+               
+                <td><%= data[:module_code] %></td>
+                <td><%= data[:credit] %></td>
+                <td><%= data[:title] %></td>
+                <td></td>
+                <td>
+                <% if data[:status] == "nc" %>
+                Not Completed
+                <% elsif data[:status] == "na" %>
+                Not Assessed
+                <% elsif data[:status] == "fail"%>
+                failed
+                <% else %>
+
+                <% end %>
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  
+
+</div>

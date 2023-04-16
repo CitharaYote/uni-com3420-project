@@ -1,0 +1,14 @@
+-# frozen_string_literal: true
+= simple_form_for(@student) do |f|
+  .card-body
+    = f.input :forename, wrapper_html: { class: 'mb-3' }
+    = f.input :surname, wrapper_html: { class: 'mb-3' }
+    = f.input :regID, wrapper_html: { class: 'mb-3' }
+    = f.input :status, label: 'Status', as: :select, collection: [['Not Completed','nc'], ['Not Assessed','na'], ['Failed','fail']]
+    = f.input :program_id, label: 'Program', as: :select, collection: @programs
+
+  .card-footer.d-flex
+    %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+      Save
+    = link_to 'Back', students_path, class: 'btn btn-link ms-auto'
+

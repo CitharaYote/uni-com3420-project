@@ -1,0 +1,5 @@
+= form_with url: import_students_path, method: :post do |f|
+    = f.file_field :file, accept: ".csv"
+    = f.submit "Upload Students and Marks", class: "btn btn-primary" 
+
+

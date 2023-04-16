@@ -29,6 +29,10 @@
           #navbar-content.navbar-collapse.collapse
             %nav.navbar-nav
               .nav-item.text-white
+                = link_to students_path, class: 'nav-link' do
+                  %p.text-white
+                    Student
+              .nav-item.text-white
                 = link_to staffs_path, class: 'nav-link' do
                   %p.text-white
                     Staff
@@ -39,16 +43,14 @@
               .nav-item.text-white
                 = link_to programs_path, class: 'nav-link' do
                   %p.text-white
-                    Program
+                    Programme
             %nav.navbar-nav.ms-auto
               .nav-item.dropdown
                 - if user_signed_in?
                   = link_to current_user.username, '#', class: 'nav-link dropdown-toggle text-white', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' }
-                  -# %nav.dropdown-menu.dropdown-menu-md-end
-                  -#   = link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete
-                  = link_to destroy_user_session_path, method: :delete, class: 'nav-link' do
-                    %p.text-white
-                      Logout
+                  %nav.dropdown-menu.dropdown-menu-md-end
+                    = link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete
+                    = link_to 'Profile', '#', class: 'dropdown-item'
 
     - if flash.present?
       .flash-messages.bg-uospurple

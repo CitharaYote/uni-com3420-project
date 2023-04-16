@@ -1,0 +1,56 @@
+<div class = "card">
+  <div class = "card-header d-flex align-items-center">
+    <span>
+      Listing Students
+    </span>
+    <a href="/students/new" class="btn btn-outline-secondary ms-auto">New Student</a>
+  </div>
+  <div class="body">
+      <table class="table">
+        <thead style="background-color: lightblue;">
+          <th>
+            Program_name
+          </th>
+          <th>
+            Forename
+          </th>
+          <th>
+            Surname
+          </th>
+          <th>
+            RegID
+          </th>
+          <th>
+            Status
+          </th>
+          <th>
+            Option
+          </th>
+        </thead>
+        <tbody>
+          <% @students.each do |student|%>
+            <tr>
+              <td><%= student.program_name %></td>
+              <td><%= student.forename %></td>
+              <td><%= student.surname %></td>
+              <td><%= student.regID %></td>
+              <td>
+              <% if student.status == "nc" %>
+              Not Completed
+              <% elsif student.status == "na" %>
+              Not Assessed
+              <% elsif student.status == "fail"%>
+              failed
+              <% else %>
+
+              <% end %>
+              </td>
+              <td><a href="course_detail?id=<%= student.id %>">course detail</a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  
+
+</div>

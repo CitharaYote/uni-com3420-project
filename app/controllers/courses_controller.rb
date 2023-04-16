@@ -8,11 +8,13 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    @program = Program.all
   end
 
   # GET /courses/new
   def new
     @course = Course.new
+    @programs = Program.all
   end
 
   # GET /courses/1/edit
@@ -53,6 +55,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:module_code, :credit)
+      params.require(:course).permit(:id, :module_code, :credit, :title, program_ids:[])
     end
 end

@@ -8,11 +8,14 @@ class ProgramsController < ApplicationController
 
   # GET /programs/1
   def show
+    @program = Program.find(params[:id])
+    @courses = @program.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
   end
 
   # GET /programs/new
   def new
     @program = Program.new
+    @courses = Course.all
   end
 
   # GET /programs/1/edit
@@ -22,6 +25,7 @@ class ProgramsController < ApplicationController
   # POST /programs
   def create
     @program = Program.new(program_params)
+    @program.course_ids = params[:program][:course_ids]
 
     if @program.save
       redirect_to @program, notice: "Program was successfully created."
@@ -53,6 +57,6 @@ class ProgramsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def program_params
-      params.require(:program).permit(:program_name, course_ids: [])
+      params.require(:program).permit(:id, :program_name, :title , course_ids: [])
     end
 end
