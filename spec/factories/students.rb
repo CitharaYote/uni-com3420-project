@@ -4,6 +4,7 @@
 #
 #  id           :bigint           not null, primary key
 #  forename     :string
+#  mean_grade   :integer
 #  program_name :string
 #  regID        :bigint           not null
 #  status       :string
