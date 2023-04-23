@@ -334,9 +334,18 @@ GEM
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
     slop (3.6.0)
+    sprockets (4.2.0)
+      concurrent-ruby (~> 1.0)
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.4.2)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      sprockets (>= 3.0.0)
     sshkit (1.21.4)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    tailwindcss-rails (2.0.28)
+      railties (>= 6.0.0)
     temple (0.10.0)
     thor (1.2.1)
     tilt (2.1.0)
@@ -407,6 +416,9 @@ DEPENDENCIES
   shakapacker
   simple_form
   simplecov
+  sprockets (~> 4.2)
+  sprockets-rails (~> 3.4)
+  tailwindcss-rails (~> 2.0)
   tzinfo-data
   web-console
   webdrivers

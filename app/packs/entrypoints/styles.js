@@ -4,3 +4,4 @@ import "bootstrap-icons/font/bootstrap-icons";
 import "../styles/twitter_bootstrap";
 import "../styles/custom";
 import "../styles/layout";
+import "../../assets/stylesheets/application.tailwind.css";

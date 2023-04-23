@@ -15,7 +15,7 @@
     = csrf_meta_tags
     = csp_meta_tag
 
-    = stylesheet_pack_tag 'styles', media: 'all'
+    = stylesheet_pack_tag 'tailwind', media: 'all', data: { turbolinks_track: 'reload' }
     = javascript_pack_tag 'application'
 
   %body.bg-gray-50
