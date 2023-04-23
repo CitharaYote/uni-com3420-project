@@ -50,7 +50,7 @@
                   = link_to current_user.username, '#', class: 'nav-link dropdown-toggle text-white', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' }
                   %nav.dropdown-menu.dropdown-menu-md-end
                     = link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete
-                    = link_to 'Profile', '#', class: 'dropdown-item'
+                    = link_to 'Profile', current_users_path, class: 'dropdown-item'
 
     - if flash.present?
       .flash-messages.bg-uospurple

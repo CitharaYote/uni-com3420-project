@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :current_users
   resources :students do
     collection do
       post :import
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   resources :programs
   resources :courses
   resources :staffs
+  resources :current_users
   mount EpiCas::Engine, at: "/"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
