@@ -1,19 +1,42 @@
-.row.justify-content-center
-  .col-sm-8.col-lg-6
-    .card
-      .card-header
-        Course details
-      .card-body
-        %dl.row.mb-0
-          %dt.col-md-3 Module code:
-          %dd.col-md-9= @course.module_code
-          %dt.col-md-3 Credits:
-          %dd.col-md-9= @course.credit
-          %dt.col-md-3 Relevant Programmes:
-          - @course.programs.each do |program|
-            = program.program_name
+-# .row.justify-content-center
+-#   .col-sm-8.col-lg-6
+-#     .card
+-#       .card-header
+-#         Course details
+-#       .card-body
+-#         %dl.row.mb-0
+-#           %dt.col-md-3 Module code:
+-#           %dd.col-md-9= @course.module_code
+-#           %dt.col-md-3 Credits:
+-#           %dd.col-md-9= @course.credit
+-#           %dt.col-md-3 Relevant Programmes:
+-#           - @course.programs.each do |program|
+-#             = program.program_name
 
 
-      .card-footer.d-flex
-        = link_to 'Edit', edit_course_path(@course), class: 'btn btn-link'
-        = link_to 'Back', courses_path, class: 'btn btn-link ms-auto'
+-#       .card-footer.d-flex
+-#         = link_to 'Edit', edit_course_path(@course), class: 'btn btn-link'
+-#         = link_to 'Back', courses_path, class: 'btn btn-link ms-auto'
+
+.card.tw-p-8.tw-mx-auto.tw-max-w-xl
+  .tw-flex.tw-flex-row.tw-font-bold.tw-items-end
+    %a{ href: '/courses'}
+      %p.tw-text-gray-300.tw-text-xl{ class: "hover:tw-text-gray-500 tw-transition tw-mr-2" }
+        Courses /
+    %p.tw-text-4xl.tw-text-gray-700
+      Course Details
+  %hr.tw-my-8
+  .body
+    %dl.row.mb-0
+      %dt.col-md-5 Module code:
+      %dd.col-md-7= @course.module_code
+      %dt.col-md-5 Credits:
+      %dd.col-md-7= @course.credit
+      %dt.col-md-5 Relevant Programmes:
+      %dd.col-md-7= @course.programs.map(&:program_name).join(', ')
+      -# - @course.programs.each do |program|
+      -#   = program.program_name
+    %hr.tw-my-8
+    .tw-flex.tw-justify-between
+      = link_to 'Edit', edit_course_path(@course), class: 'tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg'
+      = link_to 'Back', courses_path, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-300 hover:tw-bg-opacity-50 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'

@@ -1,10 +1,33 @@
-.row.justify-content-center
-  .col-sm-8.col-lg-6
-    .card
-      .card-header
-        Student details
-      .card-body
-        %dl.row.mb-0
-      .card-footer.d-flex
-        = link_to 'Edit', edit_student_path(@student), class: 'btn btn-link'
-        = link_to 'Back', students_path, class: 'btn btn-link ms-auto'
+-# .row.justify-content-center
+-#   .col-sm-8.col-lg-6
+-#     .card
+-#       .card-header
+-#         Student details
+-#       .card-body
+-#         %dl.row.mb-0
+-#       .card-footer.d-flex
+-#         = link_to 'Edit', edit_student_path(@student), class: 'btn btn-link'
+-#         = link_to 'Back', students_path, class: 'btn btn-link ms-auto'
+
+.card.tw-p-8.tw-mx-auto.tw-max-w-xl
+  .tw-flex.tw-flex-row.tw-font-bold.tw-items-end
+    %a{ href: '/students'}
+      %p.tw-text-gray-300.tw-text-xl{ class: "hover:tw-text-gray-500 tw-transition tw-mr-2" }
+        Students /
+    %p.tw-text-4xl.tw-text-gray-700
+      Student Details
+  %hr.tw-my-8
+  .body
+    %dl.row.mb-0
+      %dt.col-md-5 Forename:
+      %dd.col-md-7= @student.forename
+      %dt.col-md-5 Surname
+      %dd.col-md-7= @student.surname
+      %dt.col-md-5 Registration Number:
+      %dd.col-md-7= @student.reg_number
+      -# - @course.programs.each do |program|
+      -#   = program.program_name
+    %hr.tw-my-8
+    .tw-flex.tw-justify-between
+      = link_to 'Edit', edit_student_path(@student), class: 'tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg'
+      = link_to 'Back', students_path, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-300 hover:tw-bg-opacity-50 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'

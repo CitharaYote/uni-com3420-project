@@ -27,22 +27,26 @@
           %span.navbar-toggler-icon
         #navbar-content.navbar-collapse.collapse
           %nav.navbar-nav
-            .nav-item
-              = link_to students_path, class: 'nav-link' do
-                %p.text-white
+            .nav-item.tw-my-auto.tw-mx-2.tw-group
+              = link_to students_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                %p
                   Student
-            .nav-item
-              = link_to staffs_path, class: 'nav-link' do
-                %p.text-white
+                %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+            .nav-item.tw-my-auto.tw-mx-2.tw-group
+              = link_to staffs_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                %p
                   Staff
-            .nav-item
-              = link_to courses_path, class: 'nav-link' do
-                %p.text-white
+                %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+            .nav-item.tw-my-auto.tw-mx-2.tw-group
+              = link_to courses_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                %p
                   Course
-            .nav-item
-              = link_to programs_path, class: 'nav-link' do
-                %p.text-white
+                %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+            .nav-item.tw-my-auto.tw-mx-2.tw-group
+              = link_to programs_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                %p
                   Programme
+                %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
           %nav.navbar-nav.ms-auto
             .nav-item.dropdown
               - if user_signed_in?

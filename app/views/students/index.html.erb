@@ -13,7 +13,7 @@
       <table class="tw-w-full tw-my-4 tw-table-auto">
         <thead class="tw-bg-gray-300">
           <th class="tw-px-4 tw-py-2">
-            Program_name
+            Program Name
           </th>
           <th class="tw-px-4 tw-py-2">
             Forename
@@ -22,13 +22,13 @@
             Surname
           </th>
           <th class="tw-px-4 tw-py-2">
-            RegID
+            Registration ID
           </th>
           <th class="tw-px-4 tw-py-2">
             Status
           </th>
           <th class="tw-px-4 tw-py-2">
-            Option
+            Options
           </th>
         </thead>
         <tbody>
@@ -44,12 +44,12 @@
               <% elsif student.status == "na" %>
               Not Assessed
               <% elsif student.status == "fail"%>
-              failed
+              Failed
               <% else %>
 
               <% end %>
               </td>
-              <td class="tw-px-4 tw-py-2 tw-border"><a href="course_detail?id=<%= student.id %>" class="tw-no-underline">course detail</a></td>
+              <td class="tw-px-4 tw-py-2 tw-border"><a href="course_detail?id=<%= student.id %>" class="tw-no-underline">Course Details</a></td>
             </tr>
           <% end %>
         </tbody>

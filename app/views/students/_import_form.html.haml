@@ -1,6 +1,6 @@
 = form_with url: import_students_path, method: :post do |f|
     .tw-flex.tw-flex-row
-        .tw-flex.tw-flex-col.tw-rounded-lg.tw-border-gray-300.tw-border.tw-py-1.tw-px-2.tw-mr-2
+        .tw-flex.tw-flex-col.tw-rounded-lg.tw-border-gray-300.tw-border.tw-py-1.tw-px-2.tw-mr-2.tw-bg-gray-50
             -# = f.label :file, "Upload CSV File", class: "tw-text-gray-700 tw-text-md tw-font-bold"
             = f.file_field :file, accept: ".csv", class: "tw-text-gray-700 tw-appearance-none tw-my-auto"
         %div

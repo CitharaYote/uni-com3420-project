@@ -1,14 +1,32 @@
--# frozen_string_literal: true
+-# -# frozen_string_literal: true
 = simple_form_for(@student) do |f|
-  .card-body
-    = f.input :forename, wrapper_html: { class: 'mb-3' }
-    = f.input :surname, wrapper_html: { class: 'mb-3' }
-    = f.input :regID, wrapper_html: { class: 'mb-3' }
-    = f.input :status, label: 'Status', as: :select, collection: [['Not Completed','nc'], ['Not Assessed','na'], ['Failed','fail']]
-    = f.input :program_id, label: 'Program', as: :select, collection: @programs
+  .tw-max-w-lg
+    = f.input :forename, wrapper_html: { class: 'tw-mb-2' }
+    = f.input :surname, wrapper_html: { class: 'tw-mb-2' }
+    -# TODO: stupid bootstrap lets you put 'e' in the field which breaks the database
+    = f.input :regID, label: "Registration ID", wrapper_html: { class: 'tw-mb-2' }
+    = f.input :status, label: 'Status', as: :select, collection: [['Not Completed','nc'], ['Not Assessed','na'], ['Failed','fail']], wrapper_html: { class: 'tw-mb-2' }
+    = f.input :program_id, label: 'Program', as: :select, collection: @programs, wrapper_html: { class: 'tw-mb-2' }
 
-  .card-footer.d-flex
-    %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+  %hr.tw-my-8
+  .tw-flex.tw-justify-between
+    %button{ type: 'submit', class: "tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg" }
       Save
-    = link_to 'Back', students_path, class: 'btn btn-link ms-auto'
+    = link_to 'Back', students_path, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-300 hover:tw-bg-opacity-50 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'
+
+
+
+-# -# frozen_string_literal: true
+-# = simple_form_for(@student) do |f|
+-#   .card-body
+-#     = f.input :forename, wrapper_html: { class: 'mb-3' }
+-#     = f.input :surname, wrapper_html: { class: 'mb-3' }
+-#     = f.input :regID, wrapper_html: { class: 'mb-3' }
+-#     = f.input :status, label: 'Status', as: :select, collection: [['Not Completed','nc'], ['Not Assessed','na'], ['Failed','fail']]
+-#     = f.input :program_id, label: 'Program', as: :select, collection: @programs
+
+-#   .card-footer.d-flex
+-#     %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+-#       Save
+-#     = link_to 'Back', students_path, class: 'btn btn-link ms-auto'
 

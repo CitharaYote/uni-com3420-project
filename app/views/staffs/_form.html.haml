@@ -1,10 +1,17 @@
 -# frozen_string_literal: true
 = simple_form_for(@staff) do |f|
-  .card-body
-    = f.input :username, wrapper_html: { class: 'mb-3' }
-    = f.input :is_admin, wrapper_html: { class: 'mb-3' }
+  .tw-max-w-lg
+    = f.input :username, wrapper_html: { class: 'tw-mb-2' }
+    = f.input :is_admin, wrapper_html: { class: 'tw-mb-2' }, label: "Is Admin?"
 
-  .card-footer.d-flex
-    %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+  -# .card-footer.d-flex
+  -#   %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+  -#     Save
+  -#   = link_to 'Back', staffs_path, class: 'btn btn-link ms-auto'
+  %hr.tw-my-8
+  .tw-flex.tw-justify-between
+    %button{ type: 'submit', class: "tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg" }
       Save
-    = link_to 'Back', staffs_path, class: 'btn btn-link ms-auto'
+    = link_to 'Back', staffs_path, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-300 hover:tw-bg-opacity-50 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'
+
+
