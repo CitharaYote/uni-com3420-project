@@ -1,22 +1,51 @@
-.row.justify-content-center
-  .col-sm-8.col-lg-6
-    .card
-      .card-header
-        User Profile
-      .card-body
-        %dl.row.mb-0
-          %dt.col-md-3 Username:
-          %dd.col-md-9= link_to current_user.username
-          %dt.col-md-3 Email:
-          %dd.col-md-9= link_to current_user.email
-          %dt.col-md-3 First name:
-          %dd.col-md-9= link_to current_user.givenname
-          %dt.col-md-3 Last name:
-          %dd.col-md-9= link_to current_user.sn
-          %dt.col-md-3 Administrator status:
-          - if link_to current_user.admin = false
-            %dd.col-md-9 False
-          - else
-            %dd.col-md-9 True
-      .card-footer.d-flex
-        = link_to 'Back', "/", class: 'btn btn-link ms-auto'
+-# .row.justify-content-center
+-#   .col-sm-8.col-lg-6
+-#     .card
+-#       .card-header
+-#         User Profile
+-#       .card-body
+-#         %dl.row.mb-0
+-#           %dt.col-md-3 Username:
+-#           %dd.col-md-9= link_to current_user.username
+-#           %dt.col-md-3 Email:
+-#           %dd.col-md-9= link_to current_user.email
+-#           %dt.col-md-3 First name:
+-#           %dd.col-md-9= link_to current_user.givenname
+-#           %dt.col-md-3 Last name:
+-#           %dd.col-md-9= link_to current_user.sn
+-#           %dt.col-md-3 Administrator status:
+-#           - if link_to current_user.admin = false
+-#             %dd.col-md-9 False
+-#           - else
+-#             %dd.col-md-9 True
+-#       .card-footer.d-flex
+-#         = link_to 'Back', "/", class: 'btn btn-link ms-auto'
+
+.card.tw-p-8.tw-mx-auto.tw-max-w-xl
+  .tw-flex.tw-flex-row.tw-font-bold.tw-items-end
+    -# %a{ href: '/'}
+    -#   %p.tw-text-gray-300.tw-text-xl{ class: "hover:tw-text-gray-500 tw-transition tw-mr-2" }
+    -#     -# Students &#124;
+    -#     Staff /
+    %p.tw-text-4xl.tw-text-gray-700
+      User Profile
+  %hr.tw-my-8
+  .body
+    %dl.row.mb-0
+      %dt.col-md-4 Username:
+      %dd.col-md-8= link_to current_user.username
+      %dt.col-md-4 Email:
+      %dd.col-md-8= link_to current_user.email
+      %dt.col-md-4 First Name:
+      %dd.col-md-8= link_to current_user.givenname
+      %dt.col-md-4 Last Name:
+      %dd.col-md-8= link_to current_user.sn
+      %dt.col-md-4 Administrator:
+      - if link_to current_user.admin = false
+        %dd.col-md-8 False
+      - else
+        %dd.col-md-8 True
+
+    %hr.tw-my-8
+    .tw-flex.tw-justify-end
+      = link_to 'Back', root_path, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-300 hover:tw-bg-opacity-50 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'
