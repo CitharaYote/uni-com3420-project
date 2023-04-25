@@ -47,6 +47,7 @@
       <tbody class="">
         <% focus_student = nil %> 
         <% @filtered_data[:data]&.map do |student| %>
+          <!-- this is where the highlighting happens -->
           <% td_class = '' %> 
           <% td_class = 'tw-bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %> 
           <% td_class = 'tw-bg-yellow-200' if student[:'1st Grade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>

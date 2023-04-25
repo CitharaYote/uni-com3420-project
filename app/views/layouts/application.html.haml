@@ -19,8 +19,9 @@
     = javascript_pack_tag 'application'
 
   -# %body{class: "tw-bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] tw-from-slate-900 tw-via-purple-900 tw-to-slate-900 tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
-  %body{class: "tw-bg-uospurple tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
-    %header.navbar.navbar-expand-lg.tw-bg-uospurple-dark.tw-bg-opacity-40.tw-shadow-lg
+  %body{class: "tw-bg-gray-50 tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
+    -# %header.navbar.navbar-expand-lg.tw-bg-uospurple-dark.tw-bg-opacity-40.tw-shadow-lg
+    %header.navbar.navbar-expand-lg.tw-bg-uospurple-dark.tw-shadow-lg
       .container-fluid.tw-text-white
         = link_to '/', class: 'navbar-brand' do
           = image_pack_tag 'uoslogo_white.png', class: "tw-h-16 tw-ml-2 tw-mr-8 hover:tw-drop-shadow-lg tw-my-2"

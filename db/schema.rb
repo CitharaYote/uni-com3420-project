@@ -15,8 +15,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_132304) do
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
-    t.string "module_code"
+    t.string "module_code", null: false
     t.integer "credit"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,9 +66,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_132304) do
 
   create_table "programs", force: :cascade do |t|
     t.string "program_name"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -88,15 +89,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_132304) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.bigint "regID", null: false
+    t.bigint "program_id"
+    t.bigint "regID"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "program_name"
     t.string "forename"
     t.string "surname"
-    t.bigint "program_id"
     t.integer "mean_grade"
+    t.index ["program_id"], name: "index_students_on_program_id"
   end
 
   create_table "users", force: :cascade do |t|
