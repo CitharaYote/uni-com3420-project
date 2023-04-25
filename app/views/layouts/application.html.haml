@@ -18,7 +18,8 @@
     = stylesheet_pack_tag 'styles', media: 'all', data: { turbolinks_track: 'reload' }
     = javascript_pack_tag 'application'
 
-  %body{class: "tw-bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] tw-from-slate-900 tw-via-purple-900 tw-to-slate-900 tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
+  -# %body{class: "tw-bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] tw-from-slate-900 tw-via-purple-900 tw-to-slate-900 tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
+  %body{class: "tw-bg-uospurple tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
     %header.navbar.navbar-expand-lg.tw-bg-uospurple-dark.tw-bg-opacity-40.tw-shadow-lg
       .container-fluid.tw-text-white
         = link_to '/', class: 'navbar-brand' do
