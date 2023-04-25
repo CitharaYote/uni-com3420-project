@@ -1,11 +1,10 @@
 class StaffsController < ApplicationController
   before_action :set_staff, only: %i[ show edit update destroy ]
-  before_action :check_admin, only: [ :new, :edit, :show, :destroy]
-  
+  authorize_resource
 
   # GET /staffs
   def index
-    puts current_user.admin?
+    
     @staffs = Staff.all
   end
 
@@ -60,10 +59,5 @@ class StaffsController < ApplicationController
       params.require(:staff).permit(:username, :is_admin)
     end
 
-    def check_admin
-      if Staff.exists?(username: current_user.username)
-        current_user.admin = Staff.where(username: current_user.username).select(:is_admin)
-      end
-      redirect_to staffs_url if not(current_user.admin?)
-    end
+    
 end

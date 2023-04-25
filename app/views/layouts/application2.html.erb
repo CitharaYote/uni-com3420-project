@@ -29,18 +29,21 @@
             %span.navbar-toggler-icon
           #navbar-content.navbar-collapse.collapse
             %nav.navbar-nav
+              - if can? :read, Staff
+                .nav-item.text-white
+                  = link_to staffs_path, class: 'nav-link' do
+                    %p.text-white
+                      Staff
+              - if can? :manage, Program
+                .nav-item.text.white
+                  = link_to courses_path, class: 'nav-link' do
+                    %p.text-white
+                      Course
+              - if can? :manage, Program
               .nav-item.text-white
-                = link_to staffs_path, class: 'nav-link' do
-                  %p.text-white
-                    Staff
-              .nav-item.text.white
-                = link_to courses_path, class: 'nav-link' do
-                  %p.text-white
-                    Course
-              .nav-item.text-white
-                = link_to programs_path, class: 'nav-link' do
-                  %p.text-white
-                    Program
+                  = link_to programs_path, class: 'nav-link' do
+                    %p.text-white
+                      Program
             %nav.navbar-nav.ms-auto
               .nav-item.dropdown
                 - if user_signed_in?

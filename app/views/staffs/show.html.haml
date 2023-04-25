@@ -4,11 +4,14 @@
       .card-header
         Staff details
       .card-body
-        %dl.row.mb-0
-          %dt.col-md-3 Username:
-          %dd.col-md-9= @staff.username
-          %dt.col-md-3 Admin:
-          %dd.col-md-9= @staff.is_admin
+        - if can? :manage, Staff
+          %dl.row.mb-0
+            %dt.col-md-3 Username:
+            %dd.col-md-9= @staff.username
+            %dt.col-md-3 Admin:
+            %dd.col-md-9= @staff.is_admin
+      
       .card-footer.d-flex
-        = link_to 'Edit', edit_staff_path(@staff), class: 'btn btn-link'
+        - if can? :manage, Staff
+          = link_to 'Edit', edit_staff_path(@staff), class: 'btn btn-link'
         = link_to 'Back', staffs_path, class: 'btn btn-link ms-auto'

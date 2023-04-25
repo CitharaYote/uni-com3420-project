@@ -3,7 +3,9 @@
     <span>
       Listing Staffs
     </span>
-    <a href="/staffs/new" class="btn btn-outline-secondary ms-auto">New Staff</a>
+    <%  if can? :manage, Staff %>
+      <a href="/staffs/new" class="btn btn-outline-secondary ms-auto">New Staff</a>
+    <% end %>
   </div>
   <div class="body">
     <div style="float:left;width:100%%;">
@@ -21,9 +23,11 @@
             <tr>
               <td><%= staff.username %></td>
               <td>
-              <a href="/staffs/<%=staff.id%>/edit" style="color: blue">Edit</a>&nbsp;/&nbsp;
-              <a href="/staffs/<%=staff.id%>" data-method="delete" style="color: red">Remove</a>
+              <%  if can? :manage, Staff %>
+                <a href="/staffs/<%=staff.id%>/edit" style="color: blue">Edit</a>&nbsp;/&nbsp;
+                <a href="/staffs/<%=staff.id%>" data-method="delete" style="color: red">Remove</a>
               </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

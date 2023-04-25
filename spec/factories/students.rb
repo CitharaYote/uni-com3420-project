@@ -6,16 +6,12 @@
 #  forename     :string
 #  mean_grade   :integer
 #  program_name :string
-#  regID        :bigint
+#  regID        :bigint           not null
 #  status       :string
 #  surname      :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  program_id   :bigint
-#
-# Indexes
-#
-#  index_students_on_program_id  (program_id)
 #
 FactoryBot.define do
   factory :student do
