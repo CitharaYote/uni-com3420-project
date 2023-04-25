@@ -48,8 +48,8 @@
         <% focus_student = nil %> 
         <% @filtered_data[:data]&.map do |student| %>
           <% td_class = '' %> 
-          <% td_class = 'tw-bg-red-200' if student[:'1stGrade']&.to_f&. < 40 %> 
-          <% td_class = 'tw-bg-yellow-200' if student[:'1stGrade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>
+          <% td_class = 'tw-bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %> 
+          <% td_class = 'tw-bg-yellow-200' if student[:'1st Grade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>
         <tr
           class="tw-transition tw-cursor-pointer odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200"
         >

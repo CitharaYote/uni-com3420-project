@@ -14,4 +14,5 @@ class Course < ApplicationRecord
     
     has_many :marks
     has_many :students, :through => :marks
+
 end
