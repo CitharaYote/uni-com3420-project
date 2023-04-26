@@ -5,8 +5,12 @@ Rails.application.routes.draw do
       post :import
     end
   end
-  resources :programs
-  resources :courses
+  resources :programs do
+    post :search, on: :collection
+  end
+  resources :courses do
+    post :search, on: :collection
+  end
   resources :staffs
   resources :current_users
   mount EpiCas::Engine, at: "/"

@@ -1,17 +1,31 @@
 .card
   .card-header.d-flex.align-items-center
-    = form_tag courses_path, method: :get do
-      = label_tag :filter, "Filter Courses By Programme"
-      = select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: true
-      %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
-        Filter
-    
-    = link_to 'New Course', new_course_path, class: 'btn btn-outline-secondary ms-auto'
+    %span Listing Courses
+    %span.ms-1 (There are #{@courses.size} courses.)
+
+    .btn-toolbar.ms-auto
+      - if can? :create, Course
+        = link_to 'New Course', new_course_path, class: 'btn btn-outline-secondary ms-auto'
+
+  .card-body
+    = simple_form_for :search, url: search_courses_path, method: :post do |f|
+      .mb-3= f.input :module_code
+      .mb-3= f.input :credit
+
+      .btn-toolbar
+        = f.submit 'Search', class: 'btn btn-outline-secondary'
+        = link_to 'Reset', courses_path, class: 'btn btn-link ms-1'
+    -# = link_to 'New Course', new_course_path, class: 'btn btn-outline-secondary ms-auto'
+    -# = form_tag courses_path, method: :get do
+    -#   = label_tag :filter, "Filter Courses By Programme"
+    -#   = select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: true
+    -#   %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+    -#     Filter
 
   %table.table
     %thead
       %tr
-        %th Course code
+        %th Module code
         %th Credit
         %th ID
         %th
