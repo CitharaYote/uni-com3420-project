@@ -49,12 +49,6 @@ class ProgramsController < ApplicationController
     redirect_to programs_url, notice: "Program was successfully destroyed."
   end
 
-  # POST /programs/search
-  def search
-    @programs = Program.where(program_name: params[:search][:program_name])
-    render :index
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_program

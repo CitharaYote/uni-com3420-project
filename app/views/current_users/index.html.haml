@@ -14,6 +14,6 @@
           %dt.col-md-3 Last name:
           %dd.col-md-9= link_to current_user.sn
           %dt.col-md-3 Administrator status:
-          %dd.col-md-9= link_to staff.is_admin
+          %dd.col-md-9= link_to current_user.admin
       .card-footer.d-flex
         = link_to 'Back', "/", class: 'btn btn-link ms-auto'
