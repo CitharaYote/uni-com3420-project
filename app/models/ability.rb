@@ -36,13 +36,13 @@ class Ability
       can :manage, Course
       can :read, Staff
       if Staff.where(username: user.username).select(:is_admin)
-        # user.update(admin: true)
+        user.update(admin: true)
         can :manage, Staff
-      # else
-      #   user.update(admin: false)
+      else
+        user.update(admin: false)
       end
     else
-      # user.update(admin: false)
+      user.update(admin: false)
       # can :manage, Staff
     end
   end
