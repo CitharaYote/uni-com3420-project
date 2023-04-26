@@ -6,12 +6,16 @@
 #  forename     :string
 #  mean_grade   :integer
 #  program_name :string
-#  regID        :bigint           not null
+#  regID        :bigint
 #  status       :string
 #  surname      :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  program_id   :bigint
+#
+# Indexes
+#
+#  index_students_on_program_id  (program_id)
 #
 require 'rails_helper'
 

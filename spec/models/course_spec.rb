@@ -4,7 +4,8 @@
 #
 #  id          :bigint           not null, primary key
 #  credit      :integer
-#  module_code :string
+#  module_code :string           not null
+#  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
