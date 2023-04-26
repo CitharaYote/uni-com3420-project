@@ -45,9 +45,11 @@ class Ability
     if user.admin?
       can :manage, Staff
       can :manage, Program
+      can :manage, Course
+      can :manage, Student
       
     else
-      can :manage, Program
+      can :read, Program
       can :read, Staff
       
     end
