@@ -3,15 +3,6 @@
     %span Listing Programs
     %span.ms-1 (There are #{@programs.size} programs.)
     = link_to 'New Programme', new_program_path, class: 'btn btn-outline-secondary ms-auto'
-  
-  .card-body
-    = simple_form_for :search, url: search_programs_path, method: :post do |f|
-      .mb-3= f.input :program_name
-      .mb-3= f.input :title
-
-      .btn-toolbar
-        = f.submit 'Search', class: 'btn btn-outline-secondary'
-        = link_to 'Reset', programs_path, class: 'btn btn-link ms-1'
 
   %table.table
     %thead
