@@ -47,7 +47,6 @@ class Ability
       can :manage, Program
       can :manage, Course
       can :manage, Student
-      
     else
       can :read, Program
       can :read, Staff
