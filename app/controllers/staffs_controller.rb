@@ -58,6 +58,5 @@ class StaffsController < ApplicationController
     def staff_params
       params.require(:staff).permit(:username, :is_admin)
     end
-
     
 end

@@ -1,0 +1,22 @@
+.card
+  .card-header.d-flex.align-items-center
+    %span Listing Staffs
+    %span.ms-1 (There are #{@staffs.size} staffs.)
+    = link_to 'New Staff', new_staff_path, class: 'btn btn-outline-secondary ms-auto'
+
+  %table.table
+    %thead
+      %tr
+        %th Username
+        %th Is Admin?
+        %th
+    %tbody
+      - @staffs.each do |staff|
+        %tr
+          %td= staff.username
+          %td= staff.is_admin
+          %td
+            .btn-toolbar.float-end
+              = link_to 'Show', staff, class: 'btn btn-outline-secondary btn-sm'
+              = link_to 'Edit', edit_staff_path(staff), class: 'btn btn-outline-secondary ms-1 btn-sm'
+              = link_to 'Destroy', staff, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'

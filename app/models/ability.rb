@@ -36,8 +36,6 @@ class Ability
       else
         user.update(admin: false)
       end
-      
-      
     else
       user.update(admin: false)
     end
@@ -50,7 +48,6 @@ class Ability
     else
       can :read, Program
       can :read, Staff
-      
     end
     
   end

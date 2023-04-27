@@ -3,19 +3,20 @@
     .card
       .card-header
         User Profile
-      .card-body
-        %dl.row.mb-0
-          %dt.col-md-3 Username:
-          %dd.col-md-9= link_to current_user.username
-          %dt.col-md-3 Email:
-          %dd.col-md-9= link_to current_user.email
-          %dt.col-md-3 First name:
-          %dd.col-md-9= link_to current_user.givenname
-          %dt.col-md-3 Last name:
-          %dd.col-md-9= link_to current_user.sn
-          %dt.col-md-3 Department:
-          %dd.col-md-9= link_to current_user.ou
-          %dt.col-md-3 Admin status:
-          %dd.col-md-9= link_to current_user.admin
+      - if can? :read, Staff
+        .card-body
+          %dl.row.mb-0
+            %dt.col-md-3 Username:
+            %dd.col-md-9= link_to current_user.username
+            %dt.col-md-3 Email:
+            %dd.col-md-9= link_to current_user.email
+            %dt.col-md-3 First name:
+            %dd.col-md-9= link_to current_user.givenname
+            %dt.col-md-3 Last name:
+            %dd.col-md-9= link_to current_user.sn
+            %dt.col-md-3 Department:
+            %dd.col-md-9= link_to current_user.ou
+            %dt.col-md-3 Admin status:
+            %dd.col-md-9= link_to current_user.admin
       .card-footer.d-flex
         = link_to 'Back', "/", class: 'btn btn-link ms-auto'

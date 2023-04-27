@@ -11,5 +11,4 @@
 class Staff < ApplicationRecord
     validates  :username, :format => {with: /\A[a-zA-Z0-9]+\z/, message: "should only have characters from A-z and 0-9. Example: aca21kj"}
     validates  :is_admin, :inclusion => {in: [true, false], message: "validation error. Please report this bug."}
-    
 end
