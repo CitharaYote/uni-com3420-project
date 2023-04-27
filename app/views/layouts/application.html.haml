@@ -48,6 +48,11 @@
                   = link_to programs_path, class: 'nav-link' do
                     %p.text-white
                       Programme
+              - if can? :manage, Program
+                .nav-item.text-white
+                  = link_to notifications_path, class: 'nav-link' do
+                    %p.text-white
+                      Notification        
             %nav.navbar-nav.ms-auto
               .nav-item.dropdown
                 - if user_signed_in?
