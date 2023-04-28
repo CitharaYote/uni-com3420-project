@@ -1,14 +1,14 @@
 class NotificationsController < ApplicationController
-  
+  before_action :set_notification, only: %i[ show edit update destroy isModule]
+
     def index
       @notifications = Notification.all
-      @progams = Program.all
-      @courses = Course.all
-    end
-
-    def show
-      @program = Program.find(params[:id])
-      @courses = @program.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
+      
+      #if @notification.isModule == true
+      #  @course = Course.find_by(module_code: @notification.identifier)
+      #else
+      #  @program = Program.find(program_name: @notification.identifier)
+      #end
     end
 
     def destroy
