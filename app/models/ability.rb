@@ -33,6 +33,7 @@ class Ability
     if Staff.exists?(username: user.username)
       if Staff.where(username: user.username).select(:is_admin)
         user.update(admin: true)
+        #I TEST
       else
         user.update(admin: false)
       end
