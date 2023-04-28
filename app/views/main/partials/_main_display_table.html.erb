@@ -1,8 +1,12 @@
 <div class="tw-w-5/6">
-  <div class="tw-flex tw-flex-row tw-items-start tw-justify-between">
+  <div
+    class="print:tw-hidden tw-flex tw-flex-row tw-items-start tw-justify-between"
+  >
     <div class="tw-flex tw-flex-row tw-items-center">
       <p class="tw-text-lg tw-my-auto">
-        Viewing <span class="tw-font-bold"><%= data.length %></span> student<%=data.length == 1 ? "" : "s" %>
+        Viewing
+        <span class="tw-font-bold"><%= data.length %></span>
+        student<%=data.length == 1 ? "" : "s" %>
       </p>
       <input
         class="tw-h-10 tw-px-2 tw-py-4 tw-ml-4 tw-text-sm tw-bg-white tw-border-2 tw-border-gray-300 tw-rounded-lg tw-w-36 focus:tw-outline-none"
@@ -21,7 +25,6 @@
         <p class="tw-ml-4 tw-mr-2 tw-text-lg tw-my-auto">Program:</p>
         <select
           class="tw-h-10 tw-pl-5 tw-pr-10 tw-text-sm tw-bg-white tw-border-2 tw-border-gray-300 tw-rounded-lg focus:tw-outline-none"
-          onchange=<%= "@set_module_index(this.value)" %>
           <% data.each_with_index.map do |_module, index| %>
             <option value="<%= index %>"><%= index %></option>
           <% end %>
@@ -45,12 +48,11 @@
         </tr>
       </thead>
       <tbody class="">
-        <% focus_student = nil %> 
-        <% @filtered_data[:data]&.map do |student| %>
-          <!-- this is where the highlighting happens -->
-          <% td_class = '' %> 
-          <% td_class = 'tw-bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %> 
-          <% td_class = 'tw-bg-yellow-200' if student[:'1st Grade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>
+        <% focus_student = nil %> <% @filtered_data[:data]&.map do |student| %>
+        <!-- this is where the highlighting happens -->
+        <% td_class = '' %> 
+        <% td_class = 'tw-bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %> 
+        <% td_class = 'tw-bg-yellow-200' if student[:'1st Grade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>
         <tr
           class="tw-transition tw-cursor-pointer odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200"
         >
