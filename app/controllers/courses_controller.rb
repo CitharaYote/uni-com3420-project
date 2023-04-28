@@ -47,6 +47,13 @@ class CoursesController < ApplicationController
     redirect_to courses_url, notice: "Course was successfully destroyed."
   end
 
+  # POST /courses/search
+  def search
+    @courses = Course.where(module_code: params[:search][:module_code])
+    @courses = Course.where(credit: params[:search][:credit])
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course

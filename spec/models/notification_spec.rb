@@ -1,20 +1,19 @@
 # == Schema Information
 #
-# Table name: students
+# Table name: notifications
 #
 #  id           :bigint           not null, primary key
-#  forename     :string
-#  mean_grade   :integer
-#  program_name :string
-#  regID        :bigint           not null
-#  status       :string
-#  surname      :string
+#  source_name  :string
+#  source_title :string
+#  target_name  :string
+#  target_title :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  program_id   :bigint
+#  program_id   :integer
+#  user_id      :integer
 #
 require 'rails_helper'
 
-RSpec.describe Student, type: :model do
+RSpec.describe Notification, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

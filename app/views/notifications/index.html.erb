@@ -1,0 +1,36 @@
+<div class = "card">
+  
+  <div class="body">
+      <table class="table">
+        <thead style="background-color: lightblue;">
+          <th>
+            operate user
+          </th>
+          <th>
+            desperation
+          </th>
+          <th>
+            redirect
+          </th>
+          <th>
+            operate time
+          </th>
+        </thead>
+        <tbody>
+          <% @notifications.each do |notification|%>
+            <tr>
+            <%user = User.find(notification.user_id)%>
+                <td><%= user.givenname %></td>
+                <td>program_name:<%= notification.source_name%>--><%= notification.target_name %>&nbsp;&nbsp;
+                title: <%= notification.source_title %>--><%= notification.target_title %></td>
+                <td><a href="/programs/<%= notification.program_id %>">rediredt</a></td>
+                <td><%= notification.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  
+
+</div>

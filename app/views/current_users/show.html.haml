@@ -9,5 +9,6 @@
           %dd.col-md-9= @current_user.username
           %dt.col-md-3 Email:
           %dd.col-md-9= @current_user.email
+      .card-footer.d-flex
         = link_to 'Edit', edit_current_user_path(@current_user), class: 'btn btn-link'
         = link_to 'Back', current_users_path, class: 'btn btn-link ms-auto'

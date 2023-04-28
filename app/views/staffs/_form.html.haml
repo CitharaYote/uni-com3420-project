@@ -1,10 +1,11 @@
 -# frozen_string_literal: true
 = simple_form_for(@staff) do |f|
-  .card-body
-    = f.input :username, wrapper_html: { class: 'mb-3' }
-    = f.input :is_admin, wrapper_html: { class: 'mb-3' }
+  - if can? :manage, Staff
+    .card-body
+      = f.input :username, wrapper_html: { class: 'mb-3' }
+      = f.input :is_admin, wrapper_html: { class: 'mb-3' }
 
-  .card-footer.d-flex
-    %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
-      Save
-    = link_to 'Back', staffs_path, class: 'btn btn-link ms-auto'
+    .card-footer.d-flex
+      %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+        Save
+      = link_to 'Back', staffs_path, class: 'btn btn-link ms-auto'

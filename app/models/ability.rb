@@ -28,5 +28,27 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
+    user ||= User.new
+    
+    if Staff.exists?(username: user.username)
+      if Staff.where(username: user.username).select(:is_admin)
+        user.update(admin: true)
+      else
+        user.update(admin: false)
+      end
+    else
+      user.update(admin: false)
+    end
+
+    if user.admin?
+      can :manage, Staff
+      can :manage, Program
+      can :manage, Course
+      can :manage, Student
+    else
+      can :read, Program
+      can :read, Staff
+    end
+    
   end
 end
