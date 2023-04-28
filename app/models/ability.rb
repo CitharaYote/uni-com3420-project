@@ -31,25 +31,20 @@ class Ability
     user ||= User.new
     
     if Staff.exists?(username: user.username)
-      if Staff.where(username: user.username).select(:is_admin)
-        user.update(admin: true)
-        #I TEST
-      else
-        user.update(admin: false)
-      end
-    else
-      user.update(admin: false)
-    end
-
-    if user.admin?
-      can :manage, Staff
       can :manage, Program
       can :manage, Course
       can :manage, Student
-    else
-      can :read, Program
       can :read, Staff
+      if Staff.where(username: user.username).select(:is_admin)
+        can :manage, Staff
+      
+        
+      end
+    
+      
     end
+
+    
     
   end
 end
