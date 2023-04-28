@@ -4,10 +4,10 @@
       <table class="table">
         <thead style="background-color: lightblue;">
           <th>
-            Alert
+            Identifier
           </th>
           <th>
-            Information
+            Alert Information
           </th>
           <th>
             Redirect
@@ -16,13 +16,14 @@
         <tbody>
           <% @notifications.each do |notification|%>
             <tr>
-            <%user = User.find(notification.user_id)%>
-                <td><%= user.givenname %></td>
-                <td>program_name:<%= notification.source_name%>--><%= notification.target_name %>&nbsp;&nbsp;
-                title: <%= notification.source_title %>--><%= notification.target_title %></td>
-                <td><a href="/programs/<%= notification.program_id %>">rediredt</a></td>
-                <td><%= notification.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
-              
+              <td><%= notification.identifier %></td>
+              <td><%= notification.alert %></td>
+              <td>
+                <div class="btn-toolbar float-end">
+                  <%# <%= link_to 'Show', , class: 'btn btn-outline-secondary btn-sm' %> 
+                  <%= link_to 'Destroy', notification, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm' %>
+                </div>
+              </td>
             </tr>
           <% end %>
         </tbody>

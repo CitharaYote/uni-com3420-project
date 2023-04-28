@@ -36,7 +36,6 @@ class ProgramsController < ApplicationController
 
   # PATCH/PUT /programs/1
   def update
-    Notification.create!(program_id:@program.id,user_id:current_user.id,source_name:@program.program_name,source_title:@program.title,target_name:program_params[:program_name],target_title:program_params[:title])
     if @program.update(program_params)
       redirect_to @program, notice: "Program was successfully updated."
     else
