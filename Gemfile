@@ -93,6 +93,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem "tailwindcss-rails", "~> 2.0"
 end
 
 group :test do
@@ -103,3 +104,8 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
 end
+
+
+gem "sprockets", "~> 4.2"
+
+gem "sprockets-rails", "~> 3.4"

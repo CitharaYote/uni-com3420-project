@@ -1,49 +1,55 @@
-<div class = "card">
-  <div class = "card-header d-flex align-items-center">
+<div class = "card tw-p-8">
+  <p class="tw-text-4xl tw-font-bold tw-text-gray-700">
+        Students
+      </p>
+      <hr class="tw-my-8" />
+  <div class = "tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
     <%= render "students/import_form" %>
-    <a href="/students/new" class="btn btn-outline-secondary ms-auto">New Student</a>
+    <a href="/students/new" class="tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg tw-appearance-none tw-no-underline hover:tw-text-white">
+      <p class="tw-my-auto tw-no-underline">New Student</p>
+    </a>
   </div>
   <div class="body">
-      <table class="table">
-        <thead style="background-color: lightblue;">
-          <th>
-            Program_name
+      <table class="tw-w-full tw-my-4 tw-table-auto">
+        <thead class="tw-bg-gray-300">
+          <th class="tw-px-4 tw-py-2">
+            Program Name
           </th>
-          <th>
+          <th class="tw-px-4 tw-py-2">
             Forename
           </th>
-          <th>
+          <th class="tw-px-4 tw-py-2">
             Surname
           </th>
-          <th>
-            RegID
+          <th class="tw-px-4 tw-py-2">
+            Registration ID
           </th>
-          <th>
+          <th class="tw-px-4 tw-py-2">
             Status
           </th>
-          <th>
-            Option
+          <th class="tw-px-4 tw-py-2">
+            Options
           </th>
         </thead>
         <tbody>
           <% @students.each do |student|%>
-            <tr>
-              <td><%= student.program_name %></td>
-              <td><%= student.forename %></td>
-              <td><%= student.surname %></td>
-              <td><%= student.regID %></td>
-              <td>
+            <tr class="tw-transition odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200">
+              <td class="tw-px-4 tw-py-2 tw-border"><%= student.program_name %></td>
+              <td class="tw-px-4 tw-py-2 tw-border"><%= student.forename %></td>
+              <td class="tw-px-4 tw-py-2 tw-border"><%= student.surname %></td>
+              <td class="tw-px-4 tw-py-2 tw-border"><%= student.regID %></td>
+              <td class="tw-px-4 tw-py-2 tw-border">
               <% if student.status == "nc" %>
               Not Completed
               <% elsif student.status == "na" %>
               Not Assessed
               <% elsif student.status == "fail"%>
-              failed
+              Failed
               <% else %>
 
               <% end %>
               </td>
-              <td><a href="course_detail?id=<%= student.id %>">course detail</a></td>
+              <td class="tw-px-4 tw-py-2 tw-border"><a href="course_detail?id=<%= student.id %>" class="tw-no-underline">Course Details</a></td>
             </tr>
           <% end %>
         </tbody>

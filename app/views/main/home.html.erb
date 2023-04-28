@@ -1,40 +1,41 @@
 <!-- why does the background not work >:( -->
-<div
-  class="min-h-screen bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900 w-full overflow-hidden bg-gray-50"
->
-  <div class="p-8 bg-white sm:rounded-lg sm:shadow-lg sm:m-24 border">
-    <div class="flex flex-row justify-between">
-      <p class="text-4xl font-bold text-gray-700">WMG Calculator Prototype</p>
+<div class="tw-w-full tw-overflow-hidden">
+  <div class="tw-p-8 tw-bg-white sm:tw-rounded-lg sm:tw-shadow-lg tw-border">
+    <div class="tw-flex tw-flex-row tw-justify-between">
+      <p class="tw-text-4xl tw-font-bold tw-text-gray-700">
+        WMG Calculator Prototype
+      </p>
       <div
-        class="flex flex-col justify-center space-x-4 sm:flex-row sm:items-center"
+        class="tw-flex tw-flex-col tw-justify-center tw-space-x-4 sm:tw-flex-row sm:tw-items-center"
       >
         <button
-          class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg"
+          class="tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-w-36 tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg"
         >
-          <p>Add</p>
+          <p class="tw-my-auto">Add</p>
         </button>
-        <button onclick="myfun()"
-          class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg"
+        <button
+          onclick="myfun()"
+          class="tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-w-36 tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg"
         >
-          <p>Print</p>
+          <p class="tw-my-auto">Print</p>
         </button>
         <script type="text/javascript">
-            function myfun() {
-              window.print();
-            }
+          function myfun() {
+            window.print();
+          }
         </script>
         <button
-          class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg"
+          class="tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-w-36 tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg"
         >
-          <p>Overview</p>
+          <p class="tw-my-auto">Overview</p>
         </button>
       </div>
     </div>
-    <hr class="my-8" />
+    <hr class="tw-my-8" />
     <!-- {loading ? ( -->
     <!-- <p class="text-2xl font-bold text-gray-400">Loading...</p> -->
     <!-- ) : ( -->
-    <div class="flex flex-row">
+    <div class="tw-flex tw-flex-row">
       <!-- <MainDisplayTable data={data} className="w-5/6" />
           <MainDisplaySidebar data={data} className="w-1/6" /> -->
       <%= render partial: "main/partials/main_display_table", locals: { data:

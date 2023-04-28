@@ -1,119 +1,74 @@
-<div class="w-5/6">
-  <div class="flex flex-row items-start justify-between">
-    <div class="flex flex-row items-center">
-      <p class="text-lg">
-        Viewing <span class="font-bold"><%= data.length %></span> student<%=
-        data.length == 1 ? "" : "s" %>
+<div class="tw-w-5/6">
+  <div class="tw-flex tw-flex-row tw-items-start tw-justify-between">
+    <div class="tw-flex tw-flex-row tw-items-center">
+      <p class="tw-text-lg tw-my-auto">
+        Viewing <span class="tw-font-bold"><%= data.length %></span> student<%=data.length == 1 ? "" : "s" %>
       </p>
       <input
-        class="h-10 px-2 py-4 ml-4 text-sm bg-white border-2 border-gray-300 rounded-lg w-36 focus:outline-none"
+        class="tw-h-10 tw-px-2 tw-py-4 tw-ml-4 tw-text-sm tw-bg-white tw-border-2 tw-border-gray-300 tw-rounded-lg tw-w-36 focus:tw-outline-none"
         name="search"
         placeholder="Search..."
       />
     </div>
     <div>
-      <div class="flex flex-row items-center">
-        <p class="mr-2 text-lg">Department:</p>
+      <div class="tw-flex tw-flex-row tw-items-center">
+        <p class="tw-mr-2 tw-text-lg tw-my-auto">Department:</p>
         <select
-          class="h-10 pl-5 pr-10 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
+          class="tw-h-10 tw-pl-5 tw-pr-10 tw-text-sm tw-bg-white tw-border-2 tw-border-gray-300 tw-rounded-lg focus:tw-outline-none"
         >
           <option value="">Music</option>
         </select>
-        <p class="ml-4 mr-2 text-lg">Program:</p>
+        <p class="tw-ml-4 tw-mr-2 tw-text-lg tw-my-auto">Program:</p>
         <select
-          class="h-10 pl-5 pr-10 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
+          class="tw-h-10 tw-pl-5 tw-pr-10 tw-text-sm tw-bg-white tw-border-2 tw-border-gray-300 tw-rounded-lg focus:tw-outline-none"
           onchange=<%= "@set_module_index(this.value)" %>
-        >
-          <!-- {p.data.map((module, index) => (
-                <option value={index} key={index}>
-                  {getModuleCode(module)}
-                </option>
-              ))} -->
           <% data.each_with_index.map do |_module, index| %>
-          <option value="<%= index %>"><%= index %></option>
+            <option value="<%= index %>"><%= index %></option>
           <% end %>
         </select>
       </div>
-      <p class="mt-2 text-sm italic text-right text-gray-500">
+      <p class="tw-mt-2 tw-text-sm tw-italic tw-text-right tw-text-gray-500">
         Click on a student for more information!
       </p>
     </div>
   </div>
   <div>
-    <table class="w-full my-4 table-auto">
-      <thead class="bg-gray-300">
+    <table class="tw-w-full tw-my-4 tw-table-auto">
+      <thead class="tw-bg-gray-300">
         <tr>
-          <th class="px-4 py-2">Reg No.</th>
-          <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
-          <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
-          <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
-          <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
-          <th class="px-4 py-2">WMG</th>
+          <th class="tw-px-4 tw-py-2">Reg No.</th>
+          <th class="tw-px-4 tw-py-2">{`{Module} - 40Cr`}</th>
+          <th class="tw-px-4 tw-py-2">{`{Module} - 40Cr`}</th>
+          <th class="tw-px-4 tw-py-2">{`{Module} - 50Cr`}</th>
+          <th class="tw-px-4 tw-py-2">{`{Module} - 50Cr`}</th>
+          <th class="tw-px-4 tw-py-2">WMG</th>
         </tr>
       </thead>
       <tbody class="">
-        <!-- {filteredData.map((student, index) => (
-              <tr
-                key={index}
-                class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200"
-                onClick={() => setFocusStudent(student)}
-              >
-                <td class="px-4 py-2 border">{student["Surname"]}</td>
-                <td class="px-4 py-2 border">{student["Forename"]}</td>
-                <td class="px-4 py-2 border">{student["Reg No."]}</td>
-                <td class="px-4 py-2 border">{student["Reg. Status"]}</td>
-                <td class="px-4 py-2 border">{student["Module Code"]}</td>
-                <td
-                  class={`border px-4 py-2 ${
-                    isNaN(student["1st Grade"]) && student["1st Grade"] !== "-"
-                      ? "bg-yellow-200"
-                      : student["1st Grade"] < 40
-                      ? "bg-red-200"
-                      : ""
-                  }`}
-                >
-                  {student["1st Grade"]}
-                </td>
-                {/* <td
-                  class={`border px-4 py-2 ${
-                    isNaN(student["2nd Grade"]) && student["2nd Grade"] !== "-"
-                      ? "bg-yellow-200"
-                      : student["2nd Grade"] < 40
-                      ? "bg-red-200"
-                      : ""
-                  }`}
-                >
-                  {student["2nd Grade"]}
-                </td> */}
-              </tr>
-            ))} -->
-            <% focus_student = nil %>
+        <% focus_student = nil %> 
         <% @filtered_data[:data]&.map do |student| %>
+          <!-- this is where the highlighting happens -->
           <% td_class = '' %> 
-          <% td_class = 'bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %>
-          <% td_class = 'bg-yellow-200' if student[:'1stGrade']&.to_f&.nan? && student[:'1st Grade'] != '-' %> 
-        <tr class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200">
-          <td class="px-4 py-2 border"><%= student[:"Surname"] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Forename"] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Reg No."] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Reg. Status"] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Module Code"] %></td>
-          <td class="<%= td_class %> border px-4 py-2"><%= student[:"1st Grade"] %></td>
+          <% td_class = 'tw-bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %> 
+          <% td_class = 'tw-bg-yellow-200' if student[:'1st Grade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>
+        <tr
+          class="tw-transition tw-cursor-pointer odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200"
+        >
+          <td class="tw-px-4 tw-py-2 tw-border"><%= student[:"Surname"] %></td>
+          <td class="tw-px-4 tw-py-2 tw-border"><%= student[:"Forename"] %></td>
+          <td class="tw-px-4 tw-py-2 tw-border"><%= student[:"Reg No."] %></td>
+          <td class="tw-px-4 tw-py-2 tw-border">
+            <%= student[:"Reg. Status"] %>
+          </td>
+          <td class="tw-px-4 tw-py-2 tw-border">
+            <%= student[:"Module Code"] %>
+          </td>
+          <td class="<%= td_class %> tw-border tw-px-4 tw-py-2">
+            <%= student[:"1st Grade"] %>
+          </td>
         </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-  <!-- {/* <AnimatePresence>
-        {focusStudent && (
-          <StudentModal
-            focusStudent={focusStudent}
-            setFocusStudent={setFocusStudent}
-          />
-        )}
-      </AnimatePresence> */}
-      <StudentModal
-        focusStudent={focusStudent}
-        setFocusStudent={setFocusStudent}
-      /> -->
 </div>

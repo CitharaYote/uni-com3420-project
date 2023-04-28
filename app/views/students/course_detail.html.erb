@@ -1,53 +1,55 @@
-<div class = "card">
-  <div class = "card-header d-flex align-items-center">
-    <span>
-      Listing Students
-    </span>
+<div class = "card tw-p-8">
+  <div class = "tw-flex tw-flex-row tw-font-bold tw-items-end">
+    <a href="/students">
+      <p class="tw-text-gray-300 tw-text-2xl hover:tw-text-gray-500 tw-transition tw-mr-2">Students /</p>
+    </a>
+    <p class="tw-text-4xl tw-text-gray-700">Course Details</p>
     <a href="/students/new" class="btn btn-outline-secondary ms-auto">New Student</a>
   </div>
-  <div class="body">
-      <table class="table">
-        <thead style="background-color: lightblue;">
-          <th>
+  <hr class="tw-my-8" />
+  <div class="">
+    <table class="tw-w-full tw-my-4 tw-table-auto">
+      <thead class="tw-bg-gray-300">
+        <th class="tw-px-4 tw-py-2">
           Module Code
-          </th>
-          <th>
+        </th>
+        <th class="tw-px-4 tw-py-2">
           Credit
-          </th>
-          <th>
+        </th>
+        <th class="tw-px-4 tw-py-2">
           Title
-          </th>
-          <th>
+        </th>
+        <th class="tw-px-4 tw-py-2">
           Mark
-          </th>
-          <th>
+        </th>
+        <th class="tw-px-4 tw-py-2">
           Status
-          </th>
-        </thead>
-        <tbody>
-          <% @data.each do |data|%>
-            <tr>
-               
-                <td><%= data[:module_code] %></td>
-                <td><%= data[:credit] %></td>
-                <td><%= data[:title] %></td>
-                <td></td>
-                <td>
-                <% if data[:status] == "nc" %>
-                Not Completed
-                <% elsif data[:status] == "na" %>
-                Not Assessed
-                <% elsif data[:status] == "fail"%>
-                failed
-                <% else %>
-
-                <% end %>
-                </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+        </th>
+      </thead>
+      <tbody>
+        <% @data.each do |data|%>
+          <% td_class = 'tw-bg-green-200' %> 
+          <% td_class = 'tw-bg-red-200' if data[:status] == "fail" %> 
+          <% td_class = 'tw-bg-yellow-200' if data[:status] == "nc" || data[:status] == "na" %>
+          <tr class="tw-transition tw-cursor-pointer odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200">
+            <td class="tw-px-4 tw-py-2 tw-border"><%= data[:module_code] %></td>
+            <td class="tw-px-4 tw-py-2 tw-border"><%= data[:credit] %></td>
+            <td class="tw-px-4 tw-py-2 tw-border"><%= data[:title] %></td>
+            <td class="tw-px-4 tw-py-2 tw-border"></td>
+            <td class="<%= td_class %> tw-border tw-px-4 tw-py-2">
+            <% if data[:status] == "nc" %>
+              Not Completed
+            <% elsif data[:status] == "na" %>
+              Not Assessed
+            <% elsif data[:status] == "fail"%>
+              Failed
+            <% else %>
+              Passed
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  
-
 </div>

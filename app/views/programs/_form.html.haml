@@ -1,11 +1,17 @@
 -# frozen_string_literal: true
 = simple_form_for(@program) do |f|
-  .card-body
-    = f.input :program_name, wrapper_html: { class: 'mb-3' }
-    = f.input :title, wrapper_html: { class: 'mb-3' }
-    = f.input :course_ids, label: 'Course', as: :check_boxes, collection: Course.order('module_code').map { |courses| [courses.module_code, courses.id] }, include_blank: false
+  .tw-max-w-lg
+    = f.input :program_name, wrapper_html: { class: 'tw-mb-2' }, label: "Programme Name"
+    = f.input :title, wrapper_html: { class: 'tw-mb-2' }, label: "Programme Title"
+    = f.input :course_ids, label: 'Courses', as: :check_boxes, collection: Course.order('module_code').map { |courses| [courses.module_code, courses.id] }, include_blank: false
 
-  .card-footer.d-flex
-    %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+  -# .card-footer.d-flex
+  -#   %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+  -#     Save
+  -#   = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'
+
+  %hr.tw-my-8
+  .tw-flex.tw-justify-between
+    %button{ type: 'submit', class: "tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg" }
       Save
-    = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'
+    = link_to 'Back', programs_path, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-300 hover:tw-bg-opacity-50 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'

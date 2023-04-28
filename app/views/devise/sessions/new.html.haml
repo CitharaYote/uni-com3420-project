@@ -1,15 +1,30 @@
 - content_for :title, 'Log In'
 
-.justify-content-center.mt-16.flex.flex-row
-  .col-sm-6.col-lg-4
-    .card.card-light
-      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .card-header
+-# .justify-content-center.mt-16.flex.flex-row
+-#   .col-sm-6.col-lg-4
+-#     .card.card-light
+-#       = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+-#         .card-header
+-#           Log In
+-#         .card-body
+-#           = f.input :username, autofocus: true, required: true
+-#           = f.input :password, required: true
+-#         .card-footer
+-#           %button.btn.btn-primary.bg-blue{ type: :submit }
+-#             Log in
+-#           .mt-3= render "devise/shared/links"
+
+.card.tw-p-8.tw-mx-auto.tw-max-w-lg
+  .tw-flex.tw-flex-row.tw-font-bold.tw-items-end
+    %p.tw-text-4xl.tw-text-gray-700
+      Log In
+  %hr.tw-my-8
+  .body
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.input :username, autofocus: true, required: true, wrapper_html: { class: 'tw-mb-2' }, label: "Username"
+      = f.input :password, required: true, wrapper_html: { class: 'tw-mb-2' }, label: "Password"
+      .tw-flex.tw-flex-col.tw-justify-center
+        %hr.tw-my-8.tw-w-full
+        %button{ type: 'submit', class: "tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg" }
           Log In
-        .card-body
-          = f.input :username, autofocus: true, required: true
-          = f.input :password, required: true
-        .card-footer
-          %button.btn.btn-primary.bg-blue{ type: :submit }
-            Log in
-          .mt-3= render "devise/shared/links"
+        

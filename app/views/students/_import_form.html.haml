@@ -1,5 +1,9 @@
 = form_with url: import_students_path, method: :post do |f|
-    = f.file_field :file, accept: ".csv", class: "btn btn-primary"
-    = f.submit "Upload Students and Marks", class: "btn btn-primary" 
+    .tw-flex.tw-flex-row
+        .tw-flex.tw-flex-col.tw-rounded-lg.tw-border-gray-300.tw-border.tw-py-1.tw-px-2.tw-mr-2.tw-bg-gray-50
+            -# = f.label :file, "Upload CSV File", class: "tw-text-gray-700 tw-text-md tw-font-bold"
+            = f.file_field :file, accept: ".csv", class: "tw-text-gray-700 tw-appearance-none tw-my-auto"
+        %div
+            = f.submit "Upload Students and Marks", class: "tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg tw-appearance-none tw-no-underline hover:tw-text-white" 
 
 

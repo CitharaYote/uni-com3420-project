@@ -1,19 +1,42 @@
-.row.justify-content-center
-  .col-sm-8.col-lg-6
-    .card
-      .card-header
-        Program details
-      .card-body
-        %dl.row.mb-0
-          %dt.col-md-3 Program Code:
-          %dd.col-md-9= @program.program_name
-          %dt.col-md-3 Program Title:
-          %dd.col-md-9= @program.title
-          %dt.col-md-3 Courses:
-          - @courses.each do |course|
-            %dd= course.module_code
+-# .row.justify-content-center
+-#   .col-sm-8.col-lg-6
+-#     .card
+-#       .card-header
+-#         Program details
+-#       .card-body
+-#         %dl.row.mb-0
+-#           %dt.col-md-3 Program Code:
+-#           %dd.col-md-9= @program.program_name
+-#           %dt.col-md-3 Program Title:
+-#           %dd.col-md-9= @program.title
+-#           %dt.col-md-3 Courses:
+-#           - @courses.each do |course|
+-#             %dd= course.module_code
 
-          -#TODO frontend please show associated courses
-      .card-footer.d-flex
-        = link_to 'Edit', edit_program_path(@program), class: 'btn btn-link'
-        = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'
+-#           -#TODO frontend please show associated courses
+-#       .card-footer.d-flex
+-#         = link_to 'Edit', edit_program_path(@program), class: 'btn btn-link'
+-#         = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'
+
+.card.tw-p-8.tw-mx-auto.tw-max-w-xl
+  .tw-flex.tw-flex-row.tw-font-bold.tw-items-end
+    %a{ href: '/programs'}
+      %p.tw-text-gray-300.tw-text-xl{ class: "hover:tw-text-gray-500 tw-transition tw-mr-2" }
+        Programmes /
+    %p.tw-text-4xl.tw-text-gray-700
+      Programme Details
+  %hr.tw-my-8
+  .body
+    %dl.row.mb-0
+      %dt.col-md-5 Programme Code:
+      %dd.col-md-7= @program.program_name
+      %dt.col-md-5 Programme Title:
+      %dd.col-md-7= @program.title
+      %dt.col-md-5 Courses:
+      %dd.col-md-7= @courses.map(&:module_code).join(', ')
+      -# - @course.programs.each do |program|
+      -#   = program.program_name
+    %hr.tw-my-8
+    .tw-flex.tw-justify-between
+      = link_to 'Edit', edit_program_path(@program), class: 'tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg'
+      = link_to 'Back', programs_path, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-300 hover:tw-bg-opacity-50 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'

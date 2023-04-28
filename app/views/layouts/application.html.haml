@@ -15,62 +15,68 @@
     = csrf_meta_tags
     = csp_meta_tag
 
-    = stylesheet_pack_tag 'styles', media: 'all'
+    = stylesheet_pack_tag 'styles', media: 'all', data: { turbolinks_track: 'reload' }
     = javascript_pack_tag 'application'
 
-  %body.bg-gray-50
-    .bg-uospurple
-      %header.navbar.navbar-expand-lg.bg-black.bg-opacity-25.shadow-lg
-        .container-fluid.text-white
-          = link_to '/', class: 'navbar-brand' do
-            = image_pack_tag 'uoslogo_white.png', class: "h-16 ml-2 mr-8 hover:drop-shadow-lg my-2"
-          %button.navbar-toggler{ type: :button, data: { bs_toggle: :collapse, bs_target: '#navbar-content' }, aria: { controls: 'navbar-content', expanded: 'false', label: 'Toggle navigation' } }
-            %span.navbar-toggler-icon
-          #navbar-content.navbar-collapse.collapse
-            %nav.navbar-nav
-              - if can? :manage, Student
-                .nav-item.text-white
-                  = link_to students_path, class: 'nav-link' do
-                    %p.text-white
-                      Student
-              - if can? :manage, Staff
-                .nav-item.text-white
-                  = link_to staffs_path, class: 'nav-link' do
-                    %p.text-white
-                      Staff
-              - if can? :manage, Course
-                .nav-item.text.white
-                  = link_to courses_path, class: 'nav-link' do
-                    %p.text-white
-                      Course
-              - if can? :manage, Program
-                .nav-item.text-white
-                  = link_to programs_path, class: 'nav-link' do
-                    %p.text-white
-                      Programme
-              - if can? :manage, Program
-                .nav-item.text-white
-                  = link_to notifications_path, class: 'nav-link' do
-                    %p.text-white
-                      Notification        
-            %nav.navbar-nav.ms-auto
-              .nav-item.dropdown
-                - if user_signed_in?
-                  = link_to current_user.username, '#', class: 'nav-link dropdown-toggle text-white', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' }
-                  %nav.dropdown-menu.dropdown-menu-md-end
-                    = link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete
-                    = link_to 'Profile', current_users_path, class: 'dropdown-item'
+  -# %body{class: "tw-bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] tw-from-slate-900 tw-via-purple-900 tw-to-slate-900 tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
+  %body{class: "tw-bg-gray-50 tw-min-h-screen tw-flex tw-flex-col tw-justify-between"}
+    -# %header.navbar.navbar-expand-lg.tw-bg-uospurple-dark.tw-bg-opacity-40.tw-shadow-lg
+    %header.navbar.navbar-expand-lg.tw-bg-uospurple-dark.tw-shadow-lg
+      .container-fluid.tw-text-white
+        = link_to '/', class: 'navbar-brand' do
+          = image_pack_tag 'uoslogo_white.png', class: "tw-h-16 tw-ml-2 tw-mr-8 hover:tw-drop-shadow-lg tw-my-2"
+        %button.navbar-toggler.tw-bg-white{ type: :button, data: { bs_toggle: :collapse, bs_target: '#navbar-content' }, aria: { controls: 'navbar-content', expanded: 'false', label: 'Toggle navigation' } }
+          %span.navbar-toggler-icon
+        #navbar-content.navbar-collapse.collapse
+          %nav.navbar-nav
+            - if can? :manage, Student
+              .nav-item.tw-my-auto.tw-mx-2.tw-group
+                = link_to students_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                  %p
+                    Student
+                  %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+            - if can? :manage, Staff
+              .nav-item.tw-my-auto.tw-mx-2.tw-group
+                = link_to staffs_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                  %p
+                    Staff
+                  %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+            - if can? :manage, Course
+              .nav-item.tw-my-auto.tw-mx-2.tw-group
+                = link_to courses_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                  %p
+                    Course
+                  %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+            - if can? :manage, Program
+              .nav-item.tw-my-auto.tw-mx-2.tw-group
+                = link_to programs_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                  %p
+                    Programme
+                  %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+            - if can? :manage, Program
+             .nav-item.tw-my-auto.tw-mx-2.tw-group
+                = link_to notifications_path, class: 'tw-my-auto hover:tw-text-gray-300 tw-transition' do
+                  %p
+                    Notifications
+                  %hr{class:"tw-opacity-0 group-hover:tw-opacity-100 tw-transition-opacity"}
+          %nav.navbar-nav.ms-auto
+            .nav-item.dropdown
+              - if user_signed_in?
+                = link_to current_user.username, '#', class: 'nav-link dropdown-toggle text-white', role: 'button', data: { bs_toggle: 'dropdown' }, aria: { expanded: 'false' }
+                %nav.dropdown-menu.dropdown-menu-md-end
+                  = link_to 'Profile', current_users_path, class: 'dropdown-item'
+                  = link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', method: :delete
 
     - if flash.present?
-      .flash-messages.bg-uospurple
-        .mx-8.mt-3.absolute.hide-3s
+      .flash-messages.tw-bg-uospurple
+        .tw-mx-8.tw-mt-3.tw-absolute.hide-3s
           - flash.each do |message_type, message|
             - next unless message_type == 'alert' || message_type == 'notice'
             .alert{ class: "alert-#{ message_type == 'notice' ? 'success' : 'danger' }" }= message
 
-    %main
+    %main.tw-mb-auto{ class: "tw-p-0 xs:tw-p-8 sm:tw-p-24"}
       = yield
 
-    %footer
+    %footer.tw-align-self-end
       = render 'layouts/footer'
         

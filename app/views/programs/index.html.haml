@@ -1,9 +1,32 @@
-.card
-  .card-header.d-flex.align-items-center
-    %span Listing Programs
-    %span.ms-1 (There are #{@programs.size} programs.)
-    = link_to 'New Programme', new_program_path, class: 'btn btn-outline-secondary ms-auto'
-  
+-# .card
+-#   .card-header.d-flex.align-items-center
+-#     %span Listing Programs
+
+-#     = link_to 'New Programme', new_program_path, class: 'btn btn-outline-secondary ms-auto'
+
+-#   %table.table
+-#     %thead
+-#       %tr
+-#         %th Programme Code
+-#         %th Programme Title
+-#         %th
+-#     %tbody
+-#       - @programs.each do |program|
+-#         %tr
+-#           %td= program.program_name
+-#           %td= program.title
+-#           %td
+-#             .btn-toolbar.float-end
+-#               = link_to 'Show', program, class: 'btn btn-outline-secondary btn-sm'
+-#               = link_to 'Edit', edit_program_path(program), class: 'btn btn-outline-secondary ms-1 btn-sm'
+-#               = link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'
+
+.card.tw-p-8
+  .tw-flex.tw-flex-row.tw-items-start
+    %p.tw-text-4xl.tw-font-bold.tw-text-gray-700
+      Programmes
+    = link_to 'New Programme', new_program_path, class: 'tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-white ms-auto'
+  %span.ms-1 (There are #{@programs.size} programs.)
   .card-body
     = simple_form_for :search, url: search_programs_path, method: :post do |f|
       .mb-3= f.input :program_name
@@ -13,19 +36,20 @@
         = f.submit 'Search', class: 'btn btn-outline-secondary'
         = link_to 'Reset', programs_path, class: 'btn btn-link ms-1'
 
-  %table.table
-    %thead
+  %hr.tw-my-8
+  %table.tw-w-full.tw-my-4.tw-table-auto
+    %thead.tw-bg-gray-300
       %tr
-        %th Programme Code
-        %th Programme Title
-        %th
+        %th.tw-px-4.tw-py-2 Programme Code
+        %th.tw-px-4.tw-py-2 Programme Title
+        %th.tw-px-4.tw-py-2
     %tbody
       - @programs.each do |program|
-        %tr
-          %td= program.program_name
-          %td= program.title
-          %td
+        %tr{class:"tw-transition odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200"}
+          %td.tw-px-4.tw-py-2.tw-border= program.program_name
+          %td.tw-px-4.tw-py-2.tw-border= program.title
+          %td.tw-px-4.tw-py-2.tw-border
             .btn-toolbar.float-end
-              = link_to 'Show', program, class: 'btn btn-outline-secondary btn-sm'
-              = link_to 'Edit', edit_program_path(program), class: 'btn btn-outline-secondary ms-1 btn-sm'
-              = link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'
+              = link_to 'Show', program, class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-200 hover:tw-bg-gray-100 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'
+              = link_to 'Edit', edit_program_path(program), class: 'tw-py-2 tw-px-4 tw-text-gray-700 tw-transition tw-rounded-lg tw-bg-gray-200 hover:tw-bg-gray-100 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-gray-900 tw-ml-2'
+              = link_to 'Destroy', program, method: :delete, data: { confirm: 'Are you sure?' }, class: 'tw-py-2 tw-px-4 tw-text-white tw-transition tw-rounded-lg tw-bg-red-600 hover:tw-bg-red-400 tw-drop-shadow hover:tw-drop-shadow-lg hover:tw-text-white tw-ml-2'
