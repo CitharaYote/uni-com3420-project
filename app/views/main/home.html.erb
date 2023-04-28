@@ -1,12 +1,14 @@
 <!-- why does the background not work >:( -->
 <div class="tw-w-full tw-overflow-hidden">
-  <div class="tw-p-8 tw-bg-white sm:tw-rounded-lg sm:tw-shadow-lg tw-border">
+  <div
+    class="print:tw-p-8 tw-bg-white sm:tw-rounded-lg sm:tw-shadow-lg tw-border"
+  >
     <div class="tw-flex tw-flex-row tw-justify-between">
-      <p class="tw-text-4xl tw-font-bold tw-text-gray-700">
+      <p class="tw-text-4xl tw-font-bold tw-text-gray-700 print:tw-hidden">
         WMG Calculator Prototype
       </p>
       <div
-        class="tw-flex tw-flex-col tw-justify-center tw-space-x-4 sm:tw-flex-row sm:tw-items-center"
+        class="print:tw-hidden tw-flex tw-flex-col tw-justify-center tw-space-x-4 sm:tw-flex-row sm:tw-items-center"
       >
         <button
           class="tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-w-36 tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg"
@@ -14,16 +16,16 @@
           <p class="tw-my-auto">Add</p>
         </button>
         <button
-          onclick="myfun()"
+          onclick="window.print();return false;"
           class="tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-w-36 tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg"
         >
           <p class="tw-my-auto">Print</p>
         </button>
-        <script type="text/javascript">
+        <!-- <script type="text/javascript">
           function myfun() {
             window.print();
           }
-        </script>
+        </script> -->
         <button
           class="tw-p-4 tw-text-white tw-transition tw-rounded-lg tw-w-36 tw-bg-uospurple hover:tw-bg-opacity-70 tw-drop-shadow hover:tw-drop-shadow-lg"
         >
