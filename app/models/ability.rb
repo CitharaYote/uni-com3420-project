@@ -37,11 +37,11 @@ class Ability
       can :read, Staff
       if Staff.where(username: user.username).select(:is_admin)
         can :manage, Staff
-        puts "\n\n\n\n\n\n\n\n\n\n\n\nIS AN ADMIN\n\n\n\n\n\n\n\n\n\n"
+        
       
         
       end
-      puts "\n\n\n\n\n\n\n\n\n\n\n\nIS\n\n\n\n\n\n\n\n\n\n"
+      
       
     end
 
