@@ -17,6 +17,9 @@
             %dt.col-md-3 Department:
             %dd.col-md-9= link_to current_user.ou
             %dt.col-md-3 Admin status:
-            %dd.col-md-9= link_to current_user.admin
+            -if link_to current_user.admin == true 
+              %dd.col-md-9 True 
+            -else
+              %dd.col-md-9 False 
       .card-footer.d-flex
         = link_to 'Back', "/", class: 'btn btn-link ms-auto'
