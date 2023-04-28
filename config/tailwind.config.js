@@ -18,6 +18,9 @@ module.exports = {
         "uospurple-light": "#572ec9",
         "uospurple-dark": "#15063d",
       },
+      screens: {
+        print: { raw: "print" },
+      },
     },
   },
   plugins: [
