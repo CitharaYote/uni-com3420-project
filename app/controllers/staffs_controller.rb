@@ -36,6 +36,7 @@ class StaffsController < ApplicationController
   # PATCH/PUT /staffs/1
   def update
     if @staff.update(staff_params)
+      puts Staff.find(params[:id])
       redirect_to @staff, notice: "Staff was successfully updated."
     else
       render :edit, status: :unprocessable_entity
