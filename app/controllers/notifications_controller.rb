@@ -1,14 +1,8 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: %i[ show edit update destroy isModule]
+  before_action :set_notification, only: %i[ show edit update destroy redirect]
 
     def index
       @notifications = Notification.all
-      
-      #if @notification.isModule == true
-      #  @course = Course.find_by(module_code: @notification.identifier)
-      #else
-      #  @program = Program.find(program_name: @notification.identifier)
-      #end
     end
 
     def destroy

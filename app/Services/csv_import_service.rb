@@ -16,7 +16,7 @@ class CsvImportService
             #create a new program automatically for new programmes
             if !Program.exists?(program_name: row['Programme Code'])
                 program = Program.create!(program_name: row['Programme Code'])
-                Notification.create!(identifier: row['Programme Code'], alert: 'New Programme added please update associated modules')
+                Notification.create!(identifier: row['Programme Code'], alert: 'New Programme added please update associated modules', isModule: false)
             else
                 program = Program.find_by(program_name: row['Programme Code'])
             end
@@ -24,7 +24,7 @@ class CsvImportService
             #automatically make a new course for new modules
             if !Course.exists?(module_code: row['Module Code'])
                 course = Course.create!(module_code: row['Module Code'])
-                Notification.create!(identifier: row['Module Code'], alert: 'New Module added please update accordingly')
+                Notification.create!(identifier: row['Module Code'], alert: 'New Module added please update accordingly', isModule: true)
                 course.programs << program
             else
                 course = Course.find_by(module_code: row['Module Code'])
@@ -36,7 +36,7 @@ class CsvImportService
             @count += 1
   
         end
-        Notification.create!(identifier: module_code, alert: "#{@count} students added to module")
+        Notification.create!(identifier: module_code, alert: "#{@count} students added to module", isModule: true)
     @count
     end
 
