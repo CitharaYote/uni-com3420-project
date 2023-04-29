@@ -3,6 +3,9 @@
     <span>
       Listing Staffs
     </span>
+    <span class="ms-1">
+      (There are <%=@staffs.size%> staffs.)
+    </span>
     <%  if can? :manage, Staff %>
       <a href="/staffs/new" class="btn btn-outline-secondary ms-auto">New Staff</a>
     <% end %>

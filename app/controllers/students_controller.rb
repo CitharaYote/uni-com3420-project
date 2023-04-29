@@ -78,6 +78,15 @@ end
     redirect_to students_url, notice: "Student was successfully destroyed."
   end
 
+  # POST /programs/search
+  def search
+    @students = Student.where(regID: params[:search][:regID])
+    @students = Student.where(program_id: params[:search][:program_id])
+    @students = Student.where(status: params[:search][:status])
+    @students = Student.where(program_name: params[:search][:program_name])
+    render :index
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student

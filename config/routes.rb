@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :current_users
   resources :students do
+    post :search, on: :collection
     collection do
       post :import
     end

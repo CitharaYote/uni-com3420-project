@@ -1,7 +1,33 @@
 <div class = "card">
   <div class = "card-header d-flex align-items-center">
+    <span>
+      Listing Studnets
+    </span>
+    <span class="ms-1">
+      (There are <%=@students.size%> students.)
+    </span>
     <%= render "students/import_form" %>
     <a href="/students/new" class="btn btn-outline-secondary ms-auto">New Student</a>
+  </div>
+  <div class="card-body">
+  <%= simple_form_for :search, url: search_students_path, method: :post do |f| %>
+    <div class="mb-3">
+      <%= f.input :regID %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :program_id %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :status %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :program_name %>
+    </div>
+    <div class="btn-toolbar">
+      <%= f.submit 'Search', class: 'btn btn-outline-secondary' %>
+      <%= link_to 'Reset', students_path, class: 'btn btn-link ms-1' %>
+    </div>
+  <% end %>
   </div>
   <div class="body">
       <table class="table">
