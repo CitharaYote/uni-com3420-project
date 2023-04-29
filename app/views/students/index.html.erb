@@ -39,11 +39,12 @@
               Not Assessed
               <% elsif student.status == "fail"%>
               failed
-              <% else %>
-
               <% end %>
               </td>
-              <td><a href="course_detail?id=<%= student.id %>">course detail</a></td>
+              <td>
+                <a href="course_detail?id=<%= student.id %>">course detail</a>
+                <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm' %>
+              </td>
             </tr>
           <% end %>
         </tbody>
