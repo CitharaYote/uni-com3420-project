@@ -19,7 +19,11 @@
               <td><%= notification.alert %></td>
               <td>
                 <div class="btn-toolbar float-end">
-                  <%= link_to 'Show', notification , class: 'btn btn-outline-secondary btn-sm' %> 
+                  <%if notification.program.present? %> 
+                    <%= link_to "Show #{notification.identifier}", program_path(notification.program), class: 'btn btn-outline-secondary btn-sm' %>  
+                  <%elsif notification.course.present?%> 
+                    <%= link_to "Show #{notification.identifier}", course_path(notification.course), class: 'btn btn-outline-secondary btn-sm'%>
+                  <%end%>  
                   <%= link_to 'Destroy', notification, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm' %>
                 </div>
               </td>

@@ -2,7 +2,9 @@ class NotificationsController < ApplicationController
   before_action :set_notification, only: %i[ show edit update destroy redirect]
 
     def index
-      @notifications = Notification.all
+      
+      @notifications = Notification.includes(:course).all
+
     end
 
     def destroy
@@ -18,6 +20,6 @@ class NotificationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def notification_params
-      params.require(:notification).permit(:id, :identifier, :alert)
+      params.require(:notification).permit(:id, :identifier, :alert, :course)
     end
 end
