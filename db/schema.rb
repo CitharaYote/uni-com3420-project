@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_29_001157) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_28_154035) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,8 +71,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_001157) do
     t.string "identifier"
     t.string "alert"
     t.boolean "isModule"
-    t.bigint "course_id"
-    t.index ["course_id"], name: "index_notifications_on_course_id"
   end
 
   create_table "programs", force: :cascade do |t|
@@ -133,5 +131,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_001157) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "notifications", "courses"
 end
