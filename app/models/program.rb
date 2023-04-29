@@ -13,4 +13,5 @@ class Program < ApplicationRecord
     has_many :courses, :through => :courses_programs
     
     has_many :students
+    has_many :notifications
 end
