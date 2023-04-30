@@ -11,7 +11,7 @@
       <%# make the dropdown unique here %>
       <%= form_tag students_path, method: :get do %>
         <%= select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: 'Filter By Programme' %>
-        <%= select_tag :status, options_for_select(Student.all.map{ |i| [i.status, i.id] }, params[:status]),unique: true , include_blank: 'Filter By Status' %>
+        <%= select_tag :status, options_for_select(Student.all.map{ |s| [s.status, s.id] }, params[:status]), include_blank: 'Filter By Status' %>
         <%= button_tag "Filter", class: "btn btn-primary bg-uospurple", type: "submit" %>
       <% end %>
     </div>
@@ -21,7 +21,6 @@
   <%= simple_form_for :search, url: search_students_path, method: :post do |f| %>
     <div class="mb-3">
       <%= f.input :regID %>
-      
     </div>
     <div class="btn-toolbar">
       <%= f.submit 'Search', class: 'btn btn-outline-secondary' %>
@@ -30,7 +29,6 @@
   <% end %>
   </div>
   <div class="body">
-      
 
       <table class="table">
         <thead style="background-color: lightblue;">

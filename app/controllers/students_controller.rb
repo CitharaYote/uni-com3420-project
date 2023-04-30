@@ -20,6 +20,7 @@ class StudentsController < ApplicationController
   # GET /students
   def index
     @students = Student.all
+    @students = Student.where(program: params[:program]) if params[:program].present?
   end
 
   # GET /students/1
@@ -86,9 +87,6 @@ end
     render :index
   end
 
-  def filter
-
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
