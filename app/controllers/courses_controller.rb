@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
   # GET /courses
   def index
     @courses = Course.all
+    @courses = Course.joins(:courses_programs).where(courses_programs: {program_id: params[:program]}) if params[:program].present?
   end
 
   # GET /courses/1

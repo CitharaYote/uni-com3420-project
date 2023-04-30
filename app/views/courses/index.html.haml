@@ -1,6 +1,6 @@
 .card
   .card-header.d-flex.align-items-center
-    %form{action: students_path, method: :get}
+    %form{action: courses_path, method: :get}
       = select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: '(All) Programmes'
       %button.btn.btn-primary.bg-uospurple{type: 'submit'}
         Filter
