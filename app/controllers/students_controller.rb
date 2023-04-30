@@ -24,6 +24,8 @@ class StudentsController < ApplicationController
 
   # GET /students/1
   def show
+    @student = Student.find(params[:id])
+    @courses = @student.courses.joins(:marks).select("courses.*, marks").distinct
   end
 
   # GET /students/new

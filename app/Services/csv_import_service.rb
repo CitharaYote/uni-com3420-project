@@ -13,7 +13,7 @@ class CsvImportService
         CSV.foreach(@file.path, headers:true) do |row|
             
             module_code = row['Module Code']
-            #create a new program automatically for new programmes
+            #create a new program and set notification automatically for new programmes
             if !Program.exists?(program_name: row['Programme Code'])
                 program = Program.create!(program_name: row['Programme Code'])
                 notification = Notification.create!(identifier: row['Programme Code'], alert: 'New Programme added please update associated modules', isModule: false)
@@ -22,7 +22,7 @@ class CsvImportService
                 program = Program.find_by(program_name: row['Programme Code'])
             end
 
-            #automatically make a new course for new modules
+            #automatically make a new course and  set notification for new modules 
             if !Course.exists?(module_code: row['Module Code'])
                 course = Course.create!(module_code: row['Module Code'])
                 notification = Notification.create!(identifier: row['Module Code'], alert: 'New Module added please update accordingly', isModule: true)
@@ -39,6 +39,7 @@ class CsvImportService
             @count += 1
   
         end
+        #set a notification to explain to the user that a new program has been made
         notification = Notification.create!(identifier: module_code, alert: "#{@count} students added to module", isModule: true)
         course = Course.find_by(module_code: module_code)
         course.notifications << notification

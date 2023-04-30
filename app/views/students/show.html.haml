@@ -5,6 +5,31 @@
         Student details
       .card-body
         %dl.row.mb-0
+          %dt.col-md-3 Forename:
+          %dd.col-md-9= @student.forename
+          %dt.col-md-3 Surname:
+          %dd.col-md-9= @student.surname
+          %dt.col-md-3 Registration Number:
+          %dd.col-md-9= @student.regID
+          %table.table
+            %thead{style: "background-color: lightblue;"}  
+              %tr
+                %th Module Code
+                %th First Grade
+                %th Second Grade
+                %th Status
+                %th WMG
+            %tbody
+              - @courses.each do |course|
+                -mark = Mark.find_by(student: @student, course: course)
+                %tr
+                  %td= course.module_code
+                  %td= mark.fst_grade
+                  %td= mark.scd_grade
+                  %td= @student.status
+                  %td mean grade
+
+
       .card-footer.d-flex
         = link_to 'Edit', edit_student_path(@student), class: 'btn btn-link'
         = link_to 'Back', students_path, class: 'btn btn-link ms-auto'
