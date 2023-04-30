@@ -1,10 +1,10 @@
 <div class = "card">
   <div class = "card-header d-flex align-items-center">
     <span>
-      Listing Staffs
+      Listing Staff
     </span>
     <span class="ms-1">
-      (There are <%=@staffs.size%> staffs.)
+      (There are <%=@staffs.size%> staff members.)
     </span>
     <%  if can? :manage, Staff %>
       <a href="/staffs/new" class="btn btn-outline-secondary ms-auto">New Staff</a>

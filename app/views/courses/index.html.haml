@@ -1,11 +1,14 @@
 .card
   .card-header.d-flex.align-items-center
-    %span Listing Products
-    %span.ms-1 (There are #{@courses.size} courses.)
+    %form{action: students_path, method: :get}
+      = select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: '(All) Programmes'
+      %button.btn.btn-primary.bg-uospurple{type: 'submit'}
+        Filter
+
 
     .btn-toolbar.ms-auto
       - if can? :create, Course
-        = link_to 'New Course', new_course_path, class: 'btn btn-outline-secondary ms-auto'
+        = link_to 'New Module', new_course_path, class: 'btn btn-outline-secondary ms-auto'
 
   .card-body
     = simple_form_for :search, url: search_courses_path, method: :post do |f|
