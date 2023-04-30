@@ -52,7 +52,6 @@ class ProgramsController < ApplicationController
   # POST /programs/search
   def search
     @programs = Program.where(program_name: params[:search][:program_name])
-    @programs = Program.where(title: params[:search][:title])
     render :index
   end
 

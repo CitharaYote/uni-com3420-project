@@ -50,7 +50,6 @@ class CoursesController < ApplicationController
   # POST /courses/search
   def search
     @courses = Course.where(module_code: params[:search][:module_code])
-    @courses = Course.where(credit: params[:search][:credit])
     render :index
   end
 

@@ -10,14 +10,13 @@
   .card-body
     = simple_form_for :search, url: search_courses_path, method: :post do |f|
       .mb-3= f.input :module_code
-      .mb-3= f.input :credit
 
       .btn-toolbar
         = f.submit 'Search', class: 'btn btn-outline-secondary'
         = link_to 'Reset', courses_path, class: 'btn btn-link ms-1'
 
   %table.table
-    %thead
+    %thead{style:"background-color: lightblue;"} 
       %tr
         %th Module code
         %th Credit
