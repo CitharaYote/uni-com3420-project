@@ -17,8 +17,8 @@
                 %th Module Code
                 %th First Grade
                 %th Second Grade
+                %th Grade
                 %th Status
-                %th WMG
             %tbody
               - @courses.each do |course|
                 -mark = Mark.find_by(student: @student, course: course)
@@ -26,8 +26,8 @@
                   %td= course.module_code
                   %td= mark.fst_grade
                   %td= mark.scd_grade
+                  %td
                   %td= @student.status
-                  %td mean grade
 
 
       .card-footer.d-flex

@@ -34,8 +34,15 @@ class CsvImportService
             end
 
             #create a student and set their marks in DB
-            student = Student.create!(regID: row['Reg No.'], forename: row['Forename'], program_name: row['Programme Code'], surname: row['Surname'], status: row['Reg. Status'], program_id: program.id)
-            Mark.create(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
+            student = Student.create!(regID: row['Reg No.'], forename: row['Forename'], program_name: row['Programme Code'], surname: row['Surname'], program_id: program.id)
+            mark = Mark.create(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
+            if !(mark.fst_grade.present?) || !(mark.scd_grade.present?) 
+                student.status = 'nc'
+                student.save
+            else
+                student.status = 'ok'
+                student.save
+            end
             @count += 1
   
         end
