@@ -15,10 +15,10 @@
             %thead{style: "background-color: lightblue;"}  
               %tr
                 %th Module Code
-                %th First Grade
-                %th Second Grade
-                %th Grade
-                %th Status
+                %th First Score
+                %th Second Score
+                %th Module Average
+                %th Grade Status
             %tbody
               - @courses.each do |course|
                 -mark = Mark.find_by(student: @student, course: course)
