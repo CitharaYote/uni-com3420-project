@@ -35,10 +35,11 @@
       <thead class="bg-gray-300">
         <tr>
           <th class="px-4 py-2">Reg No.</th>
-          <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
+          <th class="px-4 py-2">Program</th>
+          <!-- <th class="px-4 py-2">{`{Module} - 40Cr`}</th> 01-May-2023 commented out by tiger
           <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
           <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
-          <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
+          <th class="px-4 py-2">{`{Module} - 50Cr`}</th> -->
           <th class="px-4 py-2">WMG</th>
         </tr>
       </thead>
@@ -79,7 +80,7 @@
               </tr>
             ))} -->
             <% focus_student = nil %>
-        <% @filtered_data[:data]&.map do |student| %>
+        <!-- <% @filtered_data[:data]&.map do |student| %>  01-May-2023 commented out by tiger
           <% td_class = '' %> 
           <% td_class = 'bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %>
           <% td_class = 'bg-yellow-200' if student[:'1stGrade']&.to_f&.nan? && student[:'1st Grade'] != '-' %> 
@@ -91,6 +92,13 @@
           <td class="px-4 py-2 border"><%= student[:"Module Code"] %></td>
           <td class="<%= td_class %> border px-4 py-2"><%= student[:"1st Grade"] %></td>
         </tr>
+        <% end %> -->
+        <% @students.each do |student|%>
+          <tr>
+            <td class="px-4 py-2 border"><%= student.regID %></td>
+            <td class="px-4 py-2 border"><%= student.program_name %></td>
+            <td class="px-4 py-2 border"><%= student.mean_grade %></td>
+          </tr>
         <% end %>
       </tbody>
     </table>

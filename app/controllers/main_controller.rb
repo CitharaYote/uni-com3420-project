@@ -3,6 +3,7 @@ class MainController < ApplicationController
   def home
     @programs = Program.all
     @modules = Course.all
+    @students = Student.all
     # will eventually only hold the data for the given search/filter options
     # but that's a future problem :)
     @filtered_data = {
