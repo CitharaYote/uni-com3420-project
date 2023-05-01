@@ -38,21 +38,25 @@ class CsvImportService
 
             #if the student isnt in the database create a new student
             if !student.present?
-                student = Student.create!(regID: row['Reg No.'], forename: row['Forename'], program_name: row['Programme Code'], surname: row['Surname'], program_id: program.id)
+                student = Student.create!(regID: row['Reg No.'], forename: row['Forename'], program_name: row['Programme Code'], surname: row['Surname'], program_id: program.id, status: row['Reg. Status'])
             end
             #Only create a new mark if the student doesnt have a mark in that module
             mark = Mark.find_by(course_id: course.id, student_id: student.id)
             if !mark.present?
                 mark = Mark.create!(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
-                if !(mark.fst_grade.present?) || !(mark.scd_grade.present?) 
-                    student.status = 'nc'
-                    student.save
+                #classify marks accordingly
+                if (row['1st Grade'] == "NC")  || (row['2nd Grade'] == "NC")
+                    mark.status = 'NC'
+                    mark.save
                 else
-                    student.status = 'ok'
-                    student.save
+                    mark.average_grade = (mark.fst_grade + mark.scd_grade)/2.0
+                    if mark.average_grade < 40
+                        mark.status = 'F'
+                    else
+                        mark.status = 'OK'
+                    end
+                    mark.save
                 end
-            else
-                print('MARK ALREADY EXISTS ITS ALREADY HERE MAN LMAO LMAO LMAO')
             end 
             @count += 1
         end
