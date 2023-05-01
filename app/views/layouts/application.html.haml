@@ -30,6 +30,11 @@
             %nav.navbar-nav
               - if can? :manage, Student
                 .nav-item.text-white
+                  = link_to '/', class: 'nav-link' do
+                    %p.text-white
+                      Home
+              - if can? :manage, Student
+                .nav-item.text-white
                   = link_to students_path, class: 'nav-link' do
                     %p.text-white
                       Student

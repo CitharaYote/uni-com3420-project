@@ -33,18 +33,33 @@ class CsvImportService
                 course = Course.find_by(module_code: row['Module Code'])
             end
 
-            #create a student and set their marks in DB
-            student = Student.create!(regID: row['Reg No.'], forename: row['Forename'], program_name: row['Programme Code'], surname: row['Surname'], program_id: program.id)
-            mark = Mark.create(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
-            if !(mark.fst_grade.present?) || !(mark.scd_grade.present?) 
-                student.status = 'nc'
-                student.save
+            #only add marks to 
+            if !Student.exists?(regID: row['Reg No.'])
+                student = Student.create!(regID: row['Reg No.'], forename: row['Forename'], program_name: row['Programme Code'], surname: row['Surname'], program_id: program.id)
+                mark = Mark.create!(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
+                if !(mark.fst_grade.present?) || !(mark.scd_grade.present?) 
+                    student.status = 'nc'
+                    student.save
+                else
+                    student.status = 'ok'
+                    student.save
+                end
             else
-                student.status = 'ok'
-                student.save
+                #Only create a new mark if the student doesnt have a mark in that module
+                student = Student.find_by(regID: row['Reg No.'])
+                mark = Mark.find_by(course_id: course.id, student_id: student.id)
+                if !mark.present?
+                    mark = Mark.create!(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
+                    if !(mark.fst_grade.present?) || !(mark.scd_grade.present?) 
+                        student.status = 'nc'
+                        student.save
+                    else
+                        student.status = 'ok'
+                        student.save
+                    end
+                end  
             end
             @count += 1
-  
         end
         #set a notification to explain to the user that a new program has been made
         notification = Notification.create!(identifier: module_code, alert: "#{@count} students added to module", isModule: true)
