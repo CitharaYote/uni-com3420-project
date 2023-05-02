@@ -47,9 +47,16 @@ class CsvImportService
                 #classify marks accordingly
                 if (row['1st Grade'] == "NC")  || (row['2nd Grade'] == "NC")
                     mark.status = 'NC'
+                    mark.average_grade = 0
                     mark.save
                 else
-                    mark.average_grade = (mark.fst_grade + mark.scd_grade)/2.0
+                    #check if the first grade is there?
+                    if !mark.fst_grade.present? 
+                        mark.average_grade = mark.scd_grade
+                    else
+                        mark.average_grade = mark.fst_grade
+                    end
+
                     if mark.average_grade < 40
                         mark.status = 'F'
                     else

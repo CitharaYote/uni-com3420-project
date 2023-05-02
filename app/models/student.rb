@@ -22,15 +22,16 @@ class Student < ApplicationRecord
     # search courses by program
     # sum every mark multiplies by credit
     # and divide by total credits
-    def wmg_calculator
+    
+    def wmg_calculator 
         wmg = 0
         total_credit = 0
-        courses_programs = CoursesProgram.where(program_id: program_id)
-        courses_programs.each do |c_p|
-            mark = Mark.find_by(course_id: c_p.course_id, student_id: id).fst_grade
-            credit = Course.find_by(id: c_p.course_id).credit
-            wmg += credit * mark
-            total_credit += credit
+        #find all courses connected to current student
+        marks = Mark.where(student_id: id)
+        marks.each do |mark| 
+            course = Course.find_by(id: mark.course_id)
+            wmg += course.credit * mark.average_grade
+            total_credit += course.credit
         end
 
         wmg / total_credit
