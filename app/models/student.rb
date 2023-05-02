@@ -18,6 +18,10 @@ class Student < ApplicationRecord
     has_many :courses, :through => :marks
     belongs_to :program
 
+    # weighted mean grade calculation for individual student
+    # search courses by program
+    # sum every mark multiplies by credit
+    # and divide by total credits
     def wmg_calculator
         wmg = 0
         total_credit = 0
