@@ -87,7 +87,6 @@ end
     render :index
   end
 
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
@@ -97,6 +96,6 @@ end
     # Only allow a list of trusted parameters through.
     def student_params
       params.fetch(:student, {})
-      params.require(:student).permit(:id, :regID, :status, :forename, :surname,:program_id)
+      params.require(:student).permit(:id, :regID, :status, :forename, :surname, :program_id, :mean_grade)
     end
 end
