@@ -37,10 +37,10 @@
       <thead class="tw-bg-gray-300">
         <tr>
           <th class="tw-px-4 tw-py-2">Reg No.</th>
-          <th class="tw-px-4 tw-py-2">{`{Module} - 40Cr`}</th>
-          <th class="tw-px-4 tw-py-2">{`{Module} - 40Cr`}</th>
-          <th class="tw-px-4 tw-py-2">{`{Module} - 50Cr`}</th>
-          <th class="tw-px-4 tw-py-2">{`{Module} - 50Cr`}</th>
+          <th class="tw-px-4 tw-py-2">Module - 40Cr</th>
+          <th class="tw-px-4 tw-py-2">Module - 40Cr</th>
+          <th class="tw-px-4 tw-py-2">Module - 50Cr</th>
+          <th class="tw-px-4 tw-py-2">Module - 50Cr</th>
           <th class="tw-px-4 tw-py-2">WMG</th>
         </tr>
       </thead>
@@ -53,7 +53,7 @@
           <% td_class = 'tw-bg-yellow-200' if student[:'1st Grade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>
         <tr
           class="tw-transition tw-cursor-pointer odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200"
-          onclick=<%= "window.location.href='/student/#{student[:"ID"]}';" %>
+          onclick=<%= "window.location.href='/students/#{student[:"ID"]}';" %>
         >
           <td class="tw-px-4 tw-py-2 tw-border"><%= student[:"Surname"] %></td>
           <td class="tw-px-4 tw-py-2 tw-border"><%= student[:"Forename"] %></td>
