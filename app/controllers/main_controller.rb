@@ -5,19 +5,20 @@ class MainController < ApplicationController
   end
 
   def home
-    puts "\n\n\n\n\n\n\n\n\n#{request.params}\n\n\n\n\n\n\n\n"
     
     @programs = Program.all
     @courses = Program.first.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
     @students = Student.all
     
-    if request.params[:program_name]
+    if request.params[:program_name] && Program.find_by(program_name: request.params[:program_name])
       
       @program = Program.find_by(program_name: request.params[:program_name])
       @courses = @program.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
       @students = Student.where(program_name: request.params[:program_name])
       
     end
+
+
 
     # will eventually only hold the data for the given search/filter options
     # but that's a future problem :)

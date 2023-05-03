@@ -14,7 +14,7 @@
     <div>
       <div class="flex flex-row items-center">
         <p class="ml-4 mr-2 text-lg">Program:</p>
-        <%= select("ProgramThing","PrgmSelect", Program.all.collect {|p| [p.program_name, p.program_name]}, {}, {:onChange => "window.location.href = '/?program_name='+this.value"}) %>
+        <%= select("ProgramThing","PrgmSelect", Program.all.collect {|p| [p.program_name, p.program_name]}, {:include_blank => true}, {:onchange => "window.location.href = '/?program_name='+this.value"}) %>
         
       </div>
       <p class="mt-2 text-sm italic text-right text-gray-500">
