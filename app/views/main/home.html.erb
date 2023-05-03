@@ -1,10 +1,10 @@
 <!-- why does the background not work >:( -->
 <div class="tw-w-full tw-overflow-hidden">
   <div
-    class="print:tw-p-8 tw-bg-white sm:tw-rounded-lg sm:tw-shadow-lg tw-border"
+    class="print:tw-p-0 tw-p-8 tw-bg-white sm:tw-rounded-lg sm:tw-shadow-lg tw-border"
   >
-    <div class="tw-flex tw-flex-row tw-justify-between">
-      <p class="tw-text-4xl tw-font-bold tw-text-gray-700 print:tw-hidden">
+    <div class="tw-flex tw-flex-row tw-justify-between print:tw-hidden">
+      <p class="tw-text-4xl tw-font-bold tw-text-gray-700 ">
         WMG Calculator Prototype
       </p>
       <div
@@ -33,11 +33,11 @@
         </button>
       </div>
     </div>
-    <hr class="tw-my-8" />
+    <hr class="tw-my-8 print:tw-hidden" />
     <!-- {loading ? ( -->
     <!-- <p class="text-2xl font-bold text-gray-400">Loading...</p> -->
     <!-- ) : ( -->
-    <div class="tw-flex tw-flex-row">
+    <div class="tw-flex tw-flex-row print:tw-w-full">
       <!-- <MainDisplayTable data={data} className="w-5/6" />
           <MainDisplaySidebar data={data} className="w-1/6" /> -->
       <%= render partial: "main/partials/main_display_table", locals: { data:

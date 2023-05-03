@@ -1,5 +1,5 @@
-<div class="tw-w-5/6">
-  <div class="tw-flex tw-flex-row tw-items-start tw-justify-between">
+<div class="tw-w-5/6 print:tw-w-full">
+  <div class=" tw-flex tw-flex-row tw-items-start tw-justify-between print:tw-hidden">
     <div class="tw-flex tw-flex-row tw-items-center">
       <p class="tw-text-lg tw-my-auto">
         Viewing <span class="tw-font-bold"><%= data.length %></span> student<%=data.length == 1 ? "" : "s" %>
@@ -32,7 +32,7 @@
       </p>
     </div>
   </div>
-  <div>
+  <div class="">
     <table class="tw-w-full tw-my-4 tw-table-auto">
       <thead class="tw-bg-gray-300">
         <tr>
@@ -53,6 +53,7 @@
           <% td_class = 'tw-bg-yellow-200' if student[:'1st Grade']&.to_f&.nan? && student[:'1st Grade'] != '-' %>
         <tr
           class="tw-transition tw-cursor-pointer odd:tw-bg-gray-100 even:tw-bg-white hover:tw-bg-gray-200"
+          onclick=<%= "window.location.href='/student/#{student[:"ID"]}';" %>
         >
           <td class="tw-px-4 tw-py-2 tw-border"><%= student[:"Surname"] %></td>
           <td class="tw-px-4 tw-py-2 tw-border"><%= student[:"Forename"] %></td>
