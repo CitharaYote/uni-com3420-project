@@ -17,7 +17,7 @@
                 %th Module Code
                 %th First Score
                 %th Second Score
-                %th Module Average
+                %th Final Score
                 %th Grade Status
             %tbody
               - @courses.each do |course|
@@ -26,7 +26,7 @@
                   %td= course.module_code
                   %td= mark.fst_grade
                   %td= mark.scd_grade
-                  %td= mark.average_grade
+                  %td= mark.final_score
                   %td= mark.status
 
 

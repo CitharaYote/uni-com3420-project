@@ -2,15 +2,15 @@
 #
 # Table name: marks
 #
-#  average_grade :float
-#  fst_grade     :bigint
-#  scd_grade     :bigint
-#  status        :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  course_id     :bigint           not null
-#  mark_id       :bigint           not null, primary key
-#  student_id    :bigint           not null
+#  final_score :float
+#  fst_grade   :bigint
+#  scd_grade   :bigint
+#  status      :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  course_id   :bigint           not null
+#  mark_id     :bigint           not null, primary key
+#  student_id  :bigint           not null
 #
 # Indexes
 #

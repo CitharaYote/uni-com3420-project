@@ -30,7 +30,7 @@ class Student < ApplicationRecord
         marks = Mark.where(student_id: id)
         marks.each do |mark| 
             course = Course.find_by(id: mark.course_id)
-            wmg += course.credit * mark.average_grade
+            wmg += course.credit * mark.final_score
             total_credit += course.credit
         end
 
