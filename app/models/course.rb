@@ -16,4 +16,6 @@ class Course < ApplicationRecord
     has_many :students, :through => :marks
 
     has_many :notifications
+    validates :module_code, :format => {with: /\A[a-zA-Z0-9]+\z/, message: "should only have characters from A-z and 0-9. Example: COM2009"}
+    validates :credit, :length => {:minimum => 1, :message => " field empty,"}, :numericality => {greater_than: 0, :message => " must be greater than 0 credits"}
 end
