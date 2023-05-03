@@ -51,19 +51,26 @@ class CsvImportService
                     mark.status = 'NC'
                     mark.fst_grade = 0
                     mark.save
-                end
+                    student.flagged = true
 
-                if (row['1st Grade'] == "DE")
+                elsif (row['1st Grade'] == "DE")
                     mark.status = 'DE'
                     mark.fst_grade = 0
                     mark.save
-                end
+                    student.flagged = true
                 
-                if (row['1st Grade'] == "NA")
+                elsif (row['1st Grade'] == "NA")
                     mark.status = 'NA'
                     mark.fst_grade = 0
                     mark.save
+                    student.flagged = true
+
+                elsif (row['1st Grade'] && row['2nd Grade' == "-"])
+                    student.flagged = true
+                else
+                    student.flagged = false
                 end
+                student.save
 
                 if
                     #calc mark final score
