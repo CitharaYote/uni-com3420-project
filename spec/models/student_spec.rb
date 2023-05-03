@@ -3,8 +3,8 @@
 # Table name: students
 #
 #  id           :bigint           not null, primary key
+#  flagged      :boolean
 #  forename     :string
-#  mean_grade   :integer
 #  program_name :string
 #  regID        :bigint           not null
 #  status       :string
