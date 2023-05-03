@@ -48,6 +48,12 @@ class CoursesController < ApplicationController
     @notifications.each do |notification|
       notification.destroy
     end
+
+    @marks = Mark.where(course_id: @course.id)
+    @marks.each do |mark|
+      mark.destroy
+    end
+    
     @course.destroy
     redirect_to courses_url, notice: "Course was successfully destroyed."
   end

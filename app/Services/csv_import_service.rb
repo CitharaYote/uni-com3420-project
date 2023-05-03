@@ -24,7 +24,7 @@ class CsvImportService
 
             #automatically make a new course and  set notification for new modules 
             if !Course.exists?(module_code: row['Module Code'])
-                course = Course.create!(module_code: row['Module Code'])
+                course = Course.create!(module_code: row['Module Code'], credit: -1)
                 notification = Notification.create!(identifier: row['Module Code'], alert: 'New Module added please update accordingly', isModule: true)
 
                 course.notifications << notification
@@ -56,7 +56,7 @@ class CsvImportService
                     mark.fst_grade = 0
                     mark.save
                 end
-                
+
                 if
                     #calc mark final score
                     mark.final_score = [mark.fst_grade, mark.scd_grade].max
