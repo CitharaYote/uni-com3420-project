@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :staffs
   resources :notifications
+  
   # resources :current_users
   mount EpiCas::Engine, at: "/"
   devise_for :users
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   # main controller routes
   post 'set_module_index', to: 'main#set_module_index'
   post 'set_search', to: 'main#set_search'
+  post '/', to: 'main#home'
 
   get 'course_detail',to: "students#course_detail"
  

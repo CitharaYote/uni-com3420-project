@@ -11,13 +11,15 @@
       Select All
     </button>
     <div class="<%= "overflow-y-auto" %> <%= short ? 'max-h-48 mt-3' : 'max-h-96 mt-8' %>">
-      <% @courses.each do |course| %>
-        <div class="flex flex-row items-center justify-between p-2 m-2 bg-gray-100 rounded-lg shadow hover:shadow-md">
-          <p class="font-bold text-gray-700"><%= course.module_code %></p>
-          <input type="checkbox" name="course_checkbox" class="w-6 h-6"/>
-        </div>
+      <%= form_with url: "/", method: :post do |f| %>
+        <% @courses.each do |course| %>
+          <div class="flex flex-row items-center justify-between p-2 m-2 bg-gray-100 rounded-lg shadow hover:shadow-md">
+            <p class="font-bold text-gray-700"><%= course.module_code %></p>
+            <%= f.check_box :course_checkbox, { multiple: true }, course.module_code, nil %>
+          </div>
+        <% end %>
+        <%= f.submit 'Submit' %>
       <% end %>
-      <%= link_to 'Submit', "/", class: 'btn btn-outline-secondary ms-1 btn-sm' %>
     </div>
   </div>
 </div>

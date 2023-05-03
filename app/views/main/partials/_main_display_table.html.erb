@@ -28,11 +28,14 @@
         <tr>
           <th class="px-4 py-2">Reg No.</th>
           <th class="px-4 py-2">Program</th>
-          <!-- <th class="px-4 py-2">{`{Module} - 40Cr`}</th> 01-May-2023 commented out by tiger
-          <th class="px-4 py-2">{`{Module} - 40Cr`}</th>
-          <th class="px-4 py-2">{`{Module} - 50Cr`}</th>
-          <th class="px-4 py-2">{`{Module} - 50Cr`}</th> -->
+          <%# adding in dynamically updated table %>
+          <div>
+            <% @course_list.each do |course| %>
+              <th><%= "#{Course.find_by(module_code: course).module_code} Credit(#{Course.find_by(module_code: course).credit})" %></th>
+            <% end %>
+          </div>
           <th class="px-4 py-2">WMG</th>
+          
         </tr>
       </thead>
       <tbody class="">
@@ -89,6 +92,15 @@
           <tr class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
             <td class="px-4 py-2 border"><%= student.regID %></td>
             <td class="px-4 py-2 border"><%= student.program_name %></td>
+            <div>
+            <% @course_list.each do|course| %>
+              <% if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).present? %>
+                <td class="px-4 py-2 border"><%= Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score %></td>
+              <% else %>
+                <td class = "px-4 py-2 border">-</td>
+              <% end %>
+            <% end %>
+            </div>
             <td class="px-4 py-2 border"><%= student.wmg_calculator.round(2) %></td>
           </tr>
         <% end %>
