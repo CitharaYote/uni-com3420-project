@@ -42,7 +42,9 @@ class CsvImportService
             end
             #Only create a new mark if the student doesnt have a mark in that module
             mark = Mark.find_by(course_id: course.id, student_id: student.id)
-            mark.destroy
+            if mark.present?
+                mark.destroy
+            end
             mark = Mark.create!(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
                 #classify marks accordingly
                 if (row['1st Grade'] == "NC")  || (row['2nd Grade'] == "NC")
