@@ -5,16 +5,20 @@
         Student details
       .card-body
         %dl.row.mb-0
-          %dt.col-md-3 Forename:
+          %dt.col-md-10 Forename:
           %dd.col-md-9= @student.forename
-          %dt.col-md-3 Surname:
+          %dt.col-md-10 Surname:
           %dd.col-md-9= @student.surname
-          %dt.col-md-3 Registration Number:
+          %dt.col-md-10 Registration Number:
           %dd.col-md-9= @student.regID
+          %dt.col-md-10 WMG:
+          %dd.col-md-9= @student.wmg_calculator
+          %dd.col-md-9= @student.wmg_calculation_detail(@student.program_id)
           %table.table
             %thead{style: "background-color: lightblue;"}  
               %tr
                 %th Module Code
+                %th Credit
                 %th First Score
                 %th Second Score
                 %th Final Score
@@ -24,6 +28,7 @@
                 -mark = Mark.find_by(student: @student, course: course)
                 %tr
                   %td= course.module_code
+                  %td= course.credit
                   
                   -if mark.status == 'NC' 
                     %td= "#{mark.fst_grade} (NC)"
@@ -41,7 +46,6 @@
                     %td PASS 
                   -else
                     %td= mark.status
-
 
       .card-footer.d-flex
         = link_to 'Edit', edit_student_path(@student), class: 'btn btn-link'

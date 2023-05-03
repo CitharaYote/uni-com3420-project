@@ -1,10 +1,7 @@
 <div class="w-5/6">
   <div class="flex flex-row items-start justify-between">
     <div class="flex flex-row items-center">
-      <p class="text-lg">
-        Viewing <span class="font-bold"><%= data.length %></span> student<%=
-        data.length == 1 ? "" : "s" %>
-      </p>
+      
       <input
         class="h-10 px-2 py-4 ml-4 text-sm bg-white border-2 border-gray-300 rounded-lg w-36 focus:outline-none"
         name="search"
@@ -39,55 +36,7 @@
         </tr>
       </thead>
       <tbody class="">
-        <!-- {filteredData.map((student, index) => (
-              <tr
-                key={index}
-                class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200"
-                onClick={() => setFocusStudent(student)}
-              >
-                <td class="px-4 py-2 border">{student["Surname"]}</td>
-                <td class="px-4 py-2 border">{student["Forename"]}</td>
-                <td class="px-4 py-2 border">{student["Reg No."]}</td>
-                <td class="px-4 py-2 border">{student["Reg. Status"]}</td>
-                <td class="px-4 py-2 border">{student["Module Code"]}</td>
-                <td
-                  class={`border px-4 py-2 ${
-                    isNaN(student["1st Grade"]) && student["1st Grade"] !== "-"
-                      ? "bg-yellow-200"
-                      : student["1st Grade"] < 40
-                      ? "bg-red-200"
-                      : ""
-                  }`}
-                >
-                  {student["1st Grade"]}
-                </td>
-                {/* <td
-                  class={`border px-4 py-2 ${
-                    isNaN(student["2nd Grade"]) && student["2nd Grade"] !== "-"
-                      ? "bg-yellow-200"
-                      : student["2nd Grade"] < 40
-                      ? "bg-red-200"
-                      : ""
-                  }`}
-                >
-                  {student["2nd Grade"]}
-                </td> */}
-              </tr>
-            ))} -->
-            <% focus_student = nil %>
-        <!-- <% @filtered_data[:data]&.map do |student| %>  01-May-2023 commented out by tiger
-          <% td_class = '' %> 
-          <% td_class = 'bg-red-200' if student[:'1st Grade']&.to_f&. < 40 %>
-          <% td_class = 'bg-yellow-200' if student[:'1stGrade']&.to_f&.nan? && student[:'1st Grade'] != '-' %> 
-        <tr class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200">
-          <td class="px-4 py-2 border"><%= student[:"Surname"] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Forename"] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Reg No."] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Reg. Status"] %></td>
-          <td class="px-4 py-2 border"><%= student[:"Module Code"] %></td>
-          <td class="<%= td_class %> border px-4 py-2"><%= student[:"1st Grade"] %></td>
-        </tr>
-        <% end %> -->
+        
         <% @students.each do |student|%>
           <tr class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
             <td class="px-4 py-2 border"><%= student.regID %></td>
@@ -107,16 +56,4 @@
       </tbody>
     </table>
   </div>
-  <!-- {/* <AnimatePresence>
-        {focusStudent && (
-          <StudentModal
-            focusStudent={focusStudent}
-            setFocusStudent={setFocusStudent}
-          />
-        )}
-      </AnimatePresence> */}
-      <StudentModal
-        focusStudent={focusStudent}
-        setFocusStudent={setFocusStudent}
-      /> -->
 </div>
