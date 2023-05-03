@@ -9,19 +9,22 @@
         class="flex flex-col justify-center space-x-4 sm:flex-row sm:items-center"
       >
         <button
-          onclick="window.location.href='/'"
           class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg"
         >
-          <p>Reset Filters</p>
+          <p>Add</p>
         </button>
-        <button onclick="myfun()"
+        <button onclick="print_table('table')"
           class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg"
         >
           <p>Print</p>
         </button>
         <script type="text/javascript">
-            function myfun() {
+            function print_table(areaID) {
+              var printContent = document.getElementById(areaID).innerHTML;
+              var originalContent = document.body.innerHTML;
+              document.body.innerHTML = printContent;
               window.print();
+              document.body.innerHTML = originalContent;
             }
         </script>
         <button
