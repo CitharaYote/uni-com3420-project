@@ -38,7 +38,10 @@
                     %td= mark.fst_grade
                   
                   %td= mark.scd_grade
-                  %td= course.credit
+                  -if course.credit < 0
+                    %td UPDATE MODULE 
+                  -else
+                    %td= course.credit
                   %td= mark.final_score
 
                   -if mark.final_score >= 50
