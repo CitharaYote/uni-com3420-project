@@ -11,9 +11,9 @@
       Select All
     </button>
     <div class="<%= "overflow-y-auto" %> <%= short ? 'max-h-48 mt-3' : 'max-h-96 mt-8' %>">
-      <% @modules.each do |mod| %>
+      <% @courses.each do |course| %>
         <div class="flex flex-row items-center justify-between p-2 m-2 bg-gray-100 rounded-lg shadow hover:shadow-md">
-          <p class="font-bold text-gray-700"><%= mod.module_code %></p>
+          <p class="font-bold text-gray-700"><%= course.module_code %></p>
           <input type="checkbox" class="w-6 h-6"/>
         </div>
       <% end %>

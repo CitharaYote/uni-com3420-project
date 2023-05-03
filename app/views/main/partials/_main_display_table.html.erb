@@ -14,16 +14,8 @@
     <div>
       <div class="flex flex-row items-center">
         <p class="ml-4 mr-2 text-lg">Program:</p>
-        <select
-          class="h-10 pl-5 pr-10 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
-          onchange=<%= "console.log(this.value)" %>
-        >
-          <option value = 0>Select Program</option>
-          <% @programs.each_with_index.map do |_module, index| %>
-            
-          <option value="<%= _module.program_name %>"><%= _module.program_name %></option>
-          <% end %>
-        </select>
+        <%= select("ProgramThing","PrgmSelect", Program.all.collect {|p| [p.program_name, p.program_name]}, {}, {:onChange => "window.location.href = '/?program_name='+this.value"}) %>
+        
       </div>
       <p class="mt-2 text-sm italic text-right text-gray-500">
         Click on a student for more information!
