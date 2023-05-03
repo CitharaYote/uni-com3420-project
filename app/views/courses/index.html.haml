@@ -29,7 +29,10 @@
       - @courses.each do |course|
         %tr
           %td= course.module_code
-          %td= course.credit
+          - if course.credit < 0
+            %td UPDATE CREDIT VALUE
+          - else
+            %td= course.credit  
           %td= course.id
           %td
             .btn-toolbar.float-end

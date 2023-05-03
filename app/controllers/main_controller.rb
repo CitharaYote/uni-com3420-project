@@ -7,11 +7,13 @@ class MainController < ApplicationController
   def home
     
     @programs = Program.all
+    
     if !Program.first.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct.present?
       @courses = []
     else
-      @courses =Program.first.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
+      @courses = Program.first.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
     end 
+
     @students = Student.all
     @course_list = []
     if params[:course_checkbox].present?
