@@ -25,9 +25,9 @@ class MainController < ApplicationController
       @students = Student.where(program_name: request.params[:program_name])
     
     elsif request.params[:student_id]
-      # @students = Student.where("regID LIKE ?", "%" + Student.sanitize_sql_like(request.params[:student_id]) + "%")
+      
       @students = Student.where(regID: request.params[:student_id])
-      if @students
+      if !@students.present?
         redirect_to "/", notice: "Could not find student with that registration."
       end
     end
