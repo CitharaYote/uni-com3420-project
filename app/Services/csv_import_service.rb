@@ -76,7 +76,6 @@ class CsvImportService
                         end
                     end
 
-                    
                     if mark.final_score < 50
                         mark.status = 'F'
                     elsif !mark.status.present?
