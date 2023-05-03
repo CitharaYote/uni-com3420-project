@@ -7,6 +7,7 @@ class MainController < ApplicationController
   def home
     
     @programs = Program.all
+    @courses = []
     if Program.first.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct.present?
       @courses = Program.first.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct.present?
     end
@@ -21,7 +22,13 @@ class MainController < ApplicationController
       @program = Program.find_by(program_name: request.params[:program_name])
       @courses = @program.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
       @students = Student.where(program_name: request.params[:program_name])
-      
+    
+    elsif request.params[:student_id]
+      # @students = Student.where("regID LIKE ?", "%" + Student.sanitize_sql_like(request.params[:student_id]) + "%")
+      @students = Student.where(regID: request.params[:student_id])
+      if @students
+        redirect_to "/", notice: "Could not find student with that registration."
+      end
     end
   end
 
