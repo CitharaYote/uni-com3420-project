@@ -1000,6 +1000,7 @@ class MainController < ApplicationController
       },
     },
   ]
+  
   @search = ""
   @module_index = 0
   end
