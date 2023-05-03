@@ -47,14 +47,20 @@ class CsvImportService
             end
             mark = Mark.create!(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
                 #classify marks accordingly
-                if (row['1st Grade'] == "NC")  || (row['2nd Grade'] == "NC")
+                if (row['1st Grade'] == "NC")
                     mark.status = 'NC'
                     mark.fst_grade = 0
                     mark.save
                 end
 
-                if (row['1st Grade'] == "DE")  || (row['2nd Grade'] == "DE")
+                if (row['1st Grade'] == "DE")
                     mark.status = 'DE'
+                    mark.fst_grade = 0
+                    mark.save
+                end
+                
+                if (row['1st Grade'] == "NA")
+                    mark.status = 'NA'
                     mark.fst_grade = 0
                     mark.save
                 end
@@ -63,8 +69,13 @@ class CsvImportService
                     #calc mark final score
                     mark.final_score = [mark.fst_grade, mark.scd_grade].max
                     if mark.final_score == mark.scd_grade
-                        mark.final_score = 50
+                        if mark.status == 'NA'
+                            mark.final_score = mark.scd_grade
+                        else
+                            mark.final_score = 50
+                        end
                     end
+
                     
                     if mark.final_score < 50
                         mark.status = 'F'
