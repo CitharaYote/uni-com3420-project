@@ -17,9 +17,9 @@
             %thead{style: "background-color: lightblue;"}  
               %tr
                 %th Module Code
-                %th Credit
                 %th First Score
                 %th Second Score
+                %th Credit
                 %th Final Score
                 %th Grade Status
             %tbody
@@ -27,7 +27,6 @@
                 -mark = Mark.find_by(student: @student, course: course)
                 %tr
                   %td= course.module_code
-                  %td= course.credit
                   
                   -if mark.status == 'NC' 
                     %td= "#{mark.fst_grade} (NC)"
@@ -39,6 +38,7 @@
                     %td= mark.fst_grade
                   
                   %td= mark.scd_grade
+                  %td= course.credit
                   %td= mark.final_score
 
                   -if mark.final_score >= 50
