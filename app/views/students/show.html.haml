@@ -47,15 +47,15 @@
                     -else
                       %td= mark.status
                     
-        %button{class: 'btn btn-primary bg-uospurple', :onclick => "print_table('table')"} Print
-        :javascript
-          function print_table(areaID) {
-            var printContent = document.getElementById(areaID).innerHTML;
-            var originalContent = document.body.innerHTML;
-            document.body.innerHTML = printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-          }
+      %button{class: 'btn btn-primary bg-uospurple', :onclick => "print_table('table')"} Print
+      :javascript
+        function print_table(areaID) {
+          var printContent = document.getElementById(areaID).innerHTML;
+          var originalContent = document.body.innerHTML;
+          document.body.innerHTML = printContent;
+          window.print();
+          document.body.innerHTML = originalContent;
+        }
 
       .card-footer.d-flex
         = link_to 'Edit', edit_student_path(@student), class: 'btn btn-link'
