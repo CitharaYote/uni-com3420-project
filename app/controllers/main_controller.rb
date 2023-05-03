@@ -8,7 +8,8 @@ class MainController < ApplicationController
     
     @programs = Program.all
     @courses = Program.first.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
-    @students = Student.where(program_name: Program.first[:program_name])
+    @students = Student.all
+    @course_list = params[:course_checkbox]
     
     if request.params[:program_name] && Program.find_by(program_name: request.params[:program_name])
       
