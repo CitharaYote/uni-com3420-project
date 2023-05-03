@@ -94,7 +94,7 @@
         </tr>
         <% end %> -->
         <% @students.each do |student|%>
-          <tr onclick=<%= "window.location.href='/students/#{student.id}';" %>>
+          <tr class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
             <td class="px-4 py-2 border"><%= student.regID %></td>
             <td class="px-4 py-2 border"><%= student.program_name %></td>
             <td class="px-4 py-2 border"><%= student.wmg_calculator.round(2) %></td>
