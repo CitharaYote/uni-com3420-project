@@ -47,20 +47,27 @@ class CsvImportService
                 #classify marks accordingly
                 if (row['1st Grade'] == "NC")  || (row['2nd Grade'] == "NC")
                     mark.status = 'NC'
-                    mark.final_score = 0
+                    mark.fst_grade = 0
                     mark.save
-                else
-                    #check if the first grade is there?
-                    if !mark.fst_grade.present? 
-                        mark.final_score = mark.scd_grade
-                    else
-                        mark.final_score = mark.fst_grade
-                    end
+                end
 
-                    if mark.final_score < 40
+                if (row['1st Grade'] == "DE")  || (row['2nd Grade'] == "DE")
+                    mark.status = 'DE'
+                    mark.fst_grade = 0
+                    mark.save
+                end
+                
+                if
+                    #calc mark final score
+                    mark.final_score = [mark.fst_grade, mark.scd_grade].max
+                    if mark.final_score == mark.scd_grade
+                        mark.final_score = 50
+                    end
+                    
+                    if mark.final_score < 50
                         mark.status = 'F'
-                    else
-                        mark.status = 'OK'
+                    elsif !mark.status.present?
+                        mark.status = 'P'
                     end
                     mark.save
                 end

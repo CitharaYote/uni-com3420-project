@@ -24,10 +24,18 @@
                 -mark = Mark.find_by(student: @student, course: course)
                 %tr
                   %td= course.module_code
-                  %td= mark.fst_grade
+                  -if mark.status == 'NC' 
+                    %td= "#{mark.fst_grade} (NC)"
+                  -elsif mark.status == 'DE'
+                    %td= "#{mark.fst_grade} (DE)"
+                  -elsif mark.status == 'NA'
+                    %td= "#{mark.fst_grade} (DE)"
                   %td= mark.scd_grade
                   %td= mark.final_score
-                  %td= mark.status
+                  -if mark.final_score >= 50
+                    %td PASS 
+                  -else
+                    %td= mark.status
 
 
       .card-footer.d-flex
