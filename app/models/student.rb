@@ -33,7 +33,11 @@ class Student < ApplicationRecord
             total_credit += course.credit
         end
 
-        wmg / total_credit
+        if total_credit != 0
+            wmg / total_credit
+        else
+            0
+        end
         
     end
 
