@@ -42,8 +42,8 @@ class CsvImportService
             end
             #Only create a new mark if the student doesnt have a mark in that module
             mark = Mark.find_by(course_id: course.id, student_id: student.id)
-            if !mark.present?
-                mark = Mark.create!(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
+            mark.destroy
+            mark = Mark.create!(fst_grade: row['1st Grade'], scd_grade: row['2nd Grade'], course_id: course.id, student_id: student.id)
                 #classify marks accordingly
                 if (row['1st Grade'] == "NC")  || (row['2nd Grade'] == "NC")
                     mark.status = 'NC'
@@ -70,8 +70,9 @@ class CsvImportService
                         mark.status = 'P'
                     end
                     mark.save
+                
                 end
-            end 
+            
             @count += 1
         end
         #set a notification to explain to the user that a new program has been made
