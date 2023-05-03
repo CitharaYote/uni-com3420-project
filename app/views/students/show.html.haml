@@ -1,53 +1,61 @@
 .row.justify-content-center
   .col-sm-8.col-lg-6
     .card
-      .card-header
-        Student details
-      .card-body
-        %dl.row.mb-0
-          %dt.col-md-10 Forename:
-          %dd.col-md-9= @student.forename
-          %dt.col-md-10 Surname:
-          %dd.col-md-9= @student.surname
-          %dt.col-md-10 Registration Number:
-          %dd.col-md-9= @student.regID
-          %dt.col-md-10 WMG:
-          %dd.col-md-9= @student.wmg_calculator
-          %table.table
-            %thead{style: "background-color: lightblue;"}  
-              %tr
-                %th Module Code
-                %th First Score
-                %th Second Score
-                %th Credit
-                %th Final Score
-                %th Grade Status
-            %tbody
-              - @courses.each do |course|
-                -mark = Mark.find_by(student: @student, course: course)
+      .card.body#table
+        .card-header
+          Student details
+        .card-body
+          %dl.row.mb-0
+            %dt.col-md-10 Forename:
+            %dd.col-md-9= @student.forename
+            %dt.col-md-10 Surname:
+            %dd.col-md-9= @student.surname
+            %dt.col-md-10 Registration Number:
+            %dd.col-md-9= @student.regID
+            %dt.col-md-10 WMG:
+            %dd.col-md-9= @student.wmg_calculator
+            %table.table
+              %thead{style: "background-color: lightblue;"}  
                 %tr
-                  %td= course.module_code
-                  
-                  -if mark.status == 'NC' 
-                    %td= "#{mark.fst_grade} (NC)"
-                  -elsif mark.status == 'DE'
-                    %td= "#{mark.fst_grade} (DE)"
-                  -elsif mark.status == 'NA'
-                    %td= "#{mark.fst_grade} (NA)"
-                  -else
-                    %td= mark.fst_grade
-                  
-                  %td= mark.scd_grade
-                  -if course.credit < 0
-                    %td UPDATE MODULE 
-                  -else
+                  %th Module Code
+                  %th First Score
+                  %th Second Score
+                  %th Credit
+                  %th Final Score
+                  %th Grade Status
+              %tbody
+                - @courses.each do |course|
+                  -mark = Mark.find_by(student: @student, course: course)
+                  %tr
+                    %td= course.module_code
+                    
+                    -if mark.status == 'NC' 
+                      %td= "#{mark.fst_grade} (NC)"
+                    -elsif mark.status == 'DE'
+                      %td= "#{mark.fst_grade} (DE)"
+                    -elsif mark.status == 'NA'
+                      %td= "#{mark.fst_grade} (DE)"
+                    -else
+                      %td= mark.fst_grade
+                    
+                    %td= mark.scd_grade
                     %td= course.credit
-                  %td= mark.final_score
+                    %td= mark.final_score
 
-                  -if mark.final_score >= 50
-                    %td PASS 
-                  -else
-                    %td= mark.status
+                    -if mark.final_score >= 50
+                      %td PASS 
+                    -else
+                      %td= mark.status
+                    
+        %button{class: 'btn btn-primary bg-uospurple', :onclick => "print_table('table')"} Print
+        :javascript
+          function print_table(areaID) {
+            var printContent = document.getElementById(areaID).innerHTML;
+            var originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+          }
 
       .card-footer.d-flex
         = link_to 'Edit', edit_student_path(@student), class: 'btn btn-link'
