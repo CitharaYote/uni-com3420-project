@@ -44,6 +44,10 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1
   def destroy
+    @notifications = Notification.where(course_id: @course.id)
+    @notifications.each do |notification|
+      notification.destroy
+    end
     @course.destroy
     redirect_to courses_url, notice: "Course was successfully destroyed."
   end
