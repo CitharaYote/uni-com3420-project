@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: root_path, alert: exception.message)
   end
 
+  rescue_from ZeroDivisionError do |exception|
+    render template: "errors/error_page"
+  end
+
   private
     def update_headers_to_disable_caching
       response.headers['Cache-Control'] = 'no-cache, no-cache="set-cookie", no-store, private, proxy-revalidate'
