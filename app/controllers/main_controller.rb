@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-
+   before_action :check_students
   def current_url(overwrite={})
     url_for :only_path => false, :params => params.merge(overwrite)
   end
@@ -74,4 +74,18 @@ class MainController < ApplicationController
       @filtered_data = filtered_data
     end
   end
+  private
+    def check_students
+      @people = Student.all
+      @notifications = Notification.all
+      # @people.each do |person|
+      #   if person.updated_at.to_date < DateTime.current - 1.hour
+      #     if !@notifications.where(identifier: ("Student Registration: " +person.regID.to_s))
+      #       Notification.create!(identifier: "Student Registration: " + person.regID.to_s, alert: "Student data has not been updated for over 3 years.", isModule: false)
+      #     else
+      #       puts "\n\n\n\n\n\n\n\nW #{Notification.where(identifier: ("Student Registration: " +person.regID.to_s))}\n\n\n\n\n\n\n\n\n"
+      #     end
+      #   end
+      # end
+    end
 end
