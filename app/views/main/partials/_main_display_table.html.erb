@@ -40,8 +40,8 @@
       <tbody class="">
         <% @students.each do |student|%>
           <% td_credit_class, td_wmg_class = '', '' %>
-          <% td_credit_class = 'highlight-orange hover:highlight-orange-light' if student.total_credit < 180 %>
-          <% td_credit_class = 'highlight-red hover:highlight-red-light' if student.total_credit < 120 %>
+          <% td_credit_class = 'highlight-orange hover:highlight-orange-light' if student.student_total_credit < 180 %>
+          <% td_credit_class = 'highlight-red hover:highlight-red-light' if student.student_total_credit < 120 %>
           <% td_wmg_class = 'highlight-orange hover:highlight-orange-light' if student.wmg_calculator < 70 %>
           <% td_wmg_class = 'highlight-red hover:highlight-red-light' if student.wmg_calculator < 50 %>
 
@@ -64,7 +64,7 @@
             class="<%= td_credit_class%> px-4 py-2 border transition cursor-pointer" 
             onclick=<%= "window.location.href='/students/#{student.id}';" %>
           >
-            <%= student.total_credit %>
+            <%= student.student_total_credit %>
           </td>
           <div>
             <% @course_list.each do|course| %> 

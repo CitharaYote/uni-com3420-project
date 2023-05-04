@@ -12,6 +12,8 @@
           %dt.col-md-3 Courses:
           - @courses.each do |course|
             %dd= course.module_code
+          %dt.col-md-3 Total Credit:
+          %dd.col-md-9= @program.program_total_credit
             
       .card-footer.d-flex
         = link_to 'Edit', edit_program_path(@program), class: 'btn btn-link'
