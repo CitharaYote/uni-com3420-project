@@ -77,7 +77,6 @@ class CsvImportService
                  if mark.final_score == mark.scd_grade && mark.final_score > 50
                      if mark.status == 'NA'
                          mark.final_score = mark.scd_grade
-                         puts("\n\n\n\n\n\n\n\n #{mark.scd_grade}, #{mark.final_score}")
                      else
                          mark.final_score = 50
                      end
