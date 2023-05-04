@@ -81,8 +81,9 @@ class CsvImportService
                         else
                             mark.final_score = 50
                         end
+                    end
 
-                    if mark.final_score < 50
+                    if mark.final_score < 50 && !mark.status.present?
                         mark.status = 'F'
                     elsif !mark.status.present?
                         mark.status = 'P'

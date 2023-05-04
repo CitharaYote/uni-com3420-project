@@ -38,11 +38,6 @@
                   = link_to students_path, class: 'nav-link' do
                     %p.text-white
                       Student
-              - if can? :manage, Staff
-                .nav-item.text-white{class:"hover:scale-105 transition"}
-                  = link_to staffs_path, class: 'nav-link' do
-                    %p.text-white
-                      Staff
               - if can? :manage, Course
                 .nav-item.text.white{class:"hover:scale-105 transition"}
                   = link_to courses_path, class: 'nav-link' do
@@ -60,6 +55,11 @@
                       = "Notifications" 
                       %span.badge.bg-danger.text-white
                         = Notification.all.size
+              - if can? :manage, Staff
+                .nav-item.text-white{class:"hover:scale-105 transition"}
+                  = link_to staffs_path, class: 'nav-link' do
+                    %p.text-white
+                      Staff
                            
             %nav.navbar-nav.ms-auto
               .nav-item.dropdown
