@@ -14,18 +14,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_192943) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "course_notification", id: false, force: :cascade do |t|
-    t.bigint "notification_id", null: false
-    t.bigint "course_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_course_notification_on_course_id"
-    t.index ["notification_id"], name: "index_course_notification_on_notification_id"
-  end
-
   create_table "courses", force: :cascade do |t|
-    t.string "module_code"
+    t.string "module_code", null: false
     t.integer "credit"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,15 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_192943) do
     t.index ["student_id"], name: "index_marks_on_student_id"
   end
 
-  create_table "notification_program", id: false, force: :cascade do |t|
-    t.bigint "notification_id", null: false
-    t.bigint "program_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["notification_id"], name: "index_notification_program_on_notification_id"
-    t.index ["program_id"], name: "index_notification_program_on_program_id"
-  end
-
   create_table "notifications", force: :cascade do |t|
     t.integer "program_id"
     t.datetime "created_at", null: false
@@ -97,9 +80,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_192943) do
 
   create_table "programs", force: :cascade do |t|
     t.string "program_name"
+    t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -120,15 +103,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_192943) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.bigint "regID", null: false
+    t.bigint "program_id"
+    t.bigint "regID"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "program_name"
     t.string "forename"
     t.string "surname"
-    t.bigint "program_id"
     t.boolean "flagged"
+    t.index ["program_id"], name: "index_students_on_program_id"
   end
 
   create_table "users", force: :cascade do |t|

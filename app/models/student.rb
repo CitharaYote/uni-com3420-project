@@ -41,6 +41,18 @@ class Student < ApplicationRecord
         
     end
 
+    def total_credit
+        total_credit = 0
+        marks = Mark.where(student_id: id)
+        marks.each do |mark|
+            course = Course.find_by(id: mark.course_id)
+            if mark.status == "P"
+                total_credit += course.credit
+            end
+        end
+        total_credit
+    end
+
     # def wmg_calculation_detail (program)
     #     mark_list = []
     #     credit_list = []
