@@ -46,26 +46,31 @@
           <% td_wmg_class = 'highlight-red' if student.wmg_calculator < 50 %>
 
         <tr
-          class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200"
+          class=" odd:bg-gray-100 even:bg-white"
         >
           <td 
-            class="px-4 py-2 border" 
+            class="px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" 
             onclick=<%= "window.location.href='/students/#{student.id}';" %>
           >
             <%= student.regID %>
           </td>
           <td 
-            class="px-4 py-2 border" 
+            class="px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" 
             onclick=<%= "window.location.href='/program/#{Program.find_by(program_name: student.program_name).id}';" %>
           >
             <%= student.program_name %>
           </td>
-          <td class="<%= td_credit_class%> px-4 py-2 border"><%= student.total_credit %></td>
+          <td 
+            class="<%= td_credit_class%> px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" 
+            onclick=<%= "window.location.href='/students/#{student.id}';" %>
+          >
+            <%= student.total_credit %>
+          </td>
           <div>
             <% @course_list.each do|course| %> 
             <% if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).present? %>
             <td 
-              class="px-4 py-2 border" 
+              class="px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" 
               onclick=<%= "window.location.href='/course/#{Course.find_by(module_code: course).id}';" %>
             >
               <%= Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score %>
@@ -82,7 +87,7 @@
               update module
             </td>
           <% else %>
-          <td class="<%= td_credit_class%> px-4 py-2 border">
+          <td class="<%= td_credit_class%> px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
             <%= student.wmg_calculator.round(2) %>
           </td>
           <% end %>
