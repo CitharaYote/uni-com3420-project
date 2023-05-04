@@ -37,6 +37,9 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    @programs = Program.all
+    @student = Student.find(params[:id])
+    @marks = @student.marks
   end
 
   # POST /students
