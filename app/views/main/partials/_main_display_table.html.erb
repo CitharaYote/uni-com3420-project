@@ -56,7 +56,7 @@
           </td>
           <td 
             class="px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" 
-            onclick=<%= "window.location.href='/program/#{Program.find_by(program_name: student.program_name).id}';" %>
+            onclick=<%= "window.location.href='/programs/#{Program.find_by(program_name: student.program_name).id}';" %>
           >
             <%= student.program_name %>
           </td>
