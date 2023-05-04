@@ -39,13 +39,19 @@
       </thead>
       <tbody class="">
         <% @students.each do |student|%>
+          <% td_credit_class, td_wmg_class = '', '' %>
+          <% td_credit_class = 'highlight-orange' if student.total_credit < 180 %>
+          <% td_credit_class = 'highlight-red' if student.total_credit < 120 %>
+          <% td_wmg_class = 'highlight-orange' if student.wmg_calculator < 70 %>
+          <% td_wmg_class = 'highlight-red' if student.wmg_calculator < 50 %>
+
         <tr
           class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200"
           onclick=<%= "window.location.href='/students/#{student.id}';" %>
         >
           <td class="px-4 py-2 border"><%= student.regID %></td>
           <td class="px-4 py-2 border"><%= student.program_name %></td>
-          <td class="px-4 py-2 border"><%= student.total_credit %></td>
+          <td class="<%= td_credit_class%> px-4 py-2 border"><%= student.total_credit %></td>
           <div>
             <% @course_list.each do|course| %> 
             <% if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).present? %>
@@ -59,7 +65,7 @@
           <% if student.wmg_calculator < 0 %>
           <td>update module</td>
           <% else %>
-          <td class="px-4 py-2 border">
+          <td class="<%= td_credit_class%> px-4 py-2 border">
             <%= student.wmg_calculator.round(2) %>
           </td>
           <% end %>
