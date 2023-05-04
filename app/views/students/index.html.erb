@@ -8,7 +8,7 @@
     </span>
     <%= render "students/import_form" %>
     <div>
-      <%# make the dropdown unique here also make the filter for status unique%>
+      <%# make the dropdown unique here also make the filter for status unique %>
       <%= form_tag students_path, method: :get do %>
         <%= select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: '(All) Programmes' %>
         <%# <%= select_tag :status, options_for_select(Student.pluck(:status).uniq.map{ |s| [s.status, s.id]}, params[:status]), include_blank: 'Filter By Status' %>

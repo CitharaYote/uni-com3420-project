@@ -30,6 +30,9 @@ class MainController < ApplicationController
     elsif request.params[:student_id]
       
       @students = Student.where(regID: request.params[:student_id])
+
+      # this bit works for any column except regID so i'm guessing it doesn't like the capital letters
+      # @students = Student.where("regID LIKE ?", "%#{request.params[:student_id]}%")
       if !@students.present?
         redirect_to "/", notice: "Could not find student with that registration."
       end

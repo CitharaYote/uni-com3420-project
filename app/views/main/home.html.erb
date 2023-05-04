@@ -13,19 +13,20 @@
         >
           <p>Add</p>
         </button>
-        <button onclick="print_table('table')"
+        <button
+          onclick="print_table('table')"
           class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg"
         >
           <p>Print</p>
         </button>
         <script type="text/javascript">
-            function print_table(areaID) {
-              var printContent = document.getElementById(areaID).innerHTML;
-              var originalContent = document.body.innerHTML;
-              document.body.innerHTML = printContent;
-              window.print();
-              document.body.innerHTML = originalContent;
-            }
+          function print_table(areaID) {
+            var printContent = document.getElementById(areaID).innerHTML;
+            var originalContent = document.body.innerHTML;
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+          }
         </script>
         <button
           class="p-4 text-white transition rounded-lg w-36 bg-uospurple hover:bg-opacity-70 drop-shadow hover:drop-shadow-lg"
@@ -41,9 +42,8 @@
     <div class="flex flex-row">
       <!-- <MainDisplayTable data={data} className="w-5/6" />
           <MainDisplaySidebar data={data} className="w-1/6" /> -->
-      <%= render partial: "main/partials/main_display_table", locals: { data:
-      @data} %> <%= render partial: "main/partials/main_display_sidebar",
-      locals: { short: false } %>
+      <%= render partial: "main/partials/main_display_table", locals: { data: @data} %> 
+      <%= render partial: "main/partials/main_display_sidebar", locals: { short: false } %>
     </div>
   </div>
 </div>

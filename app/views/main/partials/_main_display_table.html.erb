@@ -1,20 +1,18 @@
 <div class="w-5/6">
   <div class="flex flex-row items-start justify-between">
     <div class="flex flex-row items-center">
-      <form onsubmit= "window.location.href = '/?'+this.value">
+      <form onsubmit="window.location.href = '/?'+this.value">
         <input
-        class="h-10 px-2 py-4 ml-4 text-sm bg-white border-2 border-gray-300 rounded-lg w-36 focus:outline-none"
-        name="student_id"
-        placeholder="Search student registration..."
-      
+          class="h-10 px-2 py-4 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
+          name="student_id"
+          placeholder="Search registration..."
         />
       </form>
     </div>
     <div>
-      <div class="flex flex-row items-center">
-        <p class="ml-4 mr-2 text-lg">Program:</p>
+      <div class="flex flex-row items-center justify-content-end">
+        <p class="mr-2 text-lg">Program:</p>
         <%= select("ProgramThing","PrgmSelect", Program.all.collect {|p| [p.program_name, p.program_name]}, {:include_blank => true}, {:onchange => "window.location.href = '/?program_name='+this.value"}) %>
-        
       </div>
       <p class="mt-2 text-sm italic text-right text-gray-500">
         Click on a student for more information!
@@ -30,34 +28,40 @@
           <%# adding in dynamically updated table %>
           <div>
             <% @course_list.each do |course| %>
-              <th><%= "#{Course.find_by(module_code: course).module_code} Credit(#{Course.find_by(module_code: course).credit})" %></th>
+            <th class="px-4 py-2">
+              <%= "#{Course.find_by(module_code: course).module_code} Credit(#{Course.find_by(module_code: course).credit})" %>
+            </th>
             <% end %>
           </div>
           <th class="px-4 py-2">WMG</th>
-          
         </tr>
       </thead>
       <tbody class="">
-        
         <% @students.each do |student|%>
-          <tr class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
-            <td class="px-4 py-2 border"><%= student.regID %></td>
-            <td class="px-4 py-2 border"><%= student.program_name %></td>
-            <div>
-            <% @course_list.each do|course| %>
-              <% if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).present? %>
-                <td class="px-4 py-2 border"><%= Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score %></td>
-              <% else %>
-                <td class = "px-4 py-2 border">-</td>
-              <% end %>
-            <% end %>
-            </div>
-            <% if student.wmg_calculator < 0 %>
-              <td>update module</td>
+        <tr
+          class="transition cursor-pointer odd:bg-gray-100 even:bg-white hover:bg-gray-200"
+          onclick=<%= "window.location.href='/students/#{student.id}';" %>
+        >
+          <td class="px-4 py-2 border"><%= student.regID %></td>
+          <td class="px-4 py-2 border"><%= student.program_name %></td>
+          <div>
+            <% @course_list.each do|course| %> 
+            <% if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).present? %>
+            <td class="px-4 py-2 border">
+              <%= Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score %>
+            </td>
             <% else %>
-              <td class="px-4 py-2 border"><%= student.wmg_calculator.round(2) %></td>
-            <% end %>
-          </tr>
+            <td class="px-4 py-2 border">-</td>
+            <% end %> <% end %>
+          </div>
+          <% if student.wmg_calculator < 0 %>
+          <td>update module</td>
+          <% else %>
+          <td class="px-4 py-2 border">
+            <%= student.wmg_calculator.round(2) %>
+          </td>
+          <% end %>
+        </tr>
         <% end %>
       </tbody>
     </table>

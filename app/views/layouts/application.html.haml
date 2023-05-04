@@ -27,37 +27,40 @@
           %button.navbar-toggler{ type: :button, data: { bs_toggle: :collapse, bs_target: '#navbar-content' }, aria: { controls: 'navbar-content', expanded: 'false', label: 'Toggle navigation' } }
             %span.navbar-toggler-icon
           #navbar-content.navbar-collapse.collapse
-            %nav.navbar-nav
+            %nav.navbar-nav.space-x-4
               - if can? :manage, Student
-                .nav-item.text-white
+                .nav-item.text-white{class:"hover:scale-105 transition"}
                   = link_to '/', class: 'nav-link' do
                     %p.text-white
                       Home
               - if can? :manage, Student
-                .nav-item.text-white
+                .nav-item.text-white{class:"hover:scale-105 transition"}
                   = link_to students_path, class: 'nav-link' do
                     %p.text-white
                       Student
               - if can? :manage, Staff
-                .nav-item.text-white
+                .nav-item.text-white{class:"hover:scale-105 transition"}
                   = link_to staffs_path, class: 'nav-link' do
                     %p.text-white
                       Staff
               - if can? :manage, Course
-                .nav-item.text.white
+                .nav-item.text.white{class:"hover:scale-105 transition"}
                   = link_to courses_path, class: 'nav-link' do
                     %p.text-white
                       Module
               - if can? :manage, Program
-                .nav-item.text-white
+                .nav-item.text-white{class:"hover:scale-105 transition"}
                   = link_to programs_path, class: 'nav-link' do
                     %p.text-white
                       Programme
               - if can? :manage, Program
-                .nav-item.text-white
+                .nav-item.text-white{class:"hover:scale-105 transition"}
                   = link_to notifications_path, class: 'nav-link' do
                     %p.text-white
-                      ="Notifications(#{Notification.all.size})"         
+                      = "Notifications" 
+                      %span.badge.bg-danger.text-white
+                        = Notification.all.size
+                           
             %nav.navbar-nav.ms-auto
               .nav-item.dropdown
                 - if user_signed_in?
