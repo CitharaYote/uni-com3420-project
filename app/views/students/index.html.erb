@@ -58,15 +58,10 @@
               <td><%= student.forename %></td>
               <td><%= student.surname %></td>
               <td><%= student.regID %></td>
-              <td>
-              <% if student.status == "nc" %>
-              Not Completed
-              <% elsif student.status == "na" %>
-              Not Assessed
-              <% elsif student.status == "fail"%>
-              failed
-              <% elsif student.status == "ok"%>
-              Fully Registered
+              <% if student.flagged == true %>
+                <td class= 'font-bold'>Needs Attention</td>
+              <% else %>
+                <td>Fully Registered</td>
               <% end %>
               </td>
               <td>
