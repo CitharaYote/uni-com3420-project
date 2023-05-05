@@ -1766,12 +1766,20 @@ select {
   background-color: rgba(254 202 202);
 }
 
+.highlight-green {
+  background-color: rgba(187 247 208);
+}
+
 .hover\:highlight-orange-light:hover {
   background-color: rgb(255, 249, 201);
 }
 
 .hover\:highlight-red-light:hover {
   background-color: rgb(255, 231, 231);
+}
+
+.hover\:highlight-green-light:hover {
+  background-color: rgb(224, 255, 235);
 }
 
 // // create an animation to adjust the width of the progress bar

@@ -15,4 +15,13 @@ class Program < ApplicationRecord
     has_many :students
     has_many :notifications
 
+    def program_total_credit
+        total = 0
+        courses = CoursesProgram.where(program_id: id)
+        courses.each do |course|
+            total += Course.find_by(id: course.course_id).credit
+        end
+        total
+    end
+
 end

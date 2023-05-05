@@ -23,25 +23,28 @@ class Student < ApplicationRecord
     # sum every mark multiplies by credit
     # and divide by total credits
     def wmg_calculator 
+        total_mark = 0
+        total_credit = Student.find_by(id: id).student_total_credit
         wmg = 0
-        total_credit = 0
         #find all courses connected to current student
         marks = Mark.where(student_id: id)
         marks.each do |mark| 
             course = Course.find_by(id: mark.course_id)
-            wmg += course.credit * mark.final_score
-            total_credit += course.credit
+            if mark.status == "P"
+                total_mark += course.credit * mark.final_score
+            end
         end
 
         if total_credit != 0
-            wmg / total_credit
+            wmg = total_mark / total_credit
         else
-            0
+            wmg = 0
         end
         
+        wmg
     end
 
-    def total_credit
+    def student_total_credit
         total_credit = 0
         marks = Mark.where(student_id: id)
         marks.each do |mark|
@@ -52,23 +55,5 @@ class Student < ApplicationRecord
         end
         total_credit
     end
-
-    # def wmg_calculation_detail (program)
-    #     mark_list = []
-    #     credit_list = []
-    #     # marks = Mark.where(student_id: id)
-    #     # marks.each do |mark|
-    #     #     mark_list.push(mark.final_score)
-    #     # end
-    #     courses_program = CoursesProgram.where(program_id: program)
-    #     courses_program.each do |c_p|
-    #         credit = Course.find_by(id: c_p.course_id).credit
-    #         credit_list.push(credit)
-    #         mark = Mark.find_by(student_id: id, course_id: c_p.course_id).final_score
-    #         mark_list.push(mark)
-    #     end
-
-    #     puts mark_list[0]
-    # end
 
 end

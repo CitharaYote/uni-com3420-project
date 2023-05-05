@@ -72,25 +72,23 @@ class CsvImportService
                 end
                 student.save
 
-                if
-                    #calc mark final score
-                    mark.final_score = [mark.fst_grade, mark.scd_grade].max
-                    if mark.final_score == mark.scd_grade && mark.final_score > 50
-                        if mark.status == 'NA'
-                            mark.final_score = mark.scd_grade
-                        else
-                            mark.final_score = 50
-                        end
+                #calc mark final score
+                mark.final_score = [mark.fst_grade, mark.scd_grade].max
+                if mark.final_score == mark.scd_grade && mark.final_score > 50
+                    if mark.status == 'NA'
+                        mark.final_score = mark.scd_grade
+                    else
+                        mark.final_score = 50
                     end
-
-                    if mark.final_score < 50 && !mark.status.present?
-                        mark.status = 'F'
-                    elsif !mark.status.present?
-                        mark.status = 'P'
-                    end
-                    mark.save
-                
                 end
+
+                if mark.final_score < 50 && !mark.status.present?
+                    mark.status = 'F'
+                elsif !mark.status.present?
+                    mark.status = 'P'
+                end
+                mark.save
+                
             
             @count += 1
         end
