@@ -76,7 +76,7 @@
               <%= Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score %>
             </td>
             <% else %>
-            <td class="px-4 py-2 border">-</td>
+            <td class="px-4 py-2 border hover:bg-gray-200 transition">-</td>
             <% end %> <% end %>
           </div>
           <% if student.wmg_calculator < 0 %>
@@ -87,7 +87,7 @@
               update module
             </td>
           <% else %>
-          <td class="<%= td_credit_class%> px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
+          <td class="<%= td_wmg_class %> px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
             <%= student.wmg_calculator.round(2) %>
           </td>
           <% end %>
