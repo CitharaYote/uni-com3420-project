@@ -42,6 +42,7 @@
           <% td_credit_class, td_wmg_class = 'hover:bg-gray-200', 'hover:bg-gray-200' %>
           <% td_credit_class = 'highlight-orange hover:highlight-orange-light' if student.student_total_credit < 180 %>
           <% td_credit_class = 'highlight-red hover:highlight-red-light' if student.student_total_credit < 120 %>
+          <% td_wmg_class = 'highlight-green hover:highlight-green-light' if student.wmg_calculator > 70 %>
           <% td_wmg_class = 'highlight-orange hover:highlight-orange-light' if student.wmg_calculator < 70 %>
           <% td_wmg_class = 'highlight-red hover:highlight-red-light' if student.wmg_calculator < 50 %>
 
