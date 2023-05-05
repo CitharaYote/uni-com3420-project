@@ -30,7 +30,7 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
     user ||= User.new
 
-    staff = Staff.find_by(username: user.username)
+    staff ||= Staff.find_by(username: user.username)
     if staff
       can :manage, Program
       can :manage, Course
