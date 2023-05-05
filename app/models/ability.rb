@@ -31,16 +31,16 @@ class Ability
     user ||= User.new
 
     staff ||= Staff.find_by(username: user.username)
-    if staff
-      can :manage, Program
-      can :manage, Course
-      can :manage, Student
-      can :read, Staff
-      if staff.is_admin
-        can :manage, Staff
-      end
+    return unless staff
+
+    can :manage, Program
+    can :manage, Course
+    can :manage, Student
+    can :read, Staff
+    if staff.is_admin
+      can :manage, Staff
     end
-  
+    
     
   end
 end
