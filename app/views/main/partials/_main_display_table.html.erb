@@ -11,7 +11,7 @@
     </div>
     <div>
       <div class="flex flex-row items-center justify-content-end">
-        <p class="mr-2 text-lg">Program:</p>
+        <p class="mr-2 text-lg">Programme:</p>
         <%= select("ProgramThing","PrgmSelect", Program.all.collect {|p| [p.program_name, p.program_name]}, {:include_blank => true}, {:onchange => "window.location.href = '/?program_name='+this.value"}) %>
       </div>
       <p class="mt-2 text-sm italic text-right text-gray-500">
@@ -24,7 +24,7 @@
       <thead class="bg-gray-300">
         <tr>
           <th class="px-4 py-2">Reg No.</th>
-          <th class="px-4 py-2">Program</th>
+          <th class="px-4 py-2">Programme</th>
           <th class="px-4 py-2">Total Credit</th>
           <%# adding in dynamically updated table %>
           <div>
@@ -39,7 +39,7 @@
       </thead>
       <tbody class="">
         <% @students.each do |student|%>
-          <% td_credit_class, td_wmg_class = '', '' %>
+          <% td_credit_class, td_wmg_class = 'hover:bg-gray-200', 'hover:bg-gray-200' %>
           <% td_credit_class = 'highlight-orange hover:highlight-orange-light' if student.student_total_credit < 180 %>
           <% td_credit_class = 'highlight-red hover:highlight-red-light' if student.student_total_credit < 120 %>
           <% td_wmg_class = 'highlight-orange hover:highlight-orange-light' if student.wmg_calculator < 70 %>
@@ -71,7 +71,7 @@
             <% if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).present? %>
             <td 
               class="px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" 
-              onclick=<%= "window.location.href='/course/#{Course.find_by(module_code: course).id}';" %>
+              onclick=<%= "window.location.href='/courses/#{Course.find_by(module_code: course).id}';" %>
             >
               <%= Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score %>
             </td>
@@ -82,7 +82,7 @@
           <% if student.wmg_calculator < 0 %>
             <td
               class="px-4 py-2 border" 
-              onclick=<%= "window.location.href='/course/#{Course.find_by(module_code: course).id}';" %>
+              onclick=<%= "window.location.href='/courses/#{Course.find_by(module_code: course).id}';" %>
             >
               update module
             </td>
