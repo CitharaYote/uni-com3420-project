@@ -40,6 +40,8 @@ class StudentsController < ApplicationController
     @programs = Program.all
     @student = Student.find(params[:id])
     @marks = @student.marks
+    @courses = @student.courses.joins(:marks).select("courses.*, marks").distinct
+
   end
 
   # POST /students
