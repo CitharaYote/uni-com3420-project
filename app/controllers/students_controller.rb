@@ -60,15 +60,7 @@ class StudentsController < ApplicationController
     end
   end
 
-  def course_detail
-    @data = []
-    student = Student.find(params[:id])
-    marks = student.marks
-    marks.each do |mark|
-    course = mark.course
-    tmp_data = {module_code:course.module_code,credit:course.credit,title:course.title,status:student.status}
-    @data << tmp_data
-  end
+  
 
   # PATCH/PUT /students/1
   def update
