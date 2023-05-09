@@ -60,8 +60,6 @@ class StudentsController < ApplicationController
     end
   end
 
-
-
   # PATCH/PUT /students/1
   def update
     if @student.update(student_params)
