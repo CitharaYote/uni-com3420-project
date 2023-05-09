@@ -59,4 +59,21 @@ class Student < ApplicationRecord
         total_credit
     end
 
+    def classification
+        classification = ""
+        program = Program.find_by(id: program_id)
+        if student_total_credit != program.program_total_credit
+            classification[""] = "You didn't attain full credit"
+        elsif
+            if wmg_calculator >= 70
+                classification[""] = "First"
+            elsif
+                classification[""] = "Second"
+            else
+                classification[""] = "Third"
+            end
+        end
+        classification
+    end
+
 end

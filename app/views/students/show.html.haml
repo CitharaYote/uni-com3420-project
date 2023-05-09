@@ -14,6 +14,8 @@
             %dd.col-md-9= @student.regID
             %dt.col-md-10 WMG:
             %dd.col-md-9= @student.wmg_calculator
+            %dt.col-md-10 Classification:
+            %dd.col-md-9= @student.classification
             %table.table
               %thead{style: "background-color: lightblue;"}  
                 %tr
@@ -34,7 +36,7 @@
                     -elsif mark.status == 'DE'
                       %td= "#{mark.fst_grade} (DE)"
                     -elsif mark.status == 'NA'
-                      %td= "#{mark.fst_grade} (DE)"
+                      %td= "#{mark.fst_grade} (NA)"
                     -else
                       %td= mark.fst_grade
                     
