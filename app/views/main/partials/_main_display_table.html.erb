@@ -70,8 +70,11 @@
           <div>
             <% @course_list.each do|course| %> 
             <% if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).present? %>
+            <% td_mark_class = "hover:bg-gray-200" %>
+            <% td_mark_class = 'highlight-orange hover:highlight-orange-light' if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score < 70 %>
+            <% td_mark_class = 'highlight-red hover:highlight-red-light' if Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score < 50 %>
             <td 
-              class="px-4 py-2 border hover:bg-gray-200 transition cursor-pointer" 
+              class="<%= td_mark_class%> px-4 py-2 border transition cursor-pointer" 
               onclick=<%= "window.location.href='/courses/#{Course.find_by(module_code: course).id}';" %>
             >
               <%= Mark.find_by(student_id: student.id, course_id: Course.find_by(module_code: course)).final_score %>
