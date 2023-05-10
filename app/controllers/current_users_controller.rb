@@ -1,3 +1,6 @@
+=begin
+  CurrentUserController, provides the framework for accessing CurrentUser ActiveRecord
+=end
 class CurrentUsersController < ApplicationController
   before_action :set_current_user, only: %i[ show edit update destroy ]
 

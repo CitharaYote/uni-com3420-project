@@ -1,5 +1,9 @@
+=begin
+  StaffsController handles the Staff active record for the /staffs pathways
+=end
 class StaffsController < ApplicationController
   before_action :set_staff, only: %i[ show edit update destroy ]
+  # Authorise resource uses CanCanCan checks to ensure which resources including pages are allowed
   authorize_resource
 
   # GET /staffs

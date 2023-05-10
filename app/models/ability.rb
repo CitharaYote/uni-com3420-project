@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# Ability handles the CanCanCan permissions for Users
 
 class Ability
   include CanCan::Ability
@@ -36,7 +37,9 @@ class Ability
     can :manage, Program
     can :manage, Course
     can :manage, Student
+    can :manage, Notification
     can :read, Staff
+    
     if staff.is_admin
       can :manage, Staff
     end

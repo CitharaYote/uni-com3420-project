@@ -1,6 +1,10 @@
+=begin
+StudentsController handles the Student ActiveRecord in relation to the /students pathways
+=end
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy ]
-
+  authorize_resource
+  # Import takes in the file parameter when a file is imported and posted by a User
   def import
     file = params[:file]
 

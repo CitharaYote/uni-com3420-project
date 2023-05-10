@@ -1,5 +1,9 @@
+=begin
+ProgramsController handles all the Program ActiveRecord parts for the /programs pathways
+=end
 class ProgramsController < ApplicationController
   before_action :set_program, only: %i[ show edit update destroy ]
+  authorize_resource
 
   # GET /programs
   def index
@@ -22,6 +26,7 @@ class ProgramsController < ApplicationController
   def edit
   end
 
+  # Creates programs when a post method is done
   # POST /programs
   def create
     @program = Program.new(program_params)
@@ -34,6 +39,7 @@ class ProgramsController < ApplicationController
     end
   end
 
+  # Updates Programs when a patch put method is done
   # PATCH/PUT /programs/1
   def update
     if @program.update(program_params)

@@ -1,12 +1,17 @@
+=begin
+CoursesController handles the /courses pathways and most of the information relating to Courses (Modules)
+=end
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[ show edit update destroy ]
 
+  # Index course page, @courses provides the data needed for the HAML and ERB files
   # GET /courses
   def index
     @courses = Course.all
     @courses = Course.joins(:courses_programs).where(courses_programs: {program_id: params[:program]}) if params[:program].present?
   end
 
+  # Show provides the program information for the HAML and ERB files
   # GET /courses/1
   def show
     @program = Program.all
@@ -23,8 +28,10 @@ class CoursesController < ApplicationController
   def edit
   end
 
+  # create is called when new records are being added to the Course ActiveRecord from any /courses pathway form or other submission.
   # POST /courses
   def create
+    #Creates a new course using the course_params function
     @course = Course.new(course_params)
 
     if @course.save
@@ -43,8 +50,10 @@ class CoursesController < ApplicationController
     end
   end
 
+  # destroy deletes the marks and notifications associated with the course
   # DELETE /courses/1
   def destroy
+    
     @notifications = Notification.where(course_id: @course.id)
     @notifications.each do |notification|
       notification.destroy
@@ -59,6 +68,7 @@ class CoursesController < ApplicationController
     redirect_to courses_url, notice: "Course was successfully destroyed."
   end
 
+  #search provides the search functionality for indentifying a specific module/course based on it's module_code
   # POST /courses/search
   def search
     @courses = Course.where(module_code: params[:search][:module_code])
@@ -71,7 +81,7 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # course_params only allows a list of trusted parameters through for submission to the database
     def course_params
       params.require(:course).permit(:id, :module_code, :credit, :title, program_ids:[])
     end
