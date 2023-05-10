@@ -6,11 +6,15 @@ Credit to the University of Sheffield Department of Computer Science for the tem
 
 
 ## System Information
+
 ### Ruby on Rails
 The project uses **Ruby** version: **3.1.2** on **Rails** version: **7.0.4.2**.
 
 ### PostgreSQL
 The database is SQL handled by **PostgreSQL** version: **14**.
+
+### Tailwind
+The system uses **Tailwind CSS** version: **3.3.1** 
 
 ### Installation
 To use the project with git, follow these commands.
@@ -31,12 +35,19 @@ In the project directory, run these commands:
 
 The project is now installed appropriately. In order to run the application use the following commands in the applications directory.
 ```bundle exec rails s```
+If you see a message regarding shakapacker, do not worry, you can run 
+```gem install shakapacker``` to fix it, or alternatively you can ignore it.
+
 Create a separate terminal window/tab (whilst still in the application directory) and run:
 ```bin/webpacker-dev-server```
 
 If you now visit http://localhost:3000 in a browser you should see your application.
 **If an error message with regards to PendingMigrations occurs, press the button that states 'Run pending migrations'**
 
+### Files
+app/controllers contains page controllers and the application controller itself. It has connects and references to Devise and CanCanCan
+app/models contains Ruby models (ActiveRecords) with their schema table information.
+app/views contains the .erb and .haml files for pages for which the css stylesheets can be found in app/packs/styles
 Things you may want to cover:
 
 - Ruby version

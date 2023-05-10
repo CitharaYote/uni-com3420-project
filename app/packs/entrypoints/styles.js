@@ -1,3 +1,4 @@
+// Application styles for importing the CSS
 require.context("../images", true);
 
 import "bootstrap-icons/font/bootstrap-icons";

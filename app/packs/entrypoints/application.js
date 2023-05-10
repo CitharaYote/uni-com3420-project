@@ -1,3 +1,4 @@
+// Application JS
 import Rails from "@rails/ujs";
 import "bootstrap";
 

@@ -46,7 +46,7 @@ class Student < ApplicationRecord
         
         wmg
     end
-
+    #Calculates a student's total credit
     def student_total_credit
         total_credit = 0
         marks = Mark.where(student_id: id)
@@ -58,7 +58,7 @@ class Student < ApplicationRecord
         end
         total_credit
     end
-
+    #Calculates a student's degree classification
     def classification
         classification = ""
         program = Program.find_by(id: program_id)
