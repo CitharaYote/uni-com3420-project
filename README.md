@@ -17,31 +17,31 @@ The database is SQL handled by **PostgreSQL** version: **14**.
 The system uses **Tailwind CSS** version: **3.3.1** 
 
 ### Installation
-To use the project with git, follow these commands.
+To use the project with git, follow these commands.<br>
 
-First clone the project
-```git clone git@git.shefcompsci.org.uk:com3420-2022-23/team24/project.git``` 
+First clone the project<br>
+```git clone git@git.shefcompsci.org.uk:com3420-2022-23/team24/project.git``` <br>
 Or alternatively, to use the HTTP method:
-```git clone https://git.shefcompsci.org.uk/com3420-2022-23/team24/project.git```
+```git clone https://git.shefcompsci.org.uk/com3420-2022-23/team24/project.git``` <br>
 
 In the project directory, run these commands:
-```cp config/database-sample.yml config/database.yml```
-```bundle install```
-```yarn install```
+```cp config/database-sample.yml config/database.yml``` <br>
+```bundle install```<br>
+```yarn install```<br>
 
-```bundle exec rails db:create```
-```bundle exec rails db:migrate```
-```bundle exec rails db:seed```
+```bundle exec rails db:create```<br>
+```bundle exec rails db:migrate```<br>
+```bundle exec rails db:seed```<br>
 
 The project is now installed appropriately. In order to run the application use the following commands in the applications directory.
-```bundle exec rails s```
-If you see a message regarding shakapacker, do not worry, you can run 
-```gem install shakapacker``` to fix it, or alternatively you can ignore it.
+```bundle exec rails s```<br>
+If you see a message regarding shakapacker, do not worry, you can run <br>
+```gem install shakapacker``` to fix it, or alternatively you can ignore it.<br>
 
-Create a separate terminal window/tab (whilst still in the application directory) and run:
+Create a separate terminal window/tab (whilst still in the application directory) and run:<br>
 ```bin/webpacker-dev-server```
 
-If you now visit http://localhost:3000 in a browser you should see your application.
+If you now visit http://localhost:3000 in a browser you should see your application.<br>
 **If an error message with regards to PendingMigrations occurs, press the button that states 'Run pending migrations'**
 
 ### Files
