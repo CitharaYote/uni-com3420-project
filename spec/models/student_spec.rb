@@ -25,10 +25,16 @@ RSpec.describe Student, type: :model do
       Course.create!(credit:20, module_code:"TEST2")
     ]
   end
+  before do
+    CoursesProgram.create!(course_id: courses[0].id, program_id: program.id)
+    CoursesProgram.create!(course_id: courses[1].id, program_id: program.id)
+    CoursesProgram.create!(course_id: courses[2].id, program_id: program.id)
+  end
   after do
     Mark.destroy_all
     Student.destroy_all
     Notification.destroy_all
+    Program.destroy_all
     Course.destroy_all
   end
 
@@ -54,6 +60,37 @@ RSpec.describe Student, type: :model do
       Mark.create!(student_id:student.id, course_id:courses[1].id, final_score:67, status:"P")
       Mark.create!(student_id:student.id, course_id:courses[2].id, final_score:81, status:"P")
       expect(student.wmg_calculator.round(2)).to eq 71.22
+    end
+  end
+
+  describe '#classification' do
+
+    it 'set classification to First with wmg >= 70' do
+      Mark.create!(student_id:student.id, course_id:courses[0].id, final_score:70, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[1].id, final_score:70, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[2].id, final_score:70, status:"P")
+      expect(student.classification).to eq "First"
+    end
+
+    it 'set classification to Second with 60 <= wmg < 70' do
+      Mark.create!(student_id:student.id, course_id:courses[0].id, final_score:60, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[1].id, final_score:60, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[2].id, final_score:60, status:"P")
+      expect(student.classification).to eq "Second"
+    end
+
+    it 'set classification to Third with 50 <= wmg < 60' do
+      Mark.create!(student_id:student.id, course_id:courses[0].id, final_score:50, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[1].id, final_score:50, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[2].id, final_score:50, status:"P")
+      expect(student.classification).to eq "Third"
+    end
+
+    it 'set classification to not attain full credit with wmg < 50' do
+      Mark.create!(student_id:student.id, course_id:courses[0].id, final_score:40, status:"F")
+      Mark.create!(student_id:student.id, course_id:courses[1].id, final_score:40, status:"F")
+      Mark.create!(student_id:student.id, course_id:courses[2].id, final_score:40, status:"F")
+      expect(student.classification).to eq "You didn't attain full credit"
     end
   end
 end
