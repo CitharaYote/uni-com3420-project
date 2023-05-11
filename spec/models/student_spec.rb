@@ -28,30 +28,31 @@ RSpec.describe Student, type: :model do
   after do
     Mark.destroy_all
     Student.destroy_all
+    Notification.destroy_all
     Course.destroy_all
   end
 
-  describe '#total_credit' do
+  describe '#student_total_credit' do
     it 'returns 25 with module 0,1 passed and 2 failed' do
       Mark.create!(student_id:student.id, course_id:courses[0].id, status:"P")
       Mark.create!(student_id:student.id, course_id:courses[1].id, status:"P")
       Mark.create!(student_id:student.id, course_id:courses[2].id, status:"F")
-      expect(student.total_credit).to eq 25
+      expect(student.student_total_credit).to eq 25
     end
 
     it 'returns 0 with 3 failed module' do
       Mark.create!(student_id:student.id, course_id:courses[0].id, status:"F")
       Mark.create!(student_id:student.id, course_id:courses[1].id, status:"F")
       Mark.create!(student_id:student.id, course_id:courses[2].id, status:"F")
-      expect(student.total_credit).to eq 0
+      expect(student.student_total_credit).to eq 0
     end
   end
 
   describe '#wmg_calculator' do
     it 'returns correct wmg with random value' do
-      Mark.create!(student_id:student.id, course_id:courses[0].id, final_score:58)
-      Mark.create!(student_id:student.id, course_id:courses[1].id, final_score:67)
-      Mark.create!(student_id:student.id, course_id:courses[2].id, final_score:81)
+      Mark.create!(student_id:student.id, course_id:courses[0].id, final_score:58, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[1].id, final_score:67, status:"P")
+      Mark.create!(student_id:student.id, course_id:courses[2].id, final_score:81, status:"P")
       expect(student.wmg_calculator.round(2)).to eq 71.22
     end
   end

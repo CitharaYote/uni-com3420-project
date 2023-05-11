@@ -39,7 +39,7 @@ class Student < ApplicationRecord
         end
 
         if total_credit != 0
-            wmg = total_mark / total_credit
+            wmg = total_mark / student_total_credit
         else
             wmg = 0
         end
