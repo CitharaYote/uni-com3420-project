@@ -33,7 +33,7 @@ class Student < ApplicationRecord
         marks = Mark.where(student_id: id)
         marks.each do |mark| 
             course = Course.find_by(id: mark.course_id)
-            if mark.status == "P"
+            if mark.status == "P" || mark.status == "NA/P"
                 total_mark += course.credit * mark.final_score
             end
         end
@@ -67,7 +67,7 @@ class Student < ApplicationRecord
         elsif
             if wmg_calculator >= 70
                 classification[""] = "First"
-            elsif
+            elsif wmg_calculator >= 60
                 classification[""] = "Second"
             else
                 classification[""] = "Third"
