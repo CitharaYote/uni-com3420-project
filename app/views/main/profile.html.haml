@@ -1,4 +1,5 @@
 =# current-users html
+-# Profile page, displays basic information about current account
 .row.justify-content-center
   .col-sm-8.col-lg-6
     .card
@@ -19,5 +20,6 @@
             %dd.col-md-9= current_user.ou
             %dt.col-md-3 Admin status:
             %dd.col-md-9= Staff.find_by(username: current_user.username).is_admin
+      -# Back to the home page
       .card-footer.d-flex
         = link_to 'Back', "/", class: 'btn btn-link ms-auto'

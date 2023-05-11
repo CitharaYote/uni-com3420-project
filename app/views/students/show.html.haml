@@ -49,7 +49,8 @@
                       %td PASS 
                     -else
                       %td= mark.status
-                    
+
+      -# Print function, which only print the content of block with certain id            
       %button{class: 'btn btn-primary bg-uospurple', :onclick => "print_table('table')"} Print
       :javascript
         function print_table(areaID) {
