@@ -51,6 +51,9 @@ class MainController < ApplicationController
     end
   end
 
+  def profile
+  end
+
   # set_module_index sets the module's index for the modules in the sidebar shown in views/main/partials/_main_display_table.html.erb or on the root page and return the filtered data
   def set_module_index
     @module_index = params[:module_index].to_i

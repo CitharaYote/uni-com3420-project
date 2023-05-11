@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :current_users
+  get 'views/main/profile.html.haml', to: 'main#profile', as: "profile"
   resources :students do
     post :search, on: :collection
     collection do
