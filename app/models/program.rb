@@ -14,6 +14,7 @@ class Program < ApplicationRecord
     
     has_many :students
     has_many :notifications
+    
     #Calculates a program's total number of credits
     def program_total_credit
         total = 0
