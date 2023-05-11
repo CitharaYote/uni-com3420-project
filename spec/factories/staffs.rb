@@ -11,6 +11,13 @@
 FactoryBot.define do
   factory :staff do
     username { "MyString" }
-    is_admin { false }
+
+    trait :default do
+      is_admin { false }
+    end
+
+    trait :admin do
+      is_admin { true }
+    end
   end
 end

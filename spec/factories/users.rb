@@ -27,6 +27,9 @@
 #
 FactoryBot.define do
   factory :user do
-    
+
+    trait :admin do
+      admin { true }
+    end
   end
 end
