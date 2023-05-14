@@ -18,7 +18,6 @@ class Student < ApplicationRecord
     has_many :courses, :through => :marks
     belongs_to :program
 
-
     accepts_nested_attributes_for :marks
 
     # weighted mean grade calculation for individual student

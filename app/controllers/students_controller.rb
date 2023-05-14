@@ -94,6 +94,6 @@ class StudentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def student_params
       params.fetch(:student, {})
-      params.require(:student).permit(:id, :regID, :status, :forename, :surname, :program_id, )
+      params.require(:student).permit(:id, :regID, :status, :forename, :surname, :program_id, :program_name, :mean_grade, :marks_attributes => [:fst_grade, :scd_grade, :course_id, :final_score, :id])
     end
 end
