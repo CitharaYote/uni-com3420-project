@@ -11,9 +11,9 @@ RSpec.feature "Login the system", type: :feature do
       end
 
       scenario "with staff account" do
-        admin = FactoryBot.create(:staff, :default)
-        admin_user = FactoryBot.create(:user, username: admin.username)
-        login_as(admin_user)
+        staff = FactoryBot.create(:staff, :default)
+        staff_user = FactoryBot.create(:user, username: staff.username)
+        login_as(staff_user)
         visit '/'
         expect(page).to have_content("WMG Calculator")
       end
