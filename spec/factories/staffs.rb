@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :staff do
-    username { "MyString" }
+    username { "aca21cf" }
 
     trait :default do
       is_admin { false }
