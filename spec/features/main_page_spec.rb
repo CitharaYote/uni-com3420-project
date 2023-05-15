@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'cancancan'
-require 'capybara/rspec'
 
 RSpec.feature "Login the system", type: :feature do
       scenario "with non-staff account" do
