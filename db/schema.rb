@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,131 +10,124 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_503_192_943) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_192943) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'courses', force: :cascade do |t|
-    t.string 'module_code', null: false
-    t.integer 'credit'
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "courses", force: :cascade do |t|
+    t.string "module_code", null: false
+    t.integer "credit"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'courses_programs', id: false, force: :cascade do |t|
-    t.bigint 'course_id', null: false
-    t.bigint 'program_id', null: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['course_id'], name: 'index_courses_programs_on_course_id'
-    t.index ['program_id'], name: 'index_courses_programs_on_program_id'
+  create_table "courses_programs", id: false, force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "program_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_courses_programs_on_course_id"
+    t.index ["program_id"], name: "index_courses_programs_on_program_id"
   end
 
-  create_table 'current_users', force: :cascade do |t|
-    t.string 'username'
-    t.string 'email'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table 'delayed_jobs', force: :cascade do |t|
-    t.integer 'priority', default: 0, null: false
-    t.integer 'attempts', default: 0, null: false
-    t.text 'handler', null: false
-    t.text 'last_error'
-    t.datetime 'run_at'
-    t.datetime 'locked_at'
-    t.datetime 'failed_at'
-    t.string 'locked_by'
-    t.string 'queue'
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
-    t.index %w[priority run_at], name: 'delayed_jobs_priority'
+  create_table "marks", primary_key: "mark_id", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "fst_grade"
+    t.bigint "scd_grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+    t.float "final_score"
+    t.index ["course_id"], name: "index_marks_on_course_id"
+    t.index ["mark_id"], name: "index_marks_on_mark_id"
+    t.index ["student_id"], name: "index_marks_on_student_id"
   end
 
-  create_table 'marks', primary_key: 'mark_id', force: :cascade do |t|
-    t.bigint 'course_id', null: false
-    t.bigint 'student_id', null: false
-    t.bigint 'fst_grade'
-    t.bigint 'scd_grade'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'status'
-    t.float 'final_score'
-    t.index ['course_id'], name: 'index_marks_on_course_id'
-    t.index ['mark_id'], name: 'index_marks_on_mark_id'
-    t.index ['student_id'], name: 'index_marks_on_student_id'
+  create_table "notifications", force: :cascade do |t|
+    t.integer "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "identifier"
+    t.string "alert"
+    t.boolean "isModule"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_notifications_on_course_id"
   end
 
-  create_table 'notifications', force: :cascade do |t|
-    t.integer 'program_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'identifier'
-    t.string 'alert'
-    t.boolean 'isModule'
-    t.bigint 'course_id'
-    t.index ['course_id'], name: 'index_notifications_on_course_id'
+  create_table "programs", force: :cascade do |t|
+    t.string "program_name"
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'programs', force: :cascade do |t|
-    t.string 'program_name'
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "cas_ticket"
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table 'sessions', force: :cascade do |t|
-    t.string 'session_id', null: false
-    t.text 'data'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'cas_ticket'
-    t.index ['session_id'], name: 'index_sessions_on_session_id', unique: true
-    t.index ['updated_at'], name: 'index_sessions_on_updated_at'
+  create_table "staffs", force: :cascade do |t|
+    t.string "username"
+    t.boolean "is_admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'staffs', force: :cascade do |t|
-    t.string 'username'
-    t.boolean 'is_admin'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "students", force: :cascade do |t|
+    t.bigint "program_id"
+    t.bigint "regID"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "program_name"
+    t.string "forename"
+    t.string "surname"
+    t.boolean "flagged"
+    t.index ["program_id"], name: "index_students_on_program_id"
   end
 
-  create_table 'students', force: :cascade do |t|
-    t.bigint 'program_id'
-    t.bigint 'regID'
-    t.string 'status'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'program_name'
-    t.string 'forename'
-    t.string 'surname'
-    t.boolean 'flagged'
-    t.index ['program_id'], name: 'index_students_on_program_id'
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "uid"
+    t.string "mail"
+    t.string "ou"
+    t.string "dn"
+    t.string "sn"
+    t.string "givenname"
+    t.boolean "admin", default: false
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["username"], name: "index_users_on_username"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.integer 'sign_in_count', default: 0, null: false
-    t.datetime 'current_sign_in_at'
-    t.datetime 'last_sign_in_at'
-    t.string 'current_sign_in_ip'
-    t.string 'last_sign_in_ip'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.string 'username'
-    t.string 'uid'
-    t.string 'mail'
-    t.string 'ou'
-    t.string 'dn'
-    t.string 'sn'
-    t.string 'givenname'
-    t.boolean 'admin', default: false
-    t.index ['email'], name: 'index_users_on_email'
-    t.index ['username'], name: 'index_users_on_username'
-  end
-
-  add_foreign_key 'notifications', 'courses'
+  add_foreign_key "notifications", "courses"
 end
