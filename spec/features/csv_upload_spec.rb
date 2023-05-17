@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'capybara/rspec'
 
 RSpec.feature "Upload the csv file", type: :feature do
     before do
