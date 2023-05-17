@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: staffs
@@ -10,7 +12,7 @@
 #
 FactoryBot.define do
   factory :staff do
-    username { "aca21cf" }
+    username { 'aca21cf' }
 
     trait :default do
       is_admin { false }

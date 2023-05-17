@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCoursesPrograms < ActiveRecord::Migration[7.0]
   def change
     create_join_table :courses, :programs do |t|
@@ -6,7 +8,5 @@ class CreateCoursesPrograms < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-
-
   end
 end

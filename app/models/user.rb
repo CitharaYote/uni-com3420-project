@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -27,6 +29,6 @@
 #
 class User < ApplicationRecord
   include EpiCas::DeviseHelper
-  
+
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  end
+end

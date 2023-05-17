@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -20,6 +22,6 @@
 #  fk_rails_...  (course_id => courses.id)
 #
 class Notification < ApplicationRecord
-    belongs_to :course, optional: true
-    belongs_to :program, optional: true
+  belongs_to :course, optional: true
+  belongs_to :program, optional: true
 end

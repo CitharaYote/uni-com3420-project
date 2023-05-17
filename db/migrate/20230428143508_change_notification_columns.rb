@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeNotificationColumns < ActiveRecord::Migration[7.0]
   def change
     remove_column :notifications, :source_name

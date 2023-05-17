@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: course_modules
@@ -10,7 +12,7 @@
 #
 FactoryBot.define do
   factory :course_module do
-    moduleCode { "MyString" }
-    credit { "MyString" }
+    moduleCode { 'MyString' }
+    credit { 'MyString' }
   end
 end

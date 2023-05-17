@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: courses_programs
@@ -14,6 +16,5 @@
 #
 FactoryBot.define do
   factory :courses_program do
-    
   end
 end

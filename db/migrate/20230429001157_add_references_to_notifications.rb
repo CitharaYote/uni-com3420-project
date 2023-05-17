@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddReferencesToNotifications < ActiveRecord::Migration[7.0]
   def change
     add_reference :notifications, :course, foreign_key: true

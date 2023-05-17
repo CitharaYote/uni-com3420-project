@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: programs
@@ -10,6 +12,6 @@
 #
 FactoryBot.define do
   factory :program do
-    program_code { "MyString" }
+    program_code { 'MyString' }
   end
 end

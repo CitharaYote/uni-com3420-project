@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: students
@@ -15,7 +17,7 @@
 #
 FactoryBot.define do
   factory :student do
-    regID { "MyString" }
-    status { "MyString" }
+    regID { 'MyString' }
+    status { 'MyString' }
   end
 end

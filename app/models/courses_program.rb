@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: courses_programs
@@ -13,6 +15,6 @@
 #  index_courses_programs_on_program_id  (program_id)
 #
 class CoursesProgram < ApplicationRecord
-    belongs_to :course
-    belongs_to :program
+  belongs_to :course
+  belongs_to :program
 end

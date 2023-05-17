@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get 'views/main/profile.html.haml', to: 'main#profile', as: "profile"
+  get 'views/main/profile.html.haml', to: 'main#profile', as: 'profile'
   resources :students do
     post :search, on: :collection
     collection do
@@ -14,11 +16,11 @@ Rails.application.routes.draw do
   end
   resources :staffs
   resources :notifications
-  
+
   # resources :current_users
-  mount EpiCas::Engine, at: "/"
+  mount EpiCas::Engine, at: '/'
   devise_for :users, controllers: {
-  sessions: 'users/sessions'
+    sessions: 'users/sessions'
   }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -27,8 +29,8 @@ Rails.application.routes.draw do
   post 'set_search', to: 'main#set_search'
   post '/', to: 'main#home'
 
-  get 'course_detail',to: "students#course_detail"
- 
+  get 'course_detail', to: 'students#course_detail'
+
   # Defines the root path route ("/")
-  root "main#home"
+  root 'main#home'
 end

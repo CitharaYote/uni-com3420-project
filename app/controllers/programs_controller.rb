@@ -1,8 +1,8 @@
-=begin
-ProgramsController handles all the Program ActiveRecord parts for the /programs pathways
-=end
+# frozen_string_literal: true
+
+# ProgramsController handles all the Program ActiveRecord parts for the /programs pathways
 class ProgramsController < ApplicationController
-  before_action :set_program, only: %i[ show edit update destroy ]
+  before_action :set_program, only: %i[show edit update destroy]
   authorize_resource
 
   # GET /programs
@@ -13,7 +13,7 @@ class ProgramsController < ApplicationController
   # GET /programs/1
   def show
     @program = Program.find(params[:id])
-    @courses = @program.courses.joins(:courses_programs).select("courses.*, courses_programs").distinct
+    @courses = @program.courses.joins(:courses_programs).select('courses.*, courses_programs').distinct
   end
 
   # GET /programs/new
@@ -23,8 +23,7 @@ class ProgramsController < ApplicationController
   end
 
   # GET /programs/1/edit
-  def edit
-  end
+  def edit; end
 
   # Creates programs when a post method is done
   # POST /programs
@@ -33,7 +32,7 @@ class ProgramsController < ApplicationController
     @program.course_ids = params[:program][:course_ids]
 
     if @program.save
-      redirect_to @program, notice: "Program was successfully created."
+      redirect_to @program, notice: 'Program was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,7 +42,7 @@ class ProgramsController < ApplicationController
   # PATCH/PUT /programs/1
   def update
     if @program.update(program_params)
-      redirect_to @program, notice: "Program was successfully updated."
+      redirect_to @program, notice: 'Program was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,7 +51,7 @@ class ProgramsController < ApplicationController
   # DELETE /programs/1
   def destroy
     @program.destroy
-    redirect_to programs_url, notice: "Program was successfully destroyed."
+    redirect_to programs_url, notice: 'Program was successfully destroyed.'
   end
 
   # POST /programs/search
@@ -62,13 +61,14 @@ class ProgramsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_program
-      @program = Program.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def program_params
-      params.require(:program).permit(:id, :program_name, :title , course_ids: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_program
+    @program = Program.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def program_params
+    params.require(:program).permit(:id, :program_name, :title, course_ids: [])
+  end
 end

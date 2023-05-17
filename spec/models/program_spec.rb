@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: programs
@@ -11,12 +13,12 @@
 require 'rails_helper'
 
 RSpec.describe Program, type: :model do
-  let(:program){Program.create!}
+  let(:program) { Program.create! }
   let(:courses) do
     [
-      Course.create!(credit:10, module_code:"TEST0"),
-      Course.create!(credit:15, module_code:"TEST1"),
-      Course.create!(credit:20, module_code:"TEST2")
+      Course.create!(credit: 10, module_code: 'TEST0'),
+      Course.create!(credit: 15, module_code: 'TEST1'),
+      Course.create!(credit: 20, module_code: 'TEST2')
     ]
   end
   before do

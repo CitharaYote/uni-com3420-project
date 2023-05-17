@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: marks
@@ -19,6 +21,6 @@
 #  index_marks_on_student_id  (student_id)
 #
 class Mark < ApplicationRecord
-    belongs_to :student
-    belongs_to :course
+  belongs_to :student
+  belongs_to :course
 end
