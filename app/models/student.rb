@@ -56,9 +56,9 @@ class Student < ApplicationRecord
 
   # Calculates a student's degree classification
   def classification
-    classification = {}
+    classification = ''
     program = Program.find_by(id: program_id)
-    classification[''] = "You didn't attain full credit" if student_total_credit != program.program_total_credit
+    classification = "You didn't attain full credit" if student_total_credit != program.program_total_credit
     classification
   end
 end
