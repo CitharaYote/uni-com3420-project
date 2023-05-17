@@ -14,10 +14,8 @@ RSpec.feature 'Home page', type: :feature do
     visit root_path
   end
 
-  scenario 'User can search student by registration number' do
-    find('input#sid_search', wait: 5)
-    fill_in 'sid_search', with: '20230501'
-    find('input#sid_search').send_keys(:enter)
+  scenario "User can search student by registration number" do
+    fill_in "sid_search", with: "20230501\n"
     expect(page).not_to have_content('20230502')
     expect(page).to have_content('82.0')
   end
