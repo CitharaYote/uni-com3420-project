@@ -58,7 +58,21 @@ class Student < ApplicationRecord
   def classification
     classification = ''
     program = Program.find_by(id: program_id)
-    classification = "You didn't attain full credit" if student_total_credit != program.program_total_credit
+    if student_total_credit == program.program_total_credit
+      classification += "Master "
+      if wmg_calculator > 70
+        classification += "(Class one Honours)"
+      elsif wmg_calculator > 60
+        classification += "(Class two Honours)"
+      else wmg_calculator > 50
+        classification += "(Class three Honours)"
+      end
+    elsif student_total_credit >= 120
+      classification = "Diploma (total credit: #{student_total_credit})"
+    else
+      classification = "Certificate (total credit: #{student_total_credit})"
+    end
+    
     classification
   end
 end
