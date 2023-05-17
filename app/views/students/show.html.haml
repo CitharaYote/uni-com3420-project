@@ -42,7 +42,10 @@
                       %td= mark.fst_grade
                     
                     %td= mark.scd_grade
-                    %td= course.credit
+                    -if course.credit.present?
+                      %td= course.credit
+                    -else 
+                      %td -
                     %td= mark.final_score
 
                     -if mark.final_score >= 50
