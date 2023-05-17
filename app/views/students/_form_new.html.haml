@@ -5,7 +5,8 @@
     = f.label :surname
     = f.text_field :surname
 
-    -unless @student.marks.present?
+    - counter = 0
+    - while counter < 1
       = f.fields_for :marks do |marks_form|
         = marks_form.label :course_id
         = marks_form.select :course_id, options_for_select(@courses.collect {|c| [c.module_code, c.id]}, {prompt: "Select Module"})
@@ -15,6 +16,9 @@
 
         = marks_form.label :scd_grade
         = marks_form.text_field :scd_grade
+
+      - counter += 1
+      
 
   .card-footer.d-flex
     %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
