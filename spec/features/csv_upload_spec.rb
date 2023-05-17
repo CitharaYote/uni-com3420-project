@@ -8,8 +8,7 @@ RSpec.feature 'Upload the csv file', type: :feature do
     admin_user = FactoryBot.create(:user, username: admin.username)
     login_as(admin_user)
     visit students_path
-    page.attach_file('file',
-                     "#{Rails.root}/spec/features/test_file/Student module marks - MUST35 - MUS642 (60).csv")
+    page.attach_file('file',"#{Rails.root}/spec/features/test_file/Student module marks - MUST35 - MUS642 (60).csv")
     click_button 'Upload Students and Marks'
   end
 
