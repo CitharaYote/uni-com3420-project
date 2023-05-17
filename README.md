@@ -35,11 +35,13 @@ In the project directory, run these commands:
 
 The project is now installed appropriately. In order to run the application use the following commands in the applications directory.
 ```bundle exec rails s```<br>
-If you see a message regarding shakapacker, do not worry, you can run <br>
-```gem install shakapacker``` to fix it, or alternatively you can ignore it.<br>
 
 Create a separate terminal window/tab (whilst still in the application directory) and run:<br>
 ```bin/webpacker-dev-server```
+
+If you see a message regarding shakapacker version, do not worry, you can run this command to update the version <br>
+```gem install shakapacker``` to fix it, or alternatively you can ignore it.<br>
+
 
 If you now visit http://localhost:3000 in a browser you should see your application.<br>
 **If an error message with regards to PendingMigrations occurs, press the button that states 'Run pending migrations'**
@@ -50,20 +52,3 @@ app/models contains Ruby models (ActiveRecords) with their schema table informat
 app/views contains the .erb and .haml files for pages for which the css stylesheets can be found in app/packs/styles
 Things you may want to cover:
 
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
