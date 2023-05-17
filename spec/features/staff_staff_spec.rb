@@ -6,7 +6,8 @@ RSpec.feature "Visit the staff page with staff account", type: :feature do
 
     before do
         login_as(staff_user)
-        visit staffs_path
+        visit '/'
+        click_link "Staff"
     end
 
     scenario "could only read" do

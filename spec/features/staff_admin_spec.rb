@@ -6,7 +6,8 @@ RSpec.feature "Visit the staff page with admin account", type: :feature do
     
     before do
         login_as(admin_user)
-        visit staffs_path
+        visit '/'
+        click_link "Staff"
     end
 
     scenario "could see manage buttons" do
@@ -28,10 +29,26 @@ RSpec.feature "Visit the staff page with admin account", type: :feature do
         expect(current_path).to eq(staffs_path)
     end
 
-    scenario "could change staff details" do
+    scenario "could change staff admin status" do
         click_link "Edit"
-        fill_in 'Username', with: 'test'
+        uncheck "Is admin"
         click_button "Save"
-        expect(page).to have_content("test")
+        click_link "Back"
+        expect(page).to have_no_content("Edit")
+        expect(page).to have_no_content("Remove")
+    end
+
+    scenario "could add a new staff" do
+        click_link "New Staff"
+        fill_in "Username", with: "elb20ym"
+        check "Is admin"
+        click_button "Save"
+        click_link "Log out"
+        new_user = FactoryBot.create(:user, username:"elb20ym")
+        login_as(new_user)
+        visit '/'
+        click_link "Staff"
+        expect(page).to have_content("Edit")
+        expect(page).to have_content("Remove")
     end
 end
