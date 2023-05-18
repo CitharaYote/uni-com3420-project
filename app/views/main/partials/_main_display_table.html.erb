@@ -17,7 +17,7 @@
         <%= select("ProgramThing","PrgmSelect", Program.all.collect {|p| [p.program_name, p.program_name]}, {:include_blank => true}, {:onchange => "window.location.href = '/?program_name='+this.value"}) %>
       </div>
       <p class="mt-2 text-sm italic text-right text-gray-500">
-        Click on a student for more information!
+        Click on a cell for more information!
       </p>
     </div>
   </div>
@@ -27,12 +27,12 @@
         <tr>
           <th class="px-4 py-2">Reg No.</th>
           <th class="px-4 py-2">Programme</th>
-          <th class="px-4 py-2">Total Credit</th>
+          <th class="px-4 py-2">Total Credits</th>
           <%# adding in dynamically updated table %>
           <div>
             <% @course_list.each do |course| %>
             <th class="px-4 py-2">
-              <%= "#{Course.find_by(module_code: course).module_code} Credit(#{Course.find_by(module_code: course).credit})" %>
+              <%= "#{Course.find_by(module_code: course).module_code} [#{Course.find_by(module_code: course).credit} Credits]" %>
             </th>
             <% end %>
           </div>

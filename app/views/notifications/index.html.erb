@@ -1,29 +1,41 @@
 <!-- HTML for Notifications page -->
 <div class = "card">
+
+  <div class = "card-header flex flex-row tw-items-center py-4">
+    <span class="tw-text-2xl text-gray-700">
+      Showing
+    </span>
+    <span class="tw-text-2xl font-bold mx-2">
+      <%=@notifications.size%>
+    </span>
+    <span class="tw-text-2xl text-gray-700 tw-mr-8">
+      Notifications
+    </span>
+  </div>
   
-  <div class="body">
-      <table class="table">
-        <thead style="background-color: lightblue;">
-          <th>
+  <div class="body p-8">
+      <table class="w-full table-auto tw-overflow-y-scroll max-h-96">
+        <thead class="bg-gray-300">
+          <th class="px-4 py-2">
             Identifier
           </th>
-          <th>
+          <th class="px-4 py-2">
             Alert Information
           </th>
-          <th>
+          <th class="px-4 py-2">
           </th>
         </thead>
         <tbody>
           <% @notifications.each do |notification|%>
-            <tr>
-              <td><%= notification.identifier %></td>
-              <td><%= notification.alert %></td>
-              <td>
+            <tr class="odd:bg-gray-100 even:bg-white hover:bg-gray-200 transition">
+              <td class="px-4 py-2 border"><%= notification.identifier %></td>
+              <td class="px-4 py-2 border"><%= notification.alert %></td>
+              <td class="px-4 py-2 border">
                 <div class="btn-toolbar float-end">
                   <%if notification.program.present? %> 
-                    <%= link_to "Show #{notification.identifier}", program_path(notification.program), class: 'btn btn-outline-secondary btn-sm' %>  
+                    <%= link_to "Show #{notification.identifier}", program_path(notification.program), class: 'btn btn-outline-secondary ms-1 btn-sm' %>  
                   <%elsif notification.course.present?%> 
-                    <%= link_to "Show #{notification.identifier}", course_path(notification.course), class: 'btn btn-outline-secondary btn-sm'%>
+                    <%= link_to "Show #{notification.identifier}", course_path(notification.course), class: 'btn btn-outline-secondary ms-1 btn-sm'%>
                   <%end%>  
                   <%= link_to 'Delete', notification, method: :delete, class: 'btn btn-outline-danger ms-1 btn-sm' %>
                 </div>

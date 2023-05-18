@@ -4,9 +4,9 @@
   - if can? :manage, Staff
     .card-body
       = f.input :username, wrapper_html: { class: 'mb-3' }
-      = f.input :is_admin, wrapper_html: { class: 'mb-3' }
+      = f.input :is_admin, wrapper_html: { class: 'mb-3' }, label: "Administrator"
 
     .card-footer.d-flex
-      %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+      %button{ type: 'submit', class: "bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition" }
         Save
-      = link_to 'Back', staffs_path, class: 'btn btn-link ms-auto'
+      = link_to 'Back', staffs_path, class: 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition ms-auto'

@@ -1,73 +1,80 @@
 <!-- students index -->
 <div class = "card">
-  <div class = "card-header d-flex align-items-center">
-    <span>
-      Listing Students
+  <div class = "card-header flex flex-row tw-items-center py-4">
+    <span class="tw-text-2xl text-gray-700">
+      Showing
     </span>
-    <span class="ms-1">
-      (<%=@students.size%>)
+    <span class="tw-text-2xl font-bold mx-2">
+      <%=@students.size%>
+    </span>
+    <span class="tw-text-2xl text-gray-700 tw-mr-8">
+      Students
     </span>
     <%= render "students/import_form" %>
-    <div>
+    <%# <div class="flex flex-row items-center"> %>
       <%# make the dropdown unique here also make the filter for status unique %>
       <%= form_tag students_path, method: :get do %>
-        <%= select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: '(All) Programmes' %>
-        <%# <%= select_tag :status, options_for_select(Student.pluck(:status).uniq.map{ |s| [s.status, s.id]}, params[:status]), include_blank: 'Filter By Status' %>
-        <%= button_tag "Filter", class: "btn btn-primary bg-uospurple", type: "submit" %>
+        <%= select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: '(All) Programmes', class: "tw-ml-8 tw-mr-1 border rounded-lg tw-py-2" %>
+        <%= button_tag "Filter", class: "bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition", type: "submit" %>
       <% end %>
-    </div>
-    <a href="/students/new" class="btn btn-outline-secondary ms-auto">New Student</a>
+    <%# </div> %>
+    <a href="/students/new" class="bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition ms-auto">New Student</a>
   </div>
   <div class="card-body">
   <%= simple_form_for :search, url: search_students_path, method: :post do |f| %>
-    <div class="mb-3">
-      <%= f.input :regID %>
-    </div>
-    <div class="btn-toolbar">
-      <%= f.submit 'Search', class: 'btn btn-outline-secondary' %>
-      <%= link_to 'Reset', students_path, class: 'btn btn-link ms-1' %>
+    <div class="flex tw-max-w-xl tw-items-center">
+      <div class="">
+        <%= f.input :regID, {label: false, class: "bg-white text-gray-700 py-1 border px-4 rounded-lg hover:bg-opacity-70 transition tw-mr-2", placeholder: "Reg ID"} %>
+      </div>
+      <div class="flex flex-row items-center tw-ml-8">
+        <%= f.submit 'Search', class: 'bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition' %>
+        <%= link_to 'Reset', students_path, class: 'mx-4 tw-bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition' %>
+      </div>
     </div>
   <% end %>
   </div>
-  <div class="body">
+  <hr />
+  <div class="body p-8">
 
-      <table class="table">
-        <thead style="background-color: lightblue;">
-          <th>
+      <table class="w-full table-auto tw-overflow-y-scroll max-h-96">
+        <thead class="bg-gray-300">
+          <th class="px-4 py-2">
             Programme Code
           </th>
-          <th>
+          <th class="px-4 py-2">
             Forename
           </th>
-          <th>
+          <th class="px-4 py-2">
             Surname
           </th>
-          <th>
+          <th class="px-4 py-2">
             RegID
           </th>
-          <th>
+          <th class="px-4 py-2">
             Status
           </th>
-          <th>
-            Option
+          <th class="px-4 py-2">
+            
           </th>
         </thead>
-        <tbody>
+        <tbody class="h-96 overflow-hidden">
           <% @students.each do |student|%>
-            <tr>
-              <td><%= student.program_name %></td>
-              <td><%= student.forename %></td>
-              <td><%= student.surname %></td>
-              <td><%= student.regID %></td>
+            <tr class="odd:bg-gray-100 even:bg-white hover:bg-gray-200 transition cursor-pointer" onclick=<%= "window.location.href='/students/#{student.id}';" %>>
+              <td class="px-4 py-2 border"><%= student.program_name %></td>
+              <td class="px-4 py-2 border"><%= student.forename %></td>
+              <td class="px-4 py-2 border"><%= student.surname %></td>
+              <td class="px-4 py-2 border"><%= student.regID %></td>
               <% if student.flagged == true %>
                 <td class= 'font-bold'>Needs Attention</td>
               <% else %>
-                <td>Fully Registered</td>
+                <td class="px-4 py-2 border">Fully Registered</td>
               <% end %>
               </td>
-              <td>
-                <%= link_to 'Show', student, class: 'btn btn-outline-secondary ms-1 btn-sm' %>
-                <%= link_to 'Remove', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm' %>
+              <td class="px-4 py-2 border">
+                <div class="btn-toolbar float-end">
+                  <%= link_to 'Show', student, class: 'btn btn-outline-secondary ms-1 btn-sm' %>
+                  <%= link_to 'Remove', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm' %>
+                </div>
               </td>
             </tr>
           <% end %>

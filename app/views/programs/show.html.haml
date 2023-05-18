@@ -2,20 +2,23 @@
 .row.justify-content-center
   .col-sm-8.col-lg-6
     .card
-      .card-header
-        Program details
+      .card-header.flex.flex-row.tw-items-center.py-4
+        %p.text-2xl.text-gray-700
+          Programme Details
       .card-body
         %dl.row.mb-0
-          %dt.col-md-3 Program Code:
+          %dt.col-md-3 Programme Code:
           %dd.col-md-9= @program.program_name
-          %dt.col-md-3 Program Title:
+          %dt.col-md-3 Programme Title:
           %dd.col-md-9= @program.title
           %dt.col-md-3 Courses:
           - @courses.each do |course|
-            %dd= course.module_code
+            %dd.col-md-9= course.module_code
+            %dt.col-md-3
+          %dd.col-md-9
           %dt.col-md-3 Total Credit:
           %dd.col-md-9= @program.program_total_credit
             
       .card-footer.d-flex
-        = link_to 'Edit', edit_program_path(@program), class: 'btn btn-link'
-        = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'
+        = link_to 'Edit', edit_program_path(@program), class: 'bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition'
+        = link_to 'Back', programs_path, class: 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition ms-auto'

@@ -4,7 +4,8 @@
   .col-sm-8.col-lg-6
     .card
       .card-header
-        User Profile
+        %p.text-2xl.text-gray-700
+          Profile
       - if can? :read, Staff
         .card-body
           %dl.row.mb-0
@@ -12,14 +13,14 @@
             %dd.col-md-9= current_user.username
             %dt.col-md-3 Email:
             %dd.col-md-9= current_user.email
-            %dt.col-md-3 First name:
+            %dt.col-md-3 First Name:
             %dd.col-md-9= current_user.givenname
-            %dt.col-md-3 Last name:
+            %dt.col-md-3 Last Name:
             %dd.col-md-9= current_user.sn
             %dt.col-md-3 Department:
             %dd.col-md-9= current_user.ou
-            %dt.col-md-3 Admin status:
+            %dt.col-md-3 Admin Status:
             %dd.col-md-9= Staff.find_by(username: current_user.username).is_admin
       -# Back to the home page
       .card-footer.d-flex
-        = link_to 'Back', "/", class: 'btn btn-link ms-auto'
+        = link_to 'Back', "/", class: 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition ms-auto'

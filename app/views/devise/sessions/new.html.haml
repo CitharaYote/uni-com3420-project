@@ -11,6 +11,6 @@
           = f.input :username, autofocus: true, required: true
           = f.input :password, required: true
         .card-footer
-          %button.btn.btn-primary.bg-uospurple{ type: :submit, class: "bg-uospurple" }
-            Log in
-          .mt-3= render "devise/shared/links"
+          %button{ type: :submit, class: "bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition" }
+            Log In
+          -# .mt-3= render "devise/shared/links"
