@@ -42,7 +42,7 @@ class MainController < ApplicationController
 
       # @students essentially searches the records for a student matching the registration number inputted into the registration search bar (which then became attached as a variable in the URL)
       # The condition below checks the return of the ActiveRecord search
-      redirect_to '/', notice: 'Could not find student with that registration.' unless @students.present?
+      redirect_to '/', alert: 'Could not find student with that registration.' unless @students.present?
     end
   end
 

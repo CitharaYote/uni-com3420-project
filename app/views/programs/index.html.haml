@@ -1,31 +1,39 @@
 -# programs index html
 .card
-  .card-header.d-flex.align-items-center
-    %span Listing Programmes
-    %span.ms-1 (#{@programs.size})
-    = link_to 'New Programme', new_program_path, class: 'btn btn-outline-secondary ms-auto'
+  .card-header.flex.flex-row.tw-items-center.py-4
+    %span.tw-text-2xl.text-gray-700
+      Showing
+    %span.mx-2.tw-text-2xl.font-bold
+      #{@programs.size}
+    %span.tw-text-2xl.text-gray-700.tw-mr-8
+      Programmes
+    = link_to 'New Programme', new_program_path, class: 'bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition ms-auto'
   
   .card-body
     = simple_form_for :search, url: search_programs_path, method: :post do |f|
-      .mb-3= f.input :program_name
+      .tw-max-w-xl.flex.tw-items-center
+        = f.input :program_name, label: false, placeholder: "Programme Name", class: "bg-white text-gray-700 py-1 border px-4 rounded-lg hover:bg-opacity-70 transition tw-mr-2"
 
-      .btn-toolbar
-        = f.submit 'Search', class: 'btn btn-outline-secondary'
-        = link_to 'Reset', programs_path, class: 'btn btn-link ms-1'
-
-  %table.table
-    %thead{style:"background-color: lightblue"}
-      %tr
-        %th Programme Code
-        %th Programme Title
-        %th
-    %tbody
-      - @programs.each do |program|
+        .flex.flex-row.items-center.tw-ml-8
+          = f.submit 'Search', class: 'bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition'
+          = link_to 'Reset', programs_path, class: 'mx-4 tw-bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition'
+  %hr
+  .p-8
+    %table{class: "w-full table-auto tw-overflow-y-scroll max-h-96"}
+      %thead{class: "bg-gray-300"} 
         %tr
-          %td= program.program_name
-          %td= program.title
-          %td
-            .btn-toolbar.float-end
-              = link_to 'Show', program, class: 'btn btn-outline-secondary btn-sm'
-              = link_to 'Edit', edit_program_path(program), class: 'btn btn-outline-secondary ms-1 btn-sm'
-              = link_to 'Remove', program, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'
+          %th.px-4.py-2 Programme Code
+          %th.px-4.py-2 Programme Title
+          %th.px-4.py-2
+      %tbody
+        - @programs.each do |program|
+          %tr{class: "odd:bg-gray-100 even:bg-white hover:bg-gray-200 transition cursor-pointer", onclick: "window.location='#{program_path(program.id)}'"}
+            %td{class: "px-4 py-2 border"} 
+              = program.program_name
+            %td{class: "px-4 py-2 border"} 
+              = program.title
+            %td{class: "px-4 py-2 border"} 
+              .btn-toolbar.float-end
+                = link_to 'Show', program, class: 'btn btn-outline-secondary btn-sm ms-1'
+                = link_to 'Edit', edit_program_path(program), class: 'btn btn-outline-secondary ms-1 btn-sm'
+                = link_to 'Remove', program, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'

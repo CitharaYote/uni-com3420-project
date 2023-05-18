@@ -1,42 +1,52 @@
 -# Courses Index HTML
 .card
-  .card-header.d-flex.align-items-center
+  .card-header.flex.flex-row.tw-items-center.py-4
+    %span.tw-text-2xl.text-gray-700
+      Showing
+    %span.mx-2.tw-text-2xl.font-bold
+      #{@courses.size}
+    %span.tw-text-2xl.text-gray-700.tw-mr-8
+      Modules
     %form{action: courses_path, method: :get}
-      = select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: '(All) Programmes'
-      %button.btn.btn-primary.bg-uospurple{type: 'submit'}
+      = select_tag :program, options_for_select(Program.all.map{ |p| [p.program_name, p.id] }, params[:program]), include_blank: '(All) Programmes', class: "tw-mr-1 border rounded-lg tw-py-2"
+      %button{type: 'submit', class: "bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition"}
         Filter
 
 
     .btn-toolbar.ms-auto
       - if can? :create, Course
-        = link_to 'New Module', new_course_path, class: 'btn btn-outline-secondary ms-auto'
+        = link_to 'New Module', new_course_path, class: 'bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition ms-auto'
 
   .card-body
     = simple_form_for :search, url: search_courses_path, method: :post do |f|
-      .mb-3= f.input :module_code
+      .tw-max-w-xl.flex.tw-items-center
+        = f.input :module_code, label: false, placeholder: "Module Code", class: "bg-white text-gray-700 py-1 border px-4 rounded-lg hover:bg-opacity-70 transition tw-mr-2"
 
-      .btn-toolbar
-        = f.submit 'Search', class: 'btn btn-outline-secondary'
-        = link_to 'Reset', courses_path, class: 'btn btn-link ms-1'
-
-  %table.table
-    %thead{style:"background-color: lightblue;"} 
-      %tr
-        %th Module code
-        %th Credit
-        %th ID
-        %th
-    %tbody
-      - @courses.each do |course|
+        .flex.flex-row.items-center.tw-ml-8
+          = f.submit 'Search', class: 'bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition'
+          = link_to 'Reset', courses_path, class: 'mx-4 tw-bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition'
+  %hr
+  .p-8
+    %table{class: "w-full table-auto tw-overflow-y-scroll max-h-96"}
+      %thead{class: "bg-gray-300"} 
         %tr
-          %td= course.module_code
-          - if course.credit < 0
-            %td UPDATE CREDIT VALUE
-          - else
-            %td= course.credit  
-          %td= course.id
-          %td
-            .btn-toolbar.float-end
-              = link_to 'Show', course, class: 'btn btn-outline-secondary btn-sm'
-              = link_to 'Edit', edit_course_path(course), class: 'btn btn-outline-secondary ms-1 btn-sm'
-              = link_to 'Remove', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'
+          %th.px-4.py-2 Module Code
+          %th.px-4.py-2 Credit
+          %th.px-4.py-2 ID
+          %th.px-4.py-2
+      %tbody
+        - @courses.each do |course|
+          %tr{class: "odd:bg-gray-100 even:bg-white hover:bg-gray-200 transition cursor-pointer", onclick: "window.location='#{course_path(course)}'"}
+            %td{class: "px-4 py-2 border"} 
+              = course.module_code
+            - if course.credit < 0
+              %td{class: "px-4 py-2 border"} UPDATE CREDIT VALUE
+            - else
+              %td{class: "px-4 py-2 border"}= course.credit  
+            %td{class: "px-4 py-2 border"} 
+              = course.id
+            %td{class: "px-4 py-2 border"}
+              .btn-toolbar.float-end
+                = link_to 'Show', course, class: 'btn btn-outline-secondary btn-sm ms-1'
+                = link_to 'Edit', edit_course_path(course), class: 'btn btn-outline-secondary ms-1 btn-sm'
+                = link_to 'Remove', course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm'

@@ -1,42 +1,48 @@
 <!-- Staff index page html -->
 <div class = "card">
-  <div class = "card-header d-flex align-items-center">
-    <span>
-      Listing Staff
+  <div class = "card-header flex flex-row tw-items-center py-4">
+    <span class="tw-text-2xl text-gray-700">
+      Showing
     </span>
-    <span class="ms-1">
-      (There are <%=@staffs.size%> staff members.)
+    <span class="tw-text-2xl font-bold mx-2">
+      <%=@staffs.size%>
+    </span>
+    <span class="tw-text-2xl text-gray-700 tw-mr-8">
+      Staff
     </span>
     <%  if can? :manage, Staff %>
-      <a href="/staffs/new" class="btn btn-outline-secondary ms-auto">New Staff</a>
+      <a href="/staffs/new" class="bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition ms-auto">New Staff</a>
     <% end %>
   </div>
-  <div class="body">
-    <div style="float:left;width:100%%;">
-      <table class="table">
-        <thead>
-          <th>
+  <div class="body p-8">
+
+      <table class="w-full table-auto tw-overflow-y-scroll max-h-96">
+        <thead class="bg-gray-300">
+          <th class="px-4 py-2">
             User
           </th>
-          <th>
-            Actions
+          <th class="px-4 py-2">
+          
           </th>
         </thead>
         <tbody>
           <% @staffs.each do |staff|%>
-            <tr>
-              <td><%= staff.username %></td>
-              <td>
+            <tr class="odd:bg-gray-100 even:bg-white hover:bg-gray-200 transition cursor-pointer" onclick=<%= "window.location.href='/staffs/#{staff.id}';" %>>
+              <td class="px-4 py-2 border"><%= staff.username %></td>
+              <td class="px-4 py-2 border">
               <%  if can? :manage, Staff %>
-                <a href="/staffs/<%=staff.id%>/edit" style="color: blue">Edit</a>&nbsp;/&nbsp;
-                <a href="/staffs/<%=staff.id%>" data-method="delete" style="color: red">Remove</a>
+                <div class="btn-toolbar float-end">
+                  <%= link_to 'Show', staff, class: 'btn btn-outline-secondary ms-1 btn-sm' %>
+                  <%= link_to 'Edit', edit_staff_path(staff), class: 'btn btn-outline-secondary ms-1 btn-sm' %>
+                  <%= link_to 'Remove', staff, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger ms-1 btn-sm' %>
+                </div>
               </td>
               <% end %>
             </tr>
           <% end %>
         </tbody>
       </table>
-    </div>
+
   </div>
   
 

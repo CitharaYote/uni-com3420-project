@@ -7,6 +7,6 @@
     = f.input :course_ids, label: 'Course', as: :check_boxes, collection: Course.order('module_code').map { |courses| [courses.module_code, courses.id] }, include_blank: false
 
   .card-footer.d-flex
-    %button.btn.btn-primary.bg-uospurple{ type: 'submit' }
+    %button{ type: 'submit', class: "bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition" }
       Save
-    = link_to 'Back', programs_path, class: 'btn btn-link ms-auto'
+    = link_to 'Back', programs_path, class: 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition ms-auto'
