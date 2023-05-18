@@ -9,7 +9,7 @@ RSpec.feature 'Visit the profile page', type: :feature do
     login_as(staff_user)
     visit '/'
     click_link 'Profile'
-    expect(page).to have_content('User Profile')
+    expect(page).to have_content('My Profile')
   end
 
   scenario "with staff account should see 'false' in section admin status" do

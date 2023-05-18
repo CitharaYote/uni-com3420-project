@@ -33,7 +33,7 @@ RSpec.feature 'Visit the staff page with admin account', type: :feature do
 
   scenario 'could change staff admin status' do
     click_link 'Edit'
-    uncheck 'Is admin'
+    uncheck 'Administrator'
     click_button 'Save'
     click_link 'Back'
     expect(page).to have_no_content('Edit')
@@ -43,9 +43,9 @@ RSpec.feature 'Visit the staff page with admin account', type: :feature do
   scenario 'could add a new staff' do
     click_link 'New Staff'
     fill_in 'Username', with: 'elb20ym'
-    check 'Is admin'
+    check 'Administrator'
     click_button 'Save'
-    click_link 'Log out'
+    click_link 'Log Out'
     new_user = FactoryBot.create(:user, username: 'elb20ym')
     login_as(new_user)
     visit '/'
