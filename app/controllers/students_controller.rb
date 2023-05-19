@@ -69,6 +69,7 @@ class StudentsController < ApplicationController
   # PATCH/PUT /students/1
   def update
     if @student.update(student_params)
+      @student.update_final_scores
       redirect_to @student, notice: 'Student was successfully updated.'
     else
       render :edit, status: :unprocessable_entity

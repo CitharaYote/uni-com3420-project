@@ -79,4 +79,36 @@ class Student < ApplicationRecord
     
     classification
   end
+
+  #updates final mark attribute of student
+  def update_final_scores
+    marks = Mark.where(student_id: id)
+    marks.each do |mark|
+      if mark.scd_grade.present?
+        if (mark.fst_grade.present?) && (mark.fst_grade > mark.scd_grade)
+          mark.final_score = mark.fst_grade
+          mark.save
+        elsif mark.status == "NA"
+          mark.final_score = mark.scd_grade
+          mark.save
+        elsif mark.scd_grade > 50
+          mark.final_score = 50
+          mark.save
+        else 
+          mark.final_score = mark.scd_grade
+          mark.save
+        end
+      else
+        mark.final_score = mark.fst_grade
+        mark.save
+      end
+      if mark.final_score < 50
+        mark.status = 'F'
+        mark.save
+      else
+        mark.status = 'P'
+        mark.save
+      end
+    end 
+  end
 end
