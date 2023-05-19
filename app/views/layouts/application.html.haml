@@ -2,7 +2,7 @@
 -# Application HTML
 %html{ lang: 'en-GB' }
   %head
-    %title Project
+    %title WMG Calculator | Team 24
 
     %meta{ :'http-equiv' => "content-type", content: "text/html; charset=utf-8" }
     %meta{ :'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }
@@ -11,7 +11,7 @@
     - if content_for(:description)
       %meta{ content: content_for(:description), name: 'description' }
 
-    %title= ["Project", content_for(:title)].compact.join(' - ')
+    -# %title= ["Project", content_for(:title)].compact.join(' - ')
 
     = csrf_meta_tags
     = csp_meta_tag
