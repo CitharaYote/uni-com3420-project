@@ -9,7 +9,7 @@ RSpec.feature 'Visit the staff page with staff account', type: :feature do
   before do
     login_as(staff_user)
     visit '/'
-    click_link 'Staff'
+    expect(page).to have_content('Staff')
   end
 
   scenario 'could only read' do

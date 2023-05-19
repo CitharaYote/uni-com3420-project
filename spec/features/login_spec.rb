@@ -8,7 +8,7 @@ RSpec.feature 'Login the system', type: :feature do
     visit new_user_session_path
     fill_in with: user.username
     fill_in with: user.password
-    click_button 'Log in'
+    click_button 'Log In'
     expect(page).to have_content('User is not a Staff')
   end
 
