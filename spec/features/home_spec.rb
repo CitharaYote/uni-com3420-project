@@ -34,13 +34,14 @@ RSpec.feature 'Home page', type: :feature do
 
   #WIP
   scenario "User can filter by programme" do
-    select('MUST35', from: 'ProgramThing_PrgmSelect', visible: false)
+    select('MUST35', from: 'ProgramThing[PrgmSelect]')
     expect(page).to have_no_content('MUST50')
   end
 
   #WIP
   scenario "User can click on elements in the main table to see more information" do
-    find('.bi-person-fill').click
+    find(:xpath, ".//tr[contains(./td[@class='px-4 py-2 border hover:bg-gray-200 transition cursor-pointer'], '20230501')]").click()
+    save_page("/home/morepp/project/screenshot/t.html")
     expect(page).to have_css('.fixed.w-2/3')
   end
 end
