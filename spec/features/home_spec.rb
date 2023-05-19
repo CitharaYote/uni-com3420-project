@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+# Feature testing for the main page
+
 require 'rails_helper'
 
 RSpec.feature 'Home page', type: :feature do
+  # before testing, log in as admin, upload two csv files
   before do
     admin = FactoryBot.create(:staff, :admin)
     admin_user = FactoryBot.create(:user, username: admin.username)
@@ -19,29 +22,18 @@ RSpec.feature 'Home page', type: :feature do
     visit root_path
   end
 
+  # test the search bar function
   scenario "User can search student by registration number" do
     fill_in "sid_search", with: "20230501\n"
     expect(page).not_to have_content('20230502')
     expect(page).to have_content('82.0')
   end
 
+  #test the module list filter
   scenario "User can filter by module" do
     checkbox = find('input[type="checkbox"][value="MUS650"]')
     checkbox.check
     click_button 'Submit'
     expect(page).to have_no_content('MUS640')
-  end
-
-  #WIP
-  scenario "User can filter by programme" do
-    select('MUST35', from: 'ProgramThing[PrgmSelect]')
-    expect(page).to have_no_content('MUST50')
-  end
-
-  #WIP
-  scenario "User can click on elements in the main table to see more information" do
-    find(:xpath, ".//tr[contains(./td[@class='px-4 py-2 border hover:bg-gray-200 transition cursor-pointer'], '20230501')]").click()
-    save_page("/home/morepp/project/screenshot/t.html")
-    expect(page).to have_css('.fixed.w-2/3')
   end
 end

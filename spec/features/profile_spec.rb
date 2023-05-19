@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+# Feature testing for profile page
+
 require 'rails_helper'
 
 RSpec.feature 'Visit the profile page', type: :feature do
+  # test if the profile page can be visit by click profile link
   scenario 'can be done with the dropdown option' do
     staff = FactoryBot.create(:staff, :default)
     staff_user = FactoryBot.create(:user, username: staff.username)
@@ -12,6 +15,7 @@ RSpec.feature 'Visit the profile page', type: :feature do
     expect(page).to have_content('My Profile')
   end
 
+  # test if the staff users see the correct admin status 
   scenario "with staff account should see 'false' in section admin status" do
     staff = FactoryBot.create(:staff, :default)
     staff_user = FactoryBot.create(:user, username: staff.username)
@@ -20,6 +24,7 @@ RSpec.feature 'Visit the profile page', type: :feature do
     expect(page).to have_content('false')
   end
 
+  # test if the admin users see the correct admin status 
   scenario "with admin account should see 'true' in section admin status" do
     admin = FactoryBot.create(:staff, :admin)
     admin_user = FactoryBot.create(:user, username: admin.username)

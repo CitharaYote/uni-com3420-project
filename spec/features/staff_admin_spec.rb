@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+# Feature testing for the staff page with admin authority
+
 require 'rails_helper'
 
 RSpec.feature 'Visit the staff page with admin account', type: :feature do
+  
+  # before testing log in as admin
   let(:admin) { FactoryBot.create(:staff, :admin) }
   let(:admin_user) { FactoryBot.create(:user, username: admin.username) }
 
@@ -12,12 +16,14 @@ RSpec.feature 'Visit the staff page with admin account', type: :feature do
     click_link 'Staff'
   end
 
+  # test if admin can see the edit and remove buttons
   scenario 'could see manage buttons' do
     expect(page).to have_content(admin_user.username)
     expect(page).to have_content('Edit')
     expect(page).to have_content('Remove')
   end
 
+  # test if admin can visit the edit page
   scenario 'could see staff editing page' do
     click_link 'Edit'
     expect(page).to have_content('Save')
@@ -25,12 +31,14 @@ RSpec.feature 'Visit the staff page with admin account', type: :feature do
     expect(page).to have_content('Back')
   end
 
+  # test if admin can use back link
   scenario 'could back to staff page from editing page' do
     click_link 'Edit'
     click_link 'Back'
     expect(current_path).to eq(staffs_path)
   end
 
+  # test if admin can change the amdin status
   scenario 'could change staff admin status' do
     click_link 'Edit'
     uncheck 'Administrator'
@@ -40,6 +48,7 @@ RSpec.feature 'Visit the staff page with admin account', type: :feature do
     expect(page).to have_no_content('Remove')
   end
 
+  # test if admin can add a new staff, and test if the new staff could login
   scenario 'could add a new staff' do
     click_link 'New Staff'
     fill_in 'Username', with: 'elb20ym'
