@@ -6,12 +6,14 @@
     = f.text_field :surname
 
     = f.fields_for :marks do |marks_form|
-      = marks_form.label :course_id
-      = marks_form.text_field :course_id
-      -# = marks_form.select :course_id, options_for_select(@courses.collect {|c| [c.module_code, c.id]}, {prompt: "Select Module"})
-      
+      = marks_form.label :module
+      = Course.find_by(id: marks_form.object.course_id).module_code
+
       = marks_form.label :fst_grade
       = marks_form.text_field :fst_grade
+
+      = marks_form.label :scd_grade
+      = marks_form.text_field :scd_grade
 
       = marks_form.label :scd_grade
       = marks_form.text_field :scd_grade
