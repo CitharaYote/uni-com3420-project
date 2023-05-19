@@ -31,6 +31,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_192943) do
     t.index ["program_id"], name: "index_courses_programs_on_program_id"
   end
 
+  create_table "current_users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
