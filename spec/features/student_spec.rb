@@ -31,7 +31,24 @@ RSpec.feature 'Student Page', type: :feature do
     fill_in 'student[status]', with: "P"
     select "MUST35", from: 'student[program_id]'
     click_button 'Save'
+
     expect(page).to have_content("Showing")
     expect(page).to have_content("test")
   end
+
+  scenario "User can access show page" do
+    row = page.find(:xpath, ".//tr[./td[@class='px-4 py-2 border'][text()='20230501']]")
+    show_button = row.find(:css, 'a', text: 'Show')
+    show_button.click()
+    expect(page).to have_content "Student Details"
+    expect(page).to have_content "20230501"
+  end
+
+#   scenario "User can remove exist students", js: true do
+#     # need manual test
+#     row = page.find(:xpath, ".//tr[./td[@class='px-4 py-2 border'][text()='20230501']]") # find the exact row
+#     remove_button = row.find(:css, 'a', text: 'Remove')
+#     accept_confirm("Are you Sure?")
+#     expect(page).not_to have_content "20230501"
+#   end
 end
