@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Programme Page', type: :feature do
+  # create admin user account and import csv files for testing use
   before do
     admin = FactoryBot.create(:staff, :admin)
     admin_user = FactoryBot.create(:user, username: admin.username)

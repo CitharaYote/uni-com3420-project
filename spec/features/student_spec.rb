@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Student Page', type: :feature do
+  # Import test csv file for and create admin user account testing use 
   before do
     admin = FactoryBot.create(:staff, :admin)
     admin_user = FactoryBot.create(:user, username: admin.username)

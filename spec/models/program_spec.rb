@@ -13,6 +13,7 @@
 require 'rails_helper'
 
 RSpec.describe Program, type: :model do
+  # create test instances
   let(:program) { Program.create! }
   let(:courses) do
     [
@@ -26,12 +27,14 @@ RSpec.describe Program, type: :model do
     CoursesProgram.create!(course_id: courses[1].id, program_id: program.id)
     CoursesProgram.create!(course_id: courses[2].id, program_id: program.id)
   end
+  # clear up
   after do
     Notification.destroy_all
     Program.destroy_all
     Course.destroy_all
   end
 
+  # program_total_credit function
   describe '#program_total_credit' do
     it 'returns correct credit with random credit courses' do
       expect(program.program_total_credit).to eq 45

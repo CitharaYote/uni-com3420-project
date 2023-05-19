@@ -22,6 +22,7 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
+  # create test instances
   let(:program) { Program.create! }
   let(:student) { Student.create!(regID: 0o00000000, program_id: program.id) }
   let(:courses) do
@@ -36,6 +37,7 @@ RSpec.describe Student, type: :model do
     CoursesProgram.create!(course_id: courses[1].id, program_id: program.id)
     CoursesProgram.create!(course_id: courses[2].id, program_id: program.id)
   end
+  # clear up
   after do
     Mark.destroy_all
     Student.destroy_all
@@ -44,8 +46,11 @@ RSpec.describe Student, type: :model do
     Course.destroy_all
   end
 
+  # student_total_credit function
   describe '#student_total_credit' do
+    # verify the calculation is correct
     it 'returns 25 with module 0,1 passed and 2 failed' do
+      # only create Mark instances since Course and Student are already done
       Mark.create!(student_id: student.id, course_id: courses[0].id, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[1].id, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[2].id, status: 'F')
@@ -60,6 +65,7 @@ RSpec.describe Student, type: :model do
     end
   end
 
+  # wmg_calculator function
   describe '#wmg_calculator' do
     it 'returns correct wmg with random value' do
       Mark.create!(student_id: student.id, course_id: courses[0].id, final_score: 58, status: 'P')
@@ -69,6 +75,7 @@ RSpec.describe Student, type: :model do
     end
   end
 
+  # classfication function
   describe '#classification' do
     it 'set classification to First with wmg >= 70' do
       Mark.create!(student_id: student.id, course_id: courses[0].id, final_score: 70, status: 'P')
