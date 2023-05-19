@@ -12,7 +12,7 @@ RSpec.feature 'Upload the csv file', type: :feature do
     login_as(admin_user)
     visit students_path
     page.attach_file('file',"#{Rails.root}/spec/features/test_file/Student module marks - MUST35 - MUS642 (60).csv")
-    click_button 'Upload Students and Marks'
+    click_button 'Upload Marks'
   end
 
   # test if it shows the students on the student page after uploading
