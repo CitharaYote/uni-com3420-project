@@ -29,6 +29,12 @@ RSpec.feature 'Home page', type: :feature do
     expect(page).to have_content('82.0')
   end
 
+  # test the prevention of SQL injection
+  scenario "User can search student by registration number" do
+    fill_in "sid_search", with: "20230501; DROP TABLE Student;\n"
+    expect(page).to have_content('20230501')
+  end
+
   #test the module list filter
   scenario "User can filter by module" do
     checkbox = find('input[type="checkbox"][value="MUS650"]')
