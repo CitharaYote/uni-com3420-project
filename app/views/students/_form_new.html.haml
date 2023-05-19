@@ -5,21 +5,18 @@
     = f.label :surname
     = f.text_field :surname
 
-    - counter = 0
     = f.fields_for :marks do |marks_form|
-      -if counter < 1
-        = marks_form.label :course_id
-        = marks_form.select :course_id, options_for_select(@courses.collect {|c| [c.module_code, c.id]}, {prompt: "Select Module"})
-        
-        = marks_form.label :fst_grade
-        = marks_form.text_field :fst_grade
+      = marks_form.label :module
+      = Course.find_by(id: marks_form.object.course_id).module_code
 
-        = marks_form.label :scd_grade
-        = marks_form.text_field :scd_grade
-        - counter += 1
+      = marks_form.label :fst_grade
+      = marks_form.text_field :fst_grade
+
+      = marks_form.label :scd_grade
+      = marks_form.text_field :scd_grade
 
 
   .card-footer.d-flex
     %button{ type: 'submit', class: "bg-uospurple text-white px-4 py-2 rounded-lg hover:bg-opacity-70 transition" }
       Save
-    = link_to 'Back', students_path, class: 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition ms-auto'
+    = link_to 'Back', student_path, class: 'bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:tw-bg-secondary hover:text-white transition ms-auto'
