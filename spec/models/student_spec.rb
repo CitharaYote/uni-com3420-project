@@ -81,28 +81,28 @@ RSpec.describe Student, type: :model do
       Mark.create!(student_id: student.id, course_id: courses[0].id, final_score: 70, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[1].id, final_score: 70, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[2].id, final_score: 70, status: 'P')
-      expect(student.classification).to eq 'First'
+      expect(student.classification).to eq 'Master (Class one Honours)'
     end
 
     it 'set classification to Second with 60 <= wmg < 70' do
       Mark.create!(student_id: student.id, course_id: courses[0].id, final_score: 60, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[1].id, final_score: 60, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[2].id, final_score: 60, status: 'P')
-      expect(student.classification).to eq 'Second'
+      expect(student.classification).to eq 'Master (Class three Honours)'
     end
 
     it 'set classification to Third with 50 <= wmg < 60' do
       Mark.create!(student_id: student.id, course_id: courses[0].id, final_score: 50, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[1].id, final_score: 50, status: 'P')
       Mark.create!(student_id: student.id, course_id: courses[2].id, final_score: 50, status: 'P')
-      expect(student.classification).to eq 'Third'
+      expect(student.classification).to eq 'Master (Class three Honours)'
     end
 
     it 'set classification to not attain full credit with wmg < 50' do
       Mark.create!(student_id: student.id, course_id: courses[0].id, final_score: 40, status: 'F')
       Mark.create!(student_id: student.id, course_id: courses[1].id, final_score: 40, status: 'F')
       Mark.create!(student_id: student.id, course_id: courses[2].id, final_score: 40, status: 'F')
-      expect(student.classification).to eq "You didn't attain full credit"
+      expect(student.classification).to eq "Certificate (total credit: 0)"
     end
   end
 end

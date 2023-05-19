@@ -64,7 +64,7 @@ class Student < ApplicationRecord
     program = Program.find_by(id: program_id)
     if student_total_credit == program.program_total_credit
       classification += "Master "
-      if wmg_calculator > 70
+      if wmg_calculator >= 70
         classification += "(Class one Honours)"
       elsif wmg_calculator > 60
         classification += "(Class two Honours)"
