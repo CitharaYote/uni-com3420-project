@@ -1,11 +1,12 @@
 = form_with model: @student, url: student_path(@student), method: :patch do |f|
-  .card.body
+  .p-4.col.flex.flex-col.mb-2
     = f.label :forename
     = f.text_field :forename
     = f.label :surname
     = f.text_field :surname
 
     = f.fields_for :marks do |marks_form|
+      %hr.mt-4
       = marks_form.label :course_id
       = marks_form.text_field :course_id
       -# = marks_form.select :course_id, options_for_select(@courses.collect {|c| [c.module_code, c.id]}, {prompt: "Select Module"})

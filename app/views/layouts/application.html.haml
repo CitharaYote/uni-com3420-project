@@ -72,7 +72,7 @@
 
     - if flash.present?
       .flash-messages.bg-uospurple
-        .mx-8.mt-3.absolute.hide-3s
+        .mx-8.mt-3.absolute.hide-3s.z-50
           - flash.each do |message_type, message|
             - next unless message_type == 'alert' || message_type == 'notice'
             .alert{ class: "alert-#{ message_type == 'notice' ? 'success' : 'danger' }" }= message
