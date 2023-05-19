@@ -10,10 +10,10 @@
       = marks_form.label :module
       = Course.find_by(id: marks_form.object.course_id).module_code
 
-      = marks_form.label :fst_grade
+      = marks_form.label :first_grade
       = marks_form.text_field :fst_grade
 
-      = marks_form.label :scd_grade
+      = marks_form.label :second_grade
       = marks_form.text_field :scd_grade
 
   .card-footer.d-flex
