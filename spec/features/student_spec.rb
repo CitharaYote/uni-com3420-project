@@ -44,6 +44,22 @@ RSpec.feature 'Student Page', type: :feature do
     expect(page).to have_content "20230501"
   end
 
+  scenario "User can edit a student's profile" do
+    page.attach_file('file',"#{Rails.root}/spec/features/test_file/Student module marks - MUST50 - MUS650 (60).csv")
+    click_button 'Upload Marks'
+    row = page.find(:xpath, ".//tr[./td[@class='px-4 py-2 border'][text()='20230501']]")
+    show_button = row.find(:css, 'a', text: 'Show')
+    show_button.click()
+    click_link 'Edit'
+    fill_in 'student[forename]', with: 'TestRuth'
+    fill_in 'student[surname]', with: "TestAqua"
+    fill_in 'student[marks_attributes][0][fst_grade]', with: "83"
+    click_button 'Save'
+    expect(page).to have_content 'TestRuth'
+    expect(page).to have_content 'TestAqua'
+    expect(page).to have_content '83'
+  end
+
 #   scenario "User can remove exist students", js: true do
 #     # need manual test
 #     row = page.find(:xpath, ".//tr[./td[@class='px-4 py-2 border'][text()='20230501']]") # find the exact row
