@@ -104,8 +104,10 @@ class Student < ApplicationRecord
       end
       if mark.final_score < 50
         mark.status = 'F'
+        mark.save
       else
         mark.status = 'P'
+        mark.save
       end
     end 
   end
