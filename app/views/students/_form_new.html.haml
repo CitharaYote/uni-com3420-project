@@ -6,15 +6,12 @@
     = f.text_field :surname
 
     = f.fields_for :marks do |marks_form|
-      %hr.mt-4
+      %hr.mt-4.mb-2
       = marks_form.label :module
       = Course.find_by(id: marks_form.object.course_id).module_code
 
       = marks_form.label :fst_grade
       = marks_form.text_field :fst_grade
-
-      = marks_form.label :scd_grade
-      = marks_form.text_field :scd_grade
 
       = marks_form.label :scd_grade
       = marks_form.text_field :scd_grade
