@@ -1,54 +1,142 @@
-# Information
+# WMG Calculator
 
-This README contains the information relating to the project and the program itself.
-The 'WMG Calculator Project' was made by **Team 24** for the **Department of Music at the University of Sheffield**.
-Credit to the University of Sheffield Department of Computer Science for the template that Team 24 (Chengyu Fu, Xueyi Huang, Keshav Joshi, Junming Luo, Yupeng Mao, James Oyaide, Chloe Creak and Theo Cruddace) used to create the rails application.
+<p align="center">
+  <img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby" />
+  <img src="https://img.shields.io/badge/Rails-CC0000?style=for-the-badge&logo=rubyonrails&logoColor=white" alt="Rails" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap" />
+</p>
 
+## Overview
 
-## System Information
+WMG Calculator is a Ruby on Rails application built to help staff in the University of Sheffield Department of Music manage student module marks and calculate weighted mean grades.
 
-### Ruby on Rails
-The project uses **Ruby** version: **3.1.2** on **Rails** version: **7.0.4.2**.
+The project was originally created by Team 24 for COM3420. The team members were Chengyu Fu, Xueyi Huang, Keshav Joshi, Junming Luo, Yupeng Mao, James Oyaide, Chloe Creak and Theo Cruddace. It was developed from a Rails template provided by the University of Sheffield Department of Computer Science.
 
-### PostgreSQL
-The database is SQL handled by **PostgreSQL** version: **14**.
+The application supports:
 
-### Tailwind
-The system uses **Tailwind CSS** version: **3.3.1** 
+- CSV mark imports for student module results
+- student, module, programme and staff management
+- weighted mean grade and award classification calculations
+- programme and module filtering from the main dashboard
+- notifications for newly imported programmes/modules and old student records
+- staff-only access control with admin permissions for staff management
+- Sheffield LDAP/CAS authentication through `epi_cas`
+
+## Preview
+
+A separate mockup of the site is available in the <a href="https://github.com/CitharaYote/uni-com3420-project-mockup">mockup repository</a>.
+
+Give the hosted mockup a go <a href="https://citharayote.github.io/uni-com3420-project-mockup/">here</a>!
+
+## Getting Started
+
+### Dependencies and Prerequisites
+
+You will need:
+
+- Ruby `3.1.2`
+- Bundler `2.3.7`
+- PostgreSQL `14`
+- Node.js and Yarn
+- access to the private Sheffield `epi_cas` gem source used in the `Gemfile`
+
+The project uses PostgreSQL for Rails data storage, Shakapacker/Webpack for front-end assets, Tailwind CSS and Bootstrap for styling, Devise with `epi_cas` for authentication, CanCanCan for permissions, and RSpec/Capybara for testing.
 
 ### Installation
-To use the project with git, follow these commands.<br>
 
-First clone the project<br>
-```git clone git@git.shefcompsci.org.uk:com3420-2022-23/team24/project.git``` <br>
-Or alternatively, to use the HTTP method:
-```git clone https://git.shefcompsci.org.uk/com3420-2022-23/team24/project.git``` <br>
+Clone the repository:
 
-In the project directory, run these commands:
-```cp config/database-sample.yml config/database.yml``` <br>
-```bundle install```<br>
-```yarn install```<br>
+```bash
+git clone https://github.com/CitharaYote/uni-com3420-project.git
+cd uni-com3420-project
+```
 
-```bundle exec rails db:create```<br>
-```bundle exec rails db:migrate```<br>
-```bundle exec rails db:seed```<br>
+Install the required Ruby and JavaScript dependencies:
 
-The project is now installed appropriately. In order to run the application use the following commands in the applications directory.
-```bundle exec rails s```<br>
+```bash
+gem install bundler:2.3.7
+bundle install
+yarn install
+```
 
-Create a separate terminal window/tab (whilst still in the application directory) and run:<br>
-```bin/webpacker-dev-server```
+Create your local database configuration:
 
-If you see a message regarding shakapacker version, do not worry, you can run this command to update the version <br>
-```gem install shakapacker``` to fix it, or alternatively you can ignore it.<br>
+```bash
+cp config/database-sample.yml config/database.yml
+```
 
+Then create and prepare the database:
 
-If you now visit http://localhost:3000 in a browser you should see your application.<br>
-**If an error message with regards to PendingMigrations occurs, press the button that states 'Run pending migrations'**
+```bash
+bundle exec rails db:create
+bundle exec rails db:migrate
+bundle exec rails db:seed
+```
 
-### Files
-app/controllers contains page controllers and the application controller itself. It has connects and references to Devise and CanCanCan
-app/models contains Ruby models (ActiveRecords) with their schema table information.
-app/views contains the .erb and .haml files for pages for which the css stylesheets can be found in app/packs/styles
-Things you may want to cover:
+### Usage
 
+Start the Rails server:
+
+```bash
+bundle exec rails server
+```
+
+In a second terminal, start the Webpack development server:
+
+```bash
+bin/webpacker-dev-server
+```
+
+Open <a href="http://localhost:3000">http://localhost:3000</a> in your browser.
+
+To run the test suite:
+
+```bash
+bundle exec rspec
+```
+
+## Notes
+
+Development and test environments use LDAP authentication, while QA, demo and production use CAS. A user must also have a matching `Staff` record before they can sign in successfully.
+
+The seed file creates a placeholder user, but it does not create a staff record. If you are setting up a local development database from scratch, you may need to create an appropriate `Staff` record for your test user before the app grants access.
+
+CSV imports expect the column names used by the sample mark files in `spec/features/test_file`, including `Module Code`, `Programme Code`, `Reg No.`, `Forename`, `Surname`, `Reg. Status`, `1st Grade` and `2nd Grade`.
+
+If Rails reports pending migrations in development, run:
+
+```bash
+bundle exec rails db:migrate
+```
+
+## Get in Touch
+
+<p align="center">
+  <i>Built with <b>code</b>, <b>caffeine</b>, and 💜 by CitharaYote</i>
+</p>
+
+<p align="center">
+  <a href="https://citharayote.xyz">
+    <img src="https://img.shields.io/badge/Portfolio-Visit%20my%20site-8A2BE2?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Portfolio" />
+  </a>
+  <a href="https://github.com/CitharaYote">
+    <img src="https://img.shields.io/badge/GitHub-CitharaYote-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://www.linkedin.com/in/theo-cruddace/">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect%20with%20me-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:theocruddace@gmail.com">
+    <img src="https://img.shields.io/badge/Email-Say%20hello-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+</p>
+
+<p align="center">
+  <i>Like what I’m building? Feel free to support my work!</i>
+</p>
+<p align="center">
+  <a href="https://www.buymeacoffee.com/citharayote">
+    <img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-Fuel%20my%20addiction-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee" />
+  </a>
+</p>
